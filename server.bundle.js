@@ -60,9 +60,9 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var express = __webpack_require__(6);
-	var path = __webpack_require__(7);
-	var compression = __webpack_require__(8);
+	var express = __webpack_require__(7);
+	var path = __webpack_require__(8);
+	var compression = __webpack_require__(9);
 
 	var app = express();
 	app.use(compression());
@@ -128,9 +128,17 @@
 
 	var _App2 = _interopRequireDefault(_App);
 
+	var _pageSkeleton = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./containers/pageSkeleton\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+
+	var _pageSkeleton2 = _interopRequireDefault(_pageSkeleton);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	module.exports = _react2.default.createElement(_reactRouter.Route, { path: '/', component: _App2.default });
+	module.exports = _react2.default.createElement(
+	  _reactRouter.Route,
+	  { path: '/', component: _App2.default },
+	  _react2.default.createElement(_reactRouter.IndexRoute, { component: _pageSkeleton2.default })
+	);
 
 /***/ },
 /* 5 */
@@ -169,19 +177,20 @@
 	});
 
 /***/ },
-/* 6 */
+/* 6 */,
+/* 7 */
 /***/ function(module, exports) {
 
 	module.exports = require("express");
 
 /***/ },
-/* 7 */
+/* 8 */
 /***/ function(module, exports) {
 
 	module.exports = require("path");
 
 /***/ },
-/* 8 */
+/* 9 */
 /***/ function(module, exports) {
 
 	module.exports = require("compression");

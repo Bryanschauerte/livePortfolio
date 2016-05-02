@@ -1,66 +1,76 @@
-import {List, Map} from 'immutable';
+import {List, Map, fromJS} from 'immutable';
 import {expect} from 'chai';
 
 import {
-  setCategoryEntries,
-   contentStructure,
-   changeView,
-   INITIAL_STATE
-  } from '../../logic/core';
+    INITIAL_STATE,
+    addCategoryEntry,
+    contentStructure,
+    setState,
+    getViewContents,
+    changeView,
+    changeLoadingStatus} from '../../logic/core';
+
 
 describe('application logic', () => {
 
-  describe('changes to correct View', ()=>{
-
-    it('Starts at the about view', ()=>{
-
-      expect(INITIAL_STATE).to.equal(fromJS({
-        about:[],
-        blog:[],
-        codeShare:[],
-        future:[],
-        activeView: 'about'
-      }))
-
-    it('Changes activeView to target view', ()=>{
-      const nextState = changeView(INITIAL_STATE, targetView);
-      expect(nextState).to.equal(fromJS({
-        about:[],
-        blog:[],
-        codeShare:[],
-        future:[],
-        activeView: targetView
-      }))
-    });
-
-  });
 
   describe('setEntries', () => {
 
-    it('adds the entries to the state', () => {
-      const state = Map();
-      const entries = List.of(contentStructure, contentStructure);
+    it('adds an entry to the state', () => {
+      const state = INITIAL_STATE;
+      const entry = contentStructure;
       const category = 'about';
-      // const blog = List.of(contentStructure, contentStructure);
-      // const codeShare = List.of(contentStructure, contentStructure);
-      // const future = List.of(contentStructure, contentStructure);
 
-      const nextState = setCategoryEntries(state, category, entries);
+      const nextState = addCategoryEntry(state, category, entry);
       expect(nextState).to.equal(Map({
-        about: List.of(contentStructure, contentStructure)
+        about:List.of(fromJS({
+          title:'',
+          style:{},
+          type:'',
+          cards:[{
+            header:'',
+            subHead:'',
+            sideNote:'',
+            mainContent:'',
+            userHasRead:false
+          }]
+
+        })
+      ),
+        blog:List.of(),
+        codeShare:List.of(),
+        future:List.of(),
+        activeView: 'about',
+        isLoading: true
+
       }));
     });
 
-    it('converts to immutable', () => {
-      const state = Map();
-      const category = 'about';
-      const entries = [contentStructure, contentStructure];
-      const nextState = setCategoryEntries(state, category, entries);
+
+    it('Changes the view', () => {
+      const state = INITIAL_STATE;
+      const newView = 'blog';
+      const nextState = changeView(state, newView);
       expect(nextState).to.equal(Map({
-        about: List.of(contentStructure, contentStructure)
+        about:List.of(),
+        blog:List.of(),
+        codeShare:List.of(),
+        future:List.of(),
+        activeView: 'blog',
+        isLoading: true
+
       }));
     });
 
-  });
+
+      it('returns the contents for a view', () => {
+        const state = INITIAL_STATE;
+        const pageOn = 'about';
+        const nextState = getViewContents(state, pageOn);
+        expect(nextState).to.equal(List.of())
+
+    });
+});
+
 
 });

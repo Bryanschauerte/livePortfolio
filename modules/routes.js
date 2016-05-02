@@ -1,10 +1,9 @@
 import React from 'react'
 import { Route, browserHistory, IndexRoute } from 'react-router'
-import App from './App'
+import {PageSkeletonContainer} from './containers/pageSkeleton';
 
 
 module.exports = (
-  <Route path="/" component={App}>
-    
+  <Route path="/" component={PageSkeletonContainer}>
   </Route>
 )
