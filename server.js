@@ -34,7 +34,7 @@ function renderPage( appHtml ) {
     <!doctype html client="storage">
     <html>
     <meta charset=utf-8/>
-    <title>Something whitty</title>
+    <title>Something very whitty</title>
     <link rel=stylesheet href=/index.css>
     <div id=app>${appHtml}</div>
     <script src="/bundle.js"></script>

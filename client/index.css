@@ -1,0 +1,81 @@
+/*Main skeleton*/
+
+
+body {
+  margin:                  0;
+}
+.masterContainer{
+  margin:                  0;
+  background-color:        #b0cad5;
+  height:                  100%;
+  width:                   100%;
+  position:                relative;
+
+}
+.viewContainer {
+  margin:                  0;
+  background-color:        green;
+  height:                  100%;
+  width:                   85%;
+  display:                 inline-block;
+  vertical-align:          top;
+  position:                relative;
+
+}
+
+.sideContainer {
+  margin:                  0;
+  background-color:        blue;
+  height:                  100%;
+  width:                   15%;
+  display:                 inline-block;
+  vertical-align:          top;
+
+}
+
+
+@media(max-width:760px){
+  * {
+    padding:                 0;
+    margin:                  0;
+    }
+
+  .masterContainer {
+    background-color:        #b0cad5;
+    height:                  100%;
+    width:                   100%;
+    position:                relative;
+
+  }
+  .viewContainer {
+    background-color:        green;
+    height:                  80%;
+    width:                   100%;
+    display:                 block;
+    vertical-align:          top;
+
+  }
+
+  .sideContainer {
+    background-color:        blue;
+    height:                  20%;
+    width:                   100%;
+    display:                 block;
+    vertical-align:          top;
+
+  }
+}
+
+/*End Main skeleton*/
+
+/*Viewbox */
+.viewBox {
+  background-color:          purple;
+  padding:                   4%;
+  max-height:                90%;
+  width:                     90%;
+  position:                  absolute;
+  top:                       0;
+  margin:                    0 1% 0 1%;
+
+}

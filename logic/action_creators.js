@@ -16,3 +16,14 @@ export function setState(){
     type: 'SET_STATE'
   }
 }
+export function getViewContents(){
+  return {
+    type: 'GET_VIEW_CONTENTS'
+  }
+}
+export function getViewItem(itemLocation){
+  return {
+    type: 'GET_VIEW_ITEM',
+    entry: itemLocation
+  }
+}

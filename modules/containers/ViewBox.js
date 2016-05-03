@@ -1,6 +1,7 @@
 import React from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import {connect} from 'react-redux';
+import {ViewBoxMenuContainer} from './ViewBoxMenu';
 
 export const ViewBox = React.createClass({
   mixins:[PureRenderMixin],
@@ -9,9 +10,10 @@ export const ViewBox = React.createClass({
     this.props.changeViewClick("hotdog");
   },
   render(){
-    return(<div>
-      viewbox
-      <button onClick={this.handleClick}>ViewBox change activeView to 'hotdog'</button>
+    return(
+      <div className ="viewBox">
+      <ViewBoxMenuContainer/>
+        <button onClick={this.handleClick}>ViewBox change activeView to 'hotdog'</button>
       </div>)
   }
 })
@@ -19,15 +21,12 @@ export const ViewBox = React.createClass({
 const mapStateToProps= (state)=> {
   return {
     activeView: state.getIn(['activeView']),
+    activeItem: state.getIn(['activeItem']),
     isLoading: state.getIn(['isLoading']),
     displayContent: state.getIn([state
       .getIn(['activeView'])
     ])
   };
-}
-const mapDispatchToProps = (dispatch) => {
-  return {
-  }
 }
 
 export const ViewBoxContainer  = connect(mapStateToProps)(ViewBox);

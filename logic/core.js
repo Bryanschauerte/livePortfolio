@@ -3,7 +3,7 @@ import {List, Map,fromJS,is,set} from 'immutable';
 export function addCategoryEntry(state, category, entries){
   return state.updateIn([category], [], val => state.get(category).push(entries));
 }
- 
+
 export function changeLoadingStatus(state){
   return state.updateIn(['isLoading'], false, val => !state.get('isLoading'))
 }
@@ -18,6 +18,12 @@ export function getViewContents( state, view ){
 export function setState(state, newState){
   return state.merge(newState);
 }
+export function getViewItem( state, itemLocation ){
+  //return state.get([view,]); will be a deep map
+  return List.of(1,2,3,4,5,6,7,8,9)//temp data
+}
+
+
 
 
  export const contentStructure =fromJS({
@@ -40,6 +46,7 @@ export function setState(state, newState){
   codeShare:List.of(),
   future:List.of(),
   activeView: 'about',
-  isLoading: true
+  isLoading: true,
+  activeItem:''
 
 })
