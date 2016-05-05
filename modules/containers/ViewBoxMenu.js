@@ -2,21 +2,75 @@ import React from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import {connect} from 'react-redux';
 import classNames from 'classnames';
+import {changeView, getViewItem, changeLoadingStatus} from '../../logic/action_creators';
+// import {ViewBoxButton} from '../components/ViewBoxButton';
+
 
 const ViewBoxMenu = React.createClass({
 
   mixins:[PureRenderMixin],
 
+  handleClick(item){
+    // this.expandMenu();
+
+    this.props.changeViewClick(item);
+
+  },
+  expandMenu(){
+    console.log("second")
+    // use this to rerender how the classnames object looks
+  },
+  constractMenu(){
+
+  },
+
+  renderButtons(controlOfView, className){
+    let buttonClasses =classNames({
+      'plainButton' : true,
+      'buttonPhaseOne': this.props.activeView == controlOfView,
+      'buttonPhaseTwo': this.props.activeView == controlOfView
+      // ,
+      // 'buttonPhaseThree': this.props.activeView == controlOfView,
+      // 'buttonPhaseFour': this.props.activeView == controlOfView
+
+    })
+    return(
+      <button
+        className={buttonClasses}
+        key = {controlOfView}
+        onClick={this.handleClick.bind(this, controlOfView)}>
+        {controlOfView}
+      </button>
+
+    )
+  },
+
   render(){
-    // map of state's categories
-    // need a 'dumb' component for the category items
+
+    let buttonsForView = Object.keys(this.props.categories).map((item, index)=>{
+      return this.renderButtons(item);
+    });
+
+
+    let expandMenuClasses =classNames({
+      'blogButton': this.props.activeView == "blog",
+      'expandMenuClassEnter': false,
+      'expandMenuClassEnd': false,
+      'expandMenuClassLeave': false
+
+    })
+
     return (
       <div>
         <div>
-          top components menu buttons to choose view
+{buttonsForView}
+
         </div>
-        <div>
+
+        <div id ="expandMenu" className={expandMenuClasses}>
+{this.props.activeView}
           rendered items for the view
+
         </div>
       </div>
     )
@@ -24,13 +78,18 @@ const ViewBoxMenu = React.createClass({
 })
 
 const mapStateToProps= (state)=> {
+
   return {
     activeView: state.getIn(['activeView']),
     isLoading: state.getIn(['isLoading']),
-    about: state.getIn(['isLoading']),
-    blog: state.getIn(['isLoading']),
-    codeShare: state.getIn(['isLoading']),
-    future: state.getIn(['isLoading'])
+    categories: {
+      About: state.getIn(['About']),
+      Blog: state.getIn(['Blog']),
+      CodeShare: state.getIn(['CodeShare']),
+      Future: state.getIn(['Future'])
+    },
+    activeItem:state.getIn(['isLoading'])
+
   };
 }
 
@@ -42,7 +101,7 @@ const mapDispatchToProps = (dispatch) => {
     changeLoadingStatusClick: ()=>{
       dispatch(changeLoadingStatus());
     },
-    getViewItemClick: ()=>{
+    getViewItemClick: (itemLocation)=>{
       dispatch(getViewItem(itemLocation));
     }
   }

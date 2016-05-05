@@ -79,3 +79,40 @@ body {
   margin:                    0 1% 0 1%;
 
 }
+.about {
+  height: 100px;
+  width:100px;
+  background-color: red;
+}
+
+
+
+.plainButton{
+border-width: 0;
+border-style: none;
+border-color: none;
+/*transform: skewX(25deg);*/
+outline: none;
+}
+
+.buttonPhaseTwo {
+
+  background-color: #443242;
+  color:white;
+  border-top-left-radius: 2em;
+  border-top-right-radius: 2em;
+  -webkit-transform: translateX(5em) translateY(5em) scale(2, 2);
+  transform: translateX(5em) translateY(5em) scale(2, 2);
+  -webkit-transition-duration: 2s;
+  -webkit-transition-timing-function: ease;
+  transition-duration: 2s;
+  transition-timing-function: ease;
+}
+
+
+
+.expandMenuClassLeave {
+  opacity: 0.01;
+  width:0%;
+  transition: opacity 300ms ease-in;
+}

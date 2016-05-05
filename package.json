@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "Server Rendered Profile",
   "main": "index.js",
-
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
     "start:dev": "webpack-dev-server --inline --content-base client/ --history-api-fallback",
@@ -17,15 +16,16 @@
   "author": "Bryan Schauerte",
   "license": "MIT",
   "dependencies": {
-    "immutable": "^3.7.6",
-    "react-addons-test-utils": "^0.14.8",
-    "redux": "^3.3.1",
     "compression": "^1.6.1",
     "if-env": "^1.0.0",
-    "react": "^0.14.7",
+    "immutable": "^3.7.6",
+    "react": "^0.14.8",
+    "react-addons-css-transition-group": "^0.14.8",
     "react-addons-pure-render-mixin": "^0.14.8",
+    "react-addons-test-utils": "^0.14.8",
     "react-dom": "^0.14.7",
-    "react-router": "^2.0.0"
+    "react-router": "^2.0.0",
+    "redux": "^3.3.1"
   },
   "babel": {
     "presets": [

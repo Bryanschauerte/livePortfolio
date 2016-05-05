@@ -20,7 +20,7 @@ export function setState(state, newState){
 }
 export function getViewItem( state, itemLocation ){
   //return state.get([view,]); will be a deep map
-  return List.of(1,2,3,4,5,6,7,8,9)//temp data
+  return List.of(["win"]);//temp data
 }
 
 
@@ -41,10 +41,10 @@ export function getViewItem( state, itemLocation ){
 })
 
  export const INITIAL_STATE= Map({
-  about:List.of(),
-  blog:List.of(),
-  codeShare:List.of(),
-  future:List.of(),
+  About:List.of(),
+  Blog:List.of(),
+  CodeShare:List.of(),
+  Future:List.of(),
   activeView: 'about',
   isLoading: true,
   activeItem:''
