@@ -7,7 +7,9 @@ import {changeView, changeLoadingStatus} from '../../logic/action_creators';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import classNames from 'classnames';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import {masterContainer} from '../styles/_PageSkeleton';
+import {PageSkeletonStyles} from '../styles/_PageSkeleton';
+import Radium, {Style} from 'radium';
+import {styles} from '../styles/globalStyles';
 
 
 const store = makeStore();
@@ -18,13 +20,15 @@ export const PageSkeleton = React.createClass({
 
   render(){
     return(
-      <div className="masterContainer">
-        <div className="sideContainer">
+
+      <div style={[PageSkeletonStyles.masterContainer]} >
+        <Style rules={styles}/>
+        <div style={PageSkeletonStyles.sideContainer}>
               <h2>
                 Skeleton's active view: {this.props.activeView}
               </h2>
         </div>
-        <div className="viewContainer">
+        <div style={PageSkeletonStyles.viewContainer}>
           <ViewBoxContainer className ="viewBox" {...this.props}/>
         </div>
       </div>
@@ -49,4 +53,4 @@ const mapDispatchToProps = (dispatch) => {
 export const PageSkeletonContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(PageSkeleton);
+)(Radium(PageSkeleton));

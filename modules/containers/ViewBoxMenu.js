@@ -3,7 +3,10 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 import {connect} from 'react-redux';
 import classNames from 'classnames';
 import {changeView, getViewItem, changeLoadingStatus} from '../../logic/action_creators';
-// import {ViewBoxButton} from '../components/ViewBoxButton';
+import Radium from 'radium';
+import {buttonStyles} from '../styles/_button';
+import {StyleRoot} from 'radium';
+import {ViewBoxBtn} from '../components/ViewBoxButton';
 
 
 const ViewBoxMenu = React.createClass({
@@ -11,68 +14,40 @@ const ViewBoxMenu = React.createClass({
   mixins:[PureRenderMixin],
 
   handleClick(item){
-    // this.expandMenu();
-
     this.props.changeViewClick(item);
-
-  },
-  expandMenu(){
-    console.log("second")
-    // use this to rerender how the classnames object looks
-  },
-  constractMenu(){
-
   },
 
-  renderButtons(controlOfView, className){
-    let buttonClasses =classNames({
-      'plainButton' : true,
-      'buttonPhaseOne': this.props.activeView == controlOfView,
-      'buttonPhaseTwo': this.props.activeView == controlOfView
-      // ,
-      // 'buttonPhaseThree': this.props.activeView == controlOfView,
-      // 'buttonPhaseFour': this.props.activeView == controlOfView
-
-    })
-    return(
-      <button
-        className={buttonClasses}
-        key = {controlOfView}
-        onClick={this.handleClick.bind(this, controlOfView)}>
-        {controlOfView}
-      </button>
-
-    )
-  },
 
   render(){
 
-    let buttonsForView = Object.keys(this.props.categories).map((item, index)=>{
-      return this.renderButtons(item);
-    });
-
-
-    let expandMenuClasses =classNames({
-      'blogButton': this.props.activeView == "blog",
-      'expandMenuClassEnter': false,
-      'expandMenuClassEnd': false,
-      'expandMenuClassLeave': false
-
-    })
-
     return (
+      <StyleRoot>
       <div>
-        <div>
-{buttonsForView}
 
-        </div>
+          <ViewBoxBtn{...this.props}
+            viewHandler= {this.handleClick}
+            viewControlled="About"/>
 
-        <div id ="expandMenu" className={expandMenuClasses}>
+          <ViewBoxBtn {...this.props}
+            viewHandler= {this.handleClick}
+            viewControlled="Blog"/>
+
+          <ViewBoxBtn{...this.props}
+            viewHandler= {this.handleClick}
+            viewControlled="CodeShare"/>
+
+          <ViewBoxBtn {...this.props}
+            viewHandler= {this.handleClick}
+            viewControlled="Future"/>
+
+
+        <div id ="expandMenu">
 {this.props.activeView}
           rendered items for the view
 
         </div>
       </div>
+    </StyleRoot>
     )
   }
 })
@@ -88,7 +63,7 @@ const mapStateToProps= (state)=> {
       CodeShare: state.getIn(['CodeShare']),
       Future: state.getIn(['Future'])
     },
-    activeItem:state.getIn(['isLoading'])
+    activeItem:state.getIn(['activeItem'])
 
   };
 }
@@ -106,4 +81,7 @@ const mapDispatchToProps = (dispatch) => {
     }
   }
 }
-export const ViewBoxMenuContainer = connect(mapStateToProps, mapDispatchToProps)(ViewBoxMenu);
+export const ViewBoxMenuContainer = connect(
+  mapStateToProps,
+   mapDispatchToProps
+ )(Radium(ViewBoxMenu));
