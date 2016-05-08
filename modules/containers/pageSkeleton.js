@@ -2,14 +2,22 @@ import React from 'react';
 import {Map, fromJS} from 'immutable';
 import {connect} from 'react-redux';
 import makeStore from "../../logic/store";
-import {ViewBoxContainer} from './ViewBox';
+
+
 import {changeView, changeLoadingStatus} from '../../logic/action_creators';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import classNames from 'classnames';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+
+import {btnStyles} from '../styles/_button';
 import {PageSkeletonStyles} from '../styles/_PageSkeleton';
-import Radium, {Style} from 'radium';
+import {VBContainer} from '../styles/_ViewBoxContainer';
+import {SplitContStyles} from '../styles/_SplitContainer';
+import Radium, {Style, StyleRoot} from 'radium';
 import {styles} from '../styles/globalStyles';
+
+import {ViewBoxContainer} from './ViewBox';
+import {SplitContainer} from './SplitContainer';
+import {BtnElementContainer} from './ButtonContainer';
 
 
 const store = makeStore();
@@ -19,19 +27,20 @@ export const PageSkeleton = React.createClass({
   mixins:[PureRenderMixin],
 
   render(){
+console.log(this.props, "skeleton")
     return(
-
-      <div style={[PageSkeletonStyles.masterContainer]} >
+      <StyleRoot>
         <Style rules={styles}/>
-        <div style={PageSkeletonStyles.sideContainer}>
-              <h2>
-                Skeleton's active view: {this.props.activeView}
-              </h2>
-        </div>
-        <div style={PageSkeletonStyles.viewContainer}>
-          <ViewBoxContainer className ="viewBox" {...this.props}/>
-        </div>
+      <div style={PageSkeletonStyles.masterContainer} >
+
+
+          <SplitContainer {...this.props} styles={SplitContStyles}/>
+          <ViewBoxContainer styles={VBContainer} {...this.props}/>
+          <BtnElementContainer {...this.props} styles = {btnStyles} />
+
       </div>
+
+    </StyleRoot>
     );
   }
 })
@@ -39,11 +48,24 @@ export const PageSkeleton = React.createClass({
 const mapStateToProps= (state)=> {
   return {
     activeView: state.getIn(['activeView']),
-    isLoading: state.getIn(['isLoading'])
+    activeItem: state.getIn(['activeItem']),
+    isLoading: state.getIn(['isLoading']),
+    displayContent: state.getIn([state
+      .getIn(['activeView'])
+    ])
   };
 }
 const mapDispatchToProps = (dispatch) => {
   return {
+    changeLoadingStatusClick: ()=>{
+      dispatch(changeLoadingStatus());
+    },
+    changeViewClick: (nextView) => {
+      dispatch(changeView(nextView));
+    },
+    getViewItemClick: (itemLocation)=>{
+      dispatch(getViewItem(itemLocation));
+    },
     changeLoadingStatusClick: ()=>{
       dispatch(changeLoadingStatus());
     }

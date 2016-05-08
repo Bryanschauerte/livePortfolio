@@ -7,13 +7,14 @@ export const ViewBox = React.createClass({
   mixins:[PureRenderMixin],
 
   handleClick(){
-    // this.props.changeViewClick("hotdog");
+
   },
   render(){
+
     return(
-      <div className ="viewBox">
-      <ViewBoxMenuContainer/>
-        
+      <div style ={this.props.styles.base}>
+      <ViewBoxMenuContainer {...this.props}/>
+
       </div>)
   }
 })

@@ -1,12 +1,10 @@
 import React from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import {connect} from 'react-redux';
-import classNames from 'classnames';
 import {changeView, getViewItem, changeLoadingStatus} from '../../logic/action_creators';
 import Radium from 'radium';
-import {buttonStyles} from '../styles/_button';
 import {StyleRoot} from 'radium';
-import {ViewBoxBtn} from '../components/ViewBoxButton';
+
 
 
 const ViewBoxMenu = React.createClass({
@@ -22,23 +20,10 @@ const ViewBoxMenu = React.createClass({
 
     return (
       <StyleRoot>
-      <div>
+      <div style={this.props.styles.inner.container}>
 
-          <ViewBoxBtn{...this.props}
-            viewHandler= {this.handleClick}
-            viewControlled="About"/>
+        
 
-          <ViewBoxBtn {...this.props}
-            viewHandler= {this.handleClick}
-            viewControlled="Blog"/>
-
-          <ViewBoxBtn{...this.props}
-            viewHandler= {this.handleClick}
-            viewControlled="CodeShare"/>
-
-          <ViewBoxBtn {...this.props}
-            viewHandler= {this.handleClick}
-            viewControlled="Future"/>
 
 
         <div id ="expandMenu">

@@ -5,7 +5,7 @@ import {Map, List, fromJS} from 'immutable';
 // by filling in inputs.
 
 //structure to follow
-export const about = fromJS({
+export const About = fromJS({
   title:'',
   style:{},//style object
   type:'',//list/videos/codeShare/blogPost/future determains what component to use

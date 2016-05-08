@@ -6,59 +6,41 @@ masterContainer: {
   backgroundColor:         "#b0cad5",
   height:                  "100%",
   width:                   "100%",
-  position:                "relative",
-  neat:{backgroundColor:   "yellow"}
-
-},
-viewContainer: {
-  margin:                  0,
-  backgroundColor:        "green",
-  height:                  "100%",
-  width:                   "85%",
-  display:                 "inline-block",
-  verticalAlign:          "top",
-  position:                "relative"
-
-},
-
-sideContainer: {
-  margin:                  0,
-  backgroundColor:        "blue",
-  height:                  "100%",
-  width:                   "15%",
-  display:                 "inline-block",
-  verticalAlign:          "top"
-
-},
-'@media(max-width:760px)':{
-
-  masterContainer: {
-      backgroundColor:         "#b0cad5",
-      height:                  "100%",
-      width:                   "100%",
-      position:                "relative"
-
-    },
-    viewContainer: {
-      backgroundColor:          "green",
-      height:                   "80%",
-      width:                    "100%",
-      display:                  "block",
-      verticalAlign:            "top"
-
-    },
-
-    sideContainer: {
-      backgroundColor:         "blue",
-      height:                  "20%",
-      width:                   "100%",
-      display:                 "block",
-      verticalAlign:           "top"
-
-    }
-}
-
-}
+  position:                "absolute",
+  display:                 "flex"
+}}
+// ,
+//
+//
+// '@media(max-width:760px)':{
+//
+//   masterContainer: {
+//       backgroundColor:         "#b0cad5",
+//       height:                  "100%",
+//       width:                   "100%",
+//       position:                "relative"
+//
+//     },
+//     viewContainer: {
+//       backgroundColor:          "green",
+//       height:                   "80%",
+//       width:                    "100%",
+//       display:                  "block",
+//       verticalAlign:            "top"
+//
+//     },
+//
+//     sideContainer: {
+//       backgroundColor:         "blue",
+//       height:                  "20%",
+//       width:                   "100%",
+//       display:                 "block",
+//       verticalAlign:           "top"
+//
+//     }
+// }
+//
+// }
 
 //
 // // Radium.getState(state, elementKey, value)   doesnt work on stateless

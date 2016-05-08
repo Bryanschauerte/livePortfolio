@@ -1,29 +1,26 @@
 import React from 'react';
 import Radium from 'radium';
-import {btnStyles} from '../styles/_button';
+import {actions} from "../styles/_button";
 
 
 let ViewBoxButton = React.createClass({
 
-  getInitialState() {
-    return {
-      btnClicked:false
-    };
-  },
   handleClick(){
-    this.props.viewHandler(this.props.viewControlled);
-    this.setState({btnClicked:true})
+    this.props.btnPassBackFunc(this.props.passBack);
   },
   getStyle(){
-    return (this.props.activeView == this.props.viewControlled ? btnStyles.active : btnStyles.inactive)
+    return (
+      this.props.activeView == this.props.passBack ?
+       this.props.btnStyles.active : this.props.btnStyles.inactive
+     );
   },
   render(){
     return(
 
       <button
-        style={[btnStyles.base, this.getStyle()]}
+        style={[this.props.btnStyles.base,actions.btnAction, this.getStyle()]}
         onClick={this.handleClick}>
-        {this.props.viewControlled}
+        {this.props.passBack}
       </button>
     );
   }
