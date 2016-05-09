@@ -8,6 +8,18 @@
     backgroundColor: "#443242"
     // textShadow: "1px 1px 0 #443242",
     // transition: "all .6s"
+  },
+  h3:{
+    margin: "0"
+  },
+  h1:{
+    margin: "0"
+  },
+  h2:{
+    margin: "0"
+  },
+  p:{
+    margin: "0"
   }
 }
 
@@ -20,5 +32,6 @@ export const cColors={
   moss:       "#01b826",
   sky:        "#0193b8",
   lightText:  "#cacaca",
-  darkText:   "#000000"
+  darkText:   "#000000",
+  stone:      "#5c5c5c"
 }

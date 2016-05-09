@@ -18,21 +18,31 @@ export function getViewContents( state, view ){
 export function setState(state, newState){
   return state.merge(newState);
 }
-export function getViewItem( state, itemLocation ){
-  //return state.get([view,]); will be a deep map
-  return List.of(["win"]);//temp data
+export function getViewItem( state, itemKey, viewOwner ){
+  return state.get([viewOwner]).get(List.of(itemKey));
+  // return List.of(["win"]);//temp data   state, action.itemKey, action.viewOwner)
 }
 
 
 
+ export const INITIAL_STATE_TEST= Map({
+  About:List.of(Map().set(List.of(0), testContentStructure)),
+  Blog:List.of(),
+  CodeShare:List.of(),
+  Future:List.of(),
+  activeView: 'About',
+  isLoading: true,
+  activeItem:''
+
+})
 
  export const contentStructure =fromJS({
   title:'',
   style:{},//style object
   type:'',//list/videos/codeShare/blogPost/future determains what component to use
   cards:[{
+    title:'',
     header:'',
-    subHead:'',
     sideNote:'',
     mainContent:'',
     userHasRead:false // boolean to be set on local storage
@@ -54,7 +64,7 @@ export function getViewItem( state, itemLocation ){
 
 export const testContentStructure =fromJS({
  title:'a Test To remember',
- style:{},//style object
+ style:'',//style object
  type:'blog',//list/videos/codeShare/blogPost/future determains what component to use
  cards:[{
    header:'The header is big',

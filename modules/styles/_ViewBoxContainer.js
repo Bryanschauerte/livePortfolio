@@ -3,9 +3,16 @@ import {cColors} from './globalStyles';
 
 
 export const VBContainer={
+  colorScheme:{
+    one:{
+      base:{
+
+      }
+    }
+  },
   base:{
     margin:                  0,
-    backgroundColor:         cColors.black,
+    backgroundImage:        "linear-gradient(to right, #062f4f, #000000 100%)",
     color:                   cColors.darkText,
     height:                  "100%",
     width:                   "50%",

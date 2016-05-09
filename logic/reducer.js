@@ -1,6 +1,7 @@
 
 import {Map, List, fromJS} from 'immutable';
 import {
+  INITIAL_STATE_TEST,
     INITIAL_STATE,
     addCategoryEntry,
     contentStructure,
@@ -10,7 +11,7 @@ import {
     changeLoadingStatus,
     getViewItem} from './core';
 
-export default function reducer(state = INITIAL_STATE, action){
+export default function reducer(state = INITIAL_STATE_TEST, action){
   switch (action.type) {
     case 'SET_CATEGORY_ENTRIES':
       return setCategoryEntries(state, action.entries);
@@ -23,7 +24,7 @@ export default function reducer(state = INITIAL_STATE, action){
     case 'SET_STATE':
       return setState(state, action.entry)
     case 'GET_VIEW_ITEM':
-      return getViewItem(state, action.entry)
+      return getViewItem(state, action.itemKey, action.viewOwner)
 
     }
   return state;

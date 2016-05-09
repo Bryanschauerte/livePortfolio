@@ -50,9 +50,7 @@ const mapStateToProps= (state)=> {
     activeView: state.getIn(['activeView']),
     activeItem: state.getIn(['activeItem']),
     isLoading: state.getIn(['isLoading']),
-    displayContent: state.getIn([state
-      .getIn(['activeView'])
-    ])
+    displayContent: state.getIn([state.getIn(['activeView'])])
   };
 }
 const mapDispatchToProps = (dispatch) => {
@@ -63,11 +61,16 @@ const mapDispatchToProps = (dispatch) => {
     changeViewClick: (nextView) => {
       dispatch(changeView(nextView));
     },
-    getViewItemClick: (itemLocation)=>{
-      dispatch(getViewItem(itemLocation));
+    //an in depth view of the item in the view
+    getViewItemClick: (itemKey, viewOwner)=>{
+      dispatch(getViewItem(itemKey, viewOwner));
     },
     changeLoadingStatusClick: ()=>{
       dispatch(changeLoadingStatus());
+    },
+    //to see the different objects tiltles in the category, not the actual contents
+    getViewContentClick: (viewSection)=>{
+      dispatch(getViewContents(viewSection));
     }
   }
 }

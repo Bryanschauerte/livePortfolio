@@ -1,33 +1,33 @@
 import React from 'react';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
-import {connect} from 'react-redux';
-import {ViewBoxMenuContainer} from './ViewBoxMenu';
+import {WindowContainer} from '../components/WindowContainer';
+import Radium from 'radium';
 
 export const ViewBox = React.createClass({
+
   mixins:[PureRenderMixin],
 
+  getInitialState(){
+    return {itemDetails: []}
+  },
+
+  // componentWillMount(){
+  //   this.setState(this.getViewContentClick(this.props.activeView));
+  // },
   handleClick(){
+// make screen pop out
+  },
+  handleStyle(){
 
   },
   render(){
 
     return(
       <div style ={this.props.styles.base}>
-      <ViewBoxMenuContainer {...this.props}/>
+      <WindowContainer {...this.props}/>
 
       </div>)
   }
 })
 
-const mapStateToProps= (state)=> {
-  return {
-    activeView: state.getIn(['activeView']),
-    activeItem: state.getIn(['activeItem']),
-    isLoading: state.getIn(['isLoading']),
-    displayContent: state.getIn([state
-      .getIn(['activeView'])
-    ])
-  };
-}
-
-export const ViewBoxContainer  = connect(mapStateToProps)(ViewBox);
+export const ViewBoxContainer  = Radium(ViewBox);

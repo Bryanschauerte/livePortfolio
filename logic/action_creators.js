@@ -21,9 +21,10 @@ export function getViewContents(){
     type: 'GET_VIEW_CONTENTS'
   }
 }
-export function getViewItem(itemLocation){
+export function getViewItem(itemKey, viewOwner){
   return {
     type: 'GET_VIEW_ITEM',
-    entry: itemLocation
+    itemKey: itemKey,
+    viewOwner: viewOwner
   }
 }
