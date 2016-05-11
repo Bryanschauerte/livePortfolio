@@ -1,6 +1,7 @@
 import {List, Map,fromJS,is,set} from 'immutable';
 
 export function addCategoryEntry(state, category, entries){
+  
   return state.updateIn([category], [], val => state.get(category).push(entries));
 }
 

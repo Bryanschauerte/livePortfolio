@@ -5,76 +5,62 @@ import {cColors} from './globalStyles';
 export const SplitContStyles={
   base:{
       margin:                  0,
-      height:                  "100%",
+      height:                  "86%",
       width:                   "50%",
       display:                 "inline-block",
       verticalAlign:           "top",
       margin:                  0,
-      padding:                 0,
+      padding:                 "0 1% 0 1%"
+      // backgroundImage:        "linear-gradient(to top, #ffffff, #000000 90%)"
 
-
-  },
+    },
   topBox:{
-    img:{
+
+    base:{
+      height:                 "50%",
+      display:                "inline-block",
+      marginBottom:           "2%",
+      border:                 "1em solid " + cColors.ink,
+      borderRadius:           ".4em"
+
+    },
+    innerCon:{
       backgroundImage:        "url('/images/Seoul.jpg')",
       backgroundSize:         "cover",
       backgroundRepeat:       "no-repeat",
       backgroundPosition:     "top center",
-      boxShadow:              "2px 4px 8px "+ cColors.ink,
-      borderRadius:           ".2em",
       padding:                "1em 2em 2em 2em",
-      height:                 "100%"
-    },
-    base:{
-      backgroundColor:        cColors.ink,
-      height:                 "50%",
-      display:                "inline-block",
-      width:                  "100%"
-    },
-    innerCon:{
-      padding:                "1em 1em 2em 1em",
       height:                 "100%",
       width:                  "100%"
+
+
     },
     innerText:{
 
-      color:                 "white"
+      color:                 "white",
+      borderRadius:          ".5em",
+      height:                "100%",
+      width:                 "100%",
+      padding:               "1em"
     },
-    titleCont:{
+  titleCont:{
       width:                "100%",
       height:               "20%",
-      backgroundColor:      cColors.ink,
       padding:              ".1em"
-
-    },
-    titleText:{
-      fontSize:            "3vw",
-      position:            "relative",
-      transform:           "translate(0%, 40%)",
-      padding:             ".4em .2em .2em .2em",
-      textAlign:           "center",
-      fontWeight:          "200",
-      textTransform:       "uppercase",
-      fontFamily:          "neouthin, contra",
-      textRendering:       "optimizeLegibility",
-      color:               "rgba(0,0,0,0.6)",
-      textShadow:          "2px 2px 3px rgba(202,202,202,0.3)"
 
     }
   },
   btmBox:{
 
       base:{
-        backgroundColor:        cColors.embers,
         height:                 "50%",
-        display:                "inline-block",
         width:                  "100%",
-        color:                  cColors.darkText
+        border:                 "1em solid " + cColors.ink,
+        borderRadius:           ".4em"
       },
       innerCon:{
-        backgroundImage:        "linear-gradient(to top, #b82601, #062f4f 100%)",
+        backgroundImage:        "linear-gradient(to top, #cacaca, #062f4f 100%)",
         padding:                "1em 2em 2em 2em",
-        border:                 "1em solid " + cColors.ink,
         height:                 "100%",
         width:                  "100%"
       },
@@ -89,7 +75,7 @@ export const SplitContStyles={
       titleCont:{
         width:                 "100%",
         height:                "20%",
-        backgroundColor:       cColors.ink,
+        // backgroundColor:       cColors.ink,
         padding:               ".1em"
 
       },

@@ -15,9 +15,11 @@ import {SplitContStyles} from '../styles/_SplitContainer';
 import Radium, {Style, StyleRoot} from 'radium';
 import {styles} from '../styles/globalStyles';
 
+
 import {ViewBoxContainer} from './ViewBox';
 import {SplitContainer} from './SplitContainer';
 import {BtnElementContainer} from './ButtonContainer';
+
 
 
 const store = makeStore();
@@ -27,13 +29,11 @@ export const PageSkeleton = React.createClass({
   mixins:[PureRenderMixin],
 
   render(){
-console.log(this.props, "skeleton")
+
     return(
       <StyleRoot>
         <Style rules={styles}/>
       <div style={PageSkeletonStyles.masterContainer} >
-
-
           <SplitContainer {...this.props} styles={SplitContStyles}/>
           <ViewBoxContainer styles={VBContainer} {...this.props}/>
           <BtnElementContainer {...this.props} styles = {btnStyles} />

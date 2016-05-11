@@ -12,7 +12,6 @@ export const VBContainer={
   },
   base:{
     margin:                  0,
-    backgroundImage:        "linear-gradient(to right, #062f4f, #000000 100%)",
     color:                   cColors.darkText,
     height:                  "100%",
     width:                   "50%",
