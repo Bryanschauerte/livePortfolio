@@ -4,10 +4,10 @@ import { Router, Route, browserHistory, IndexRoute } from 'react-router';
 import routes from "./modules/routes";
 import makeStore from "./logic/store";
 import { Provider } from 'react-redux';
-import {setState} from './logic/action_creators';
+import {getState} from './logic/action_creators';
 
 const store = makeStore();
-store.dispatch(setState());
+store.dispatch(getState());
 
 render(
   <Provider store={store}>

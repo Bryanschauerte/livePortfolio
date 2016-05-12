@@ -1,20 +1,44 @@
 import React from 'react';
 import Radium from 'radium';
-import {styles} from '../styles/_SplitContainer';
-import {FourthOfOne} from '../components/FourthOfOne';
-import{TopLeftContainer} from '../components/TopLeft';
-import {TitleContainer} from "../components/TitleContainer";
-import {TitleStyle} from '../styles/_TitleContainer';
+import {SlidePartContainer} from "../components/SlidePart";
+import {SplitContainerStyle} from "../styles/_SplitContainer";
 
 const Split = React.createClass({
 
-  render(){
+  getInitialState(){
     return(
-      <div style={this.props.styles.base}>
-          <TitleContainer styles={TitleStyle}/>
-          <TopLeftContainer {...this.props} styles={this.props.styles.topBox}/>
-          <FourthOfOne {...this.props} styles={this.props.styles.btmBox}/>
-      </div>
+      {
+        activeView: "About"
+      }
+    );
+  },
+  handleClick(item){
+    this.props.changeViewClick(item);
+    this.setState({
+      activeView: item
+    })
+    console.log(this.state, "stttaaate");
+    console.log(this.props)
+  },
+  render(){
+
+
+    return(
+      <div>
+        {Object.keys(this.props.categories).map((item, index)=>{
+          let boundClick = this.handleClick.bind(this, item);
+
+          return (
+
+    <SlidePartContainer {...this.props}
+      key= {item}
+      btnPassBackFunc ={boundClick}
+      isActive={this.props.activeView == this.state.activeView}
+      passBack={item}/>
+  ); }) }
+
+</div>
+
     );
   }
 });

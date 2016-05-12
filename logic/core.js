@@ -1,27 +1,41 @@
 import {List, Map,fromJS,is,set} from 'immutable';
 
 export function addCategoryEntry(state, category, entries){
-  
-  return state.updateIn([category], [], val => state.get(category).push(entries));
+  let newState = state;
+  newState[category].push(entries);
+  return newState
 }
 
 export function changeLoadingStatus(state){
-  return state.updateIn(['isLoading'], false, val => !state.get('isLoading'))
+  let newState = state;
+  newState.isLoading = !state.isLoading;
+  return newState;
 }
 
 export function changeView( state, viewSelection ){
-  return state.updateIn(['activeView'],'About', val => viewSelection)
+  let newState = state;
+  newState.activeView == '' ?
+  newState.activeView = "About"
+  : newState.activeView = viewSelection;
+  return newState;
 }
 
 export function getViewContents( state, view ){
-  return state.get(view);
+  return state[view];
 }
-export function setState(state, newState){
-  return state.merge(newState);
+export function getState(state){
+//this needs to be cleaned up to replace only diffs
+  return state;
 }
 export function getViewItem( state, itemKey, viewOwner ){
-  return state.get([viewOwner]).get(List.of(itemKey));
-  // return List.of(["win"]);//temp data   state, action.itemKey, action.viewOwner)
+  let newState = state;
+  let parts =  newState.categories[viewOwner];
+  for(var i =0; i < parts.length; i++){
+    if (parts[i].title == itemKey){
+      return parts[i];
+    }
+  }
+  return 0;
 }
 
 
@@ -51,16 +65,18 @@ export function getViewItem( state, itemKey, viewOwner ){
 
 })
 
- export const INITIAL_STATE= Map({
-  About:List.of(testContentStructure),
-  Blog:List.of(),
-  CodeShare:List.of(),
-  Future:List.of(),
+ export const INITIAL_STATE= {
+  categories:{
+     About:[],
+     Blog:[],
+     CodeShare:[],
+     Future:[]
+   },
   activeView: 'About',
   isLoading: true,
   activeItem:''
 
-})
+}
 
 
 export const testContentStructure =fromJS({

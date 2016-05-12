@@ -11,9 +11,9 @@ export function changeLoadingStatus(){
     type: 'CHANGE_LOADING_STATUS'
   }
 }
-export function setState(){
+export function getState(){
   return {
-    type: 'SET_STATE'
+    type: 'GET_STATE'
   }
 }
 export function getViewContents(){
@@ -21,10 +21,10 @@ export function getViewContents(){
     type: 'GET_VIEW_CONTENTS'
   }
 }
-export function getViewItem(itemKey, viewOwner){
+export function getViewItem(itemTitle, viewOwner){
   return {
     type: 'GET_VIEW_ITEM',
-    itemKey: itemKey,
+    itemTitle: itemTitle,
     viewOwner: viewOwner
   }
 }

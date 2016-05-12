@@ -6,5 +6,6 @@ masterContainer: {
   backgroundImage:        "linear-gradient(to top, #ffffff, #000000 80%)",
   height:                  "100%",
   width:                   "100%",
-  position:                "absolute"
+  position:                "absolute",
+  display:                 "flex"
 }}

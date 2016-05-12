@@ -5,13 +5,13 @@ import {
     INITIAL_STATE,
     addCategoryEntry,
     contentStructure,
-    setState,
+    getState,
     getViewContents,
     changeView,
     changeLoadingStatus,
     getViewItem} from './core';
 
-export default function reducer(state = INITIAL_STATE_TEST, action){
+export default function reducer(state = INITIAL_STATE, action){
   switch (action.type) {
     case 'SET_CATEGORY_ENTRIES':
       return setCategoryEntries(state, action.entries);
@@ -21,10 +21,10 @@ export default function reducer(state = INITIAL_STATE_TEST, action){
       return getViewContents(state, action.entry)
     case 'CHANGE_LOADING_STATUS':
       return changeLoadingStatus(state)
-    case 'SET_STATE':
-      return setState(state, action.entry)
+    case 'GET_STATE':
+      return getState(state)
     case 'GET_VIEW_ITEM':
-      return getViewItem(state, action.itemKey, action.viewOwner)
+      return getViewItem(state, action.itemTitle, action.viewOwner)
 
     }
   return state;
