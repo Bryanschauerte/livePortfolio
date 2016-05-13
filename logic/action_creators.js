@@ -4,8 +4,18 @@ export function changeView(requestedview) {
     entry: requestedview,
     type: 'CHANGE_VIEW'
 
+
   };
 }
+export function setState(previousValue, currentValue){
+  return {
+    type: 'SET_STATE',
+    previousValue: previousValue,
+    currentValue: currentValue
+
+  }
+}
+
 export function changeLoadingStatus(){
   return {
     type: 'CHANGE_LOADING_STATUS'
@@ -14,6 +24,17 @@ export function changeLoadingStatus(){
 export function getState(){
   return {
     type: 'GET_STATE'
+  }
+}
+export function getCategories(){
+  return {
+    type: 'GET_CATEGORIES'
+  }
+}
+
+export function getInitialState(){
+  return {
+    type: 'GET_INITIAL_STATE'
   }
 }
 export function getViewContents(){

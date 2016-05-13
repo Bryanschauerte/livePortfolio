@@ -1,10 +1,12 @@
 import React from 'react';
-import {Map, fromJS} from 'immutable';
+import {Map, List, fromJS} from 'immutable';
 import {connect} from 'react-redux';
 import makeStore from "../../logic/store";
+import { bindActionCreators } from 'redux'
 
-
-import {changeView, changeLoadingStatus} from '../../logic/action_creators';
+//
+import {viewAction} from '../../logic/actions';
+import {getViewContents, changeLoadingStatus, changeView, getViewItem} from '../../logic/action_creators';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
@@ -20,7 +22,7 @@ import newb from '../styles/globalStyles';
 
 
 import {SplitContainer} from './SplitContainer';
-
+import * as actionCreators from '../../logic/action_creators';
 
 
 const store = makeStore();
@@ -30,13 +32,13 @@ export const PageSkeleton = React.createClass({
   mixins:[PureRenderMixin],
 
   render(){
-
     return(
       <StyleRoot>
         <Style rules={styles}/>
 
         <div style={PageSkeletonStyles.masterContainer} >
           <SplitContainer {...this.props}/>
+          <h1 style={{backgroundColor: "red", height:"100px", width:"100px"}}>{this.props.activeView}</h1>
 
 
       </div>
@@ -49,18 +51,35 @@ export const PageSkeleton = React.createClass({
 const mapStateToProps= (state)=> {
 
   return {
-    activeView: state.activeView,
-    activeItem: state.activeItem,
-    isLoading: state.isLoading,
-    categories: state.categories,
-    displayContent: state[ state.activeView ]
+    activeView: state.get('activeView'),
+    activeItem: state.get('activeItem'),
+    isLoading: state.get('isLoading'),
+    categories: state.get('categories')
   };
 }
-const mapDispatchToProps = (dispatch) => {
+
+// const { isFollowing } = stateProps;
+// const { dispatch } = dispatchProps;
+// const { id } = ownProps;
+
+const mergeProps= (stateProps, dispatchProps) => {
+
   return {
-    changeLoadingStatusClick: ()=>{
-      dispatch(changeLoadingStatus());
-    },
+
+    activeView: stateProps.activeView,
+    activeItem: stateProps.activeItem,
+    isLoading: stateProps.isLoading,
+    categories: stateProps.categories,
+    displayContent: stateProps[ stateProps.activeView ],
+
+
+  }
+}
+
+
+const mapDispatchToProps = (dispatch)=> {
+  return {
+
     changeViewClick: (nextView) => {
       dispatch(changeView(nextView));
     },

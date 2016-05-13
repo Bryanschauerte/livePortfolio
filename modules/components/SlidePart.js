@@ -7,10 +7,9 @@ const Slide = React.createClass({
 
 
   handleClick(){
-    console.log("ding div clicked")
     this.props.btnPassBackFunc(this.props.passBack);
-
   },
+
   handleStyleChange(area){
     //function to change colors
     //have to save the object and pass it back
