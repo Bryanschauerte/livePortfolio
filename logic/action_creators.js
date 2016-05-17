@@ -7,6 +7,12 @@ export function changeView(requestedview) {
 
   };
 }
+export function changeActiveItem(ItemSelection) {
+  return {
+    ItemSelection: ItemSelection,
+    type: 'CHANGE_ACTIVE_ITEM'
+  };
+}
 export function setState(previousValue, currentValue){
   return {
     type: 'SET_STATE',
@@ -37,9 +43,10 @@ export function getInitialState(){
     type: 'GET_INITIAL_STATE'
   }
 }
-export function getViewContents(){
+export function getActiveItemContents( activeItem ){
   return {
-    type: 'GET_VIEW_CONTENTS'
+    type: 'GET_ACTIVE_ITEM_CONTENTS',
+    activeItem: activeItem
   }
 }
 export function getViewItem(itemTitle, viewOwner){

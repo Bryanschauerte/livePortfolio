@@ -5,8 +5,8 @@ import makeStore from "../../logic/store";
 import { bindActionCreators } from 'redux'
 
 //
-import {viewAction} from '../../logic/actions';
-import {getViewContents, changeLoadingStatus, changeView, getViewItem} from '../../logic/action_creators';
+
+import {getActiveItemContents, getViewContents, changeLoadingStatus, changeView, getViewItem, changeActiveItem} from '../../logic/action_creators';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
@@ -32,15 +32,13 @@ export const PageSkeleton = React.createClass({
   mixins:[PureRenderMixin],
 
   render(){
+
     return(
       <StyleRoot>
         <Style rules={styles}/>
 
         <div style={PageSkeletonStyles.masterContainer} >
           <SplitContainer {...this.props}/>
-          <h1 style={{backgroundColor: "red", height:"100px", width:"100px"}}>{this.props.activeView}</h1>
-
-
       </div>
 
     </StyleRoot>
@@ -49,12 +47,13 @@ export const PageSkeleton = React.createClass({
 })
 
 const mapStateToProps= (state)=> {
-
   return {
     activeView: state.get('activeView'),
     activeItem: state.get('activeItem'),
     isLoading: state.get('isLoading'),
-    categories: state.get('categories')
+    categories: state.get('categories'),
+    activeItemContents: state.get('activeItemContents')
+
   };
 }
 
@@ -70,7 +69,7 @@ const mergeProps= (stateProps, dispatchProps) => {
     activeItem: stateProps.activeItem,
     isLoading: stateProps.isLoading,
     categories: stateProps.categories,
-    displayContent: stateProps[ stateProps.activeView ],
+    activeItemContents: stateProps.activeItemContents
 
 
   }
@@ -83,9 +82,8 @@ const mapDispatchToProps = (dispatch)=> {
     changeViewClick: (nextView) => {
       dispatch(changeView(nextView));
     },
-    //an in depth view of the item in the view
-    getViewItemClick: (itemKey, viewOwner)=>{
-      dispatch(getViewItem(itemKey, viewOwner));
+    getActiveItemClick: ( activeItem )=>{
+      dispatch(getActiveItemContents( activeItem ));
     },
     changeLoadingStatusClick: ()=>{
       dispatch(changeLoadingStatus());

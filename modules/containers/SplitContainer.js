@@ -10,16 +10,14 @@ const Split = React.createClass({
 
   handleClick(item){
     this.props.changeViewClick(item);
+
   },
 
   render(){
 
-
-
     return(
-      <div>
+      <div style={SplitContainerStyle.base}>
         {this.props.categories.map((v, key)=> {
-
           let boundClick = this.handleClick.bind(this, key);
 
           return (
@@ -28,9 +26,11 @@ const Split = React.createClass({
       key= {key}
       btnPassBackFunc ={boundClick}
       isActive={this.props.activeView == this.state.activeView}
-      passBack={key}/>
+      passBack={key}
+      categoryContent= {v}
+      />
   ); }) }
-<h1 style={{backgroundColor: "red", height: "1000px", width:"1000px"}}>{this.props.activeView}</h1>
+
 </div>
 
     );

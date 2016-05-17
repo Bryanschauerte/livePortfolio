@@ -18,7 +18,6 @@ let currentValue
 function handleChange() {
   let previousValue = currentValue
   currentValue = store.getState()
-  console.log(currentValue, "currentValue")
   if (previousValue !== currentValue) {
     store.dispatch(setState(previousValue, currentValue));
     console.log('Some deep nested property changed from', previousValue, 'to', currentValue)

@@ -1,15 +1,42 @@
 import Radium from 'radium';
 import {cColors} from './globalStyles';
+//
+// html, body{ background: grey; }
+// p{ margin: 0px; }
+//
+// #clip{
+//   /*
+//   Ensure background is added first
+//   */
+//   background: image
+//
+//    background-attachment: fixed;
+//   -webkit-text-fill-color: transparent;
+//   -webkit-background-clip: text;
+//
+//   font-size: 28vw;
+//   font-weight: bold;
+//   text-align: center;
+// }
+
+whites:{"#fff","#f6f6f8", "#ececf1", "#e2e2e9","#d9d9e2", "#cfcfdb", "#c5c5d3"}
 
 const newb = {
   snow:         "#F8F8FF",
+  dirtySnow:    "#c5c5d3",
   fog:        "#E0E0E0",
+
   midnight:  "#51516B",
   hue:        "#50A888",
   evening:      "#0B1968"
 }
 export const SplitContainerStyle={
-  height:"100%"
+base:{
+  height:"100%",
+  width: "100%",
+  position: "absolute",
+backgroundImage: "linear-gradient(to right, "+newb.snow +","+ " "+newb.dirtySnow+" 100%)",
+  }
 }
 export let ActiveSlide={
 
@@ -18,68 +45,106 @@ export let ActiveSlide={
       position:                "relative",
       margin:                  0,
       height:                  "100%",
-      // width:                   "7vw",
       display:                 "inline-block",
       verticalAlign:           "top",
       margin:                  0,
       padding:                 "0",
-      backgroundColor:         newb.hue,
-      border:                  "4px solid pink",
+      backgroundImage:        "linear-gradient(to right, "+newb.fog +","+ " "+newb.snow+" 100%)",
       float:                     "left"
     },
     alwaysVisable:{
-      backgroundColor:           newb.fog,
+
       width:                     "4vw",
       height:                    "10vw",
       position:                  "relative",
-      border:                    "2px solid black",
       top:                       "50%"
-      // top:                       "60%",
-      // transform:                 "translate(0%, 50%)"
 
     },
     textLabel:{
       "transform":               "rotate(-90deg)",
       // transformOrigin:           "left top 1",
       fontSize:                  "3vw",
-      // float:                      "left",
+      fontWeight:                "200",
+      fontFamily:                "neouthin, contra",
       position:                  "relative",
       top:                       "65%",
-      color:                     newb.midnight
+      color:                     newb.evening
+
 
     },
+    //part showing
     activeExtend:{
-      // width:                     "20vw",
+      width:                     "80%",
       height:                    "100%",
-      backgroundColor:           newb.evening,
+      overflow:                  "hidden",
       float:                     "left",
-      overflow:                  "hidden"
+      position:                  "relative"
+    },
+    activeViewContainer:{
+
+      height: "100%",
+      width: "100%",
+    },
+    imageCanvas:{
+      width:                     "20%",
+      height:                    "30%",
+      position:                  "absolute",
+      top:                       "10%",
+      left:                      "10%",
+      float:                     "left",
+      backgroundImage:           "url('./images/SeoulDoTwo.png')",
+      backgroundRepeat:          "no-repeat",
+      backgroundPosition:        "left top",
+      backgroundSize:            "100% 100%",
+      // backgroundColor:           newb.dirtySnow
+
+    },
+    buttonContainer:{
+      backgroundColor: newb.snow,
+      position: "absolute",
+      height: "15vw",
+      width: "20vw",
+      top: "50%",
+      left: "10%",
+      boxShadow:               "4px 4px 4px "+ newb.midnight,
+      padding:"2%"
+
     }
   }
 
 
   export let InActiveSlide={
 
-
-      outerContainer:{
-        position:                "relative",
-        margin:                  0,
-        height:                  "100%",
-        // width:                   "7vw",
-        display:                 "inline-block",
-        verticalAlign:           "top",
-        margin:                  0,
-        padding:                 "0",
-        backgroundColor:         newb.hue,
-        border:                  "4px solid pink",
-        float:                     "left"
-      },
+    outerContainer:{
+      position:                "relative",
+      margin:                  0,
+      height:                  "100%",
+      display:                 "inline-block",
+      verticalAlign:           "top",
+      margin:                  0,
+      padding:                 "0",
+      backgroundImage:        "linear-gradient(to right, "+newb.fog +","+ " "+newb.snow+" 100%)",
+      float:                     "left"
+    },
+      // outerContainer:{
+      //   position:                "relative",
+      //   margin:                  0,
+      //   height:                  "100%",
+      //   // width:                   "100%",
+      //   display:                 "inline-block",
+      //   verticalAlign:           "top",
+      //   margin:                  0,
+      //   padding:                 "0",
+      //   backgroundImage:        "linear-gradient(to right, "+newb.midnight +","+ " "+newb.snow+" 100%)",
+      //   // border:                  "4px solid " + newb.fog,
+      //   float:                     "left"
+      // },
       alwaysVisable:{
-        backgroundColor:           newb.fog,
+
         width:                     "4vw",
         height:                    "10vw",
         position:                  "relative",
-        border:                    "2px solid black",
+
         top:                       "50%"
         // top:                       "60%",
         // transform:                 "translate(0%, 50%)"
@@ -88,11 +153,14 @@ export let ActiveSlide={
       textLabel:{
         "transform":               "rotate(-90deg)",
         // transformOrigin:           "left top 1",
-        fontSize:                  "3vw",
-        // float:                      "left",
+        fontSize:                  "2vw",
+        fontFamily:                "neouthin, contra",
         position:                  "relative",
         top:                       "65%",
-        color:                     newb.midnight
+        fontWeight:                "200",
+        color:                     newb.midnight,
+        // color:               "rgba(6,47,79,0.7)",
+        textShadow:          "2px 2px 1px rgba(202,202,202,0.6)",
 
       },
       activeExtend:{
