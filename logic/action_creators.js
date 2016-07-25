@@ -3,8 +3,6 @@ export function changeView(requestedview) {
   return {
     entry: requestedview,
     type: 'CHANGE_VIEW'
-
-
   };
 }
 export function changeActiveItem(ItemSelection) {

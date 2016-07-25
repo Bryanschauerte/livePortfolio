@@ -82,7 +82,7 @@ const Slide = React.createClass({
               styles={this.handleStyleChange()}
               content={this.props.categoryContent}
               sectionView={this.props.activeView}
-              activeItem = {this.props.activeItem}/>)
+              />)
               :
               (<DisplayContent {...this.props}
                  styles={this.handleStyleChange()}

@@ -1,0 +1,239 @@
+.TitlesTag{
+  font-weight: bold;
+  font-size: 2em;
+  color: #5c5c5c;
+
+}
+
+.SCInfoPic{
+position: absolute;
+height:100%;
+width: 100%;
+top:0;
+z-index: 7;
+transition: all 500ms;
+}
+
+.opacityOut{
+  opacity: 0;
+}
+.opacityIn{
+  opacity: 1;
+}
+.sitede{
+  padding:4%;
+  overflow: scroll;
+}
+.fa-arrows-v{
+
+  transform: translateY(50%);
+
+}
+.talking{
+  color: #5c5c5c;
+  font-size: 2em;
+text-indent: 3em;
+line-height: 1.5em;
+}
+.reactName{
+  color: #61dafb;
+  font-weight: 400;
+  font-size: 2em;
+}
+.angularName{
+  color: red;
+  font-weight: 400;
+  font-size: 2em;
+}
+.hiddenSideButton{
+  width:0;
+  opacity: 0;
+  transition: opacity 1s;
+  position: absolute;
+}
+.hiddenSideButton i{
+  position: relative;
+  top:48%;
+  color:#50A888;
+
+}
+
+.activeSideButton{
+  color:white;
+  opacity: 1;
+  position: absolute;
+  background-color: #ffffff;
+  z-index: 5;
+  right: 0;
+  width: 2%;
+  height: 100%;
+  /* IE10+ */
+  background-image: -ms-linear-gradient(left, #FFFFFF 00%, #c5c5d3 100%);
+
+  /* Mozilla Firefox */
+  background-image: -moz-linear-gradient(left, #FFFFFF 00%, #c5c5d3 100%);
+
+  /* Opera */
+  background-image: -o-linear-gradient(left, #FFFFFF 00%, #c5c5d3 100%);
+
+  /* Webkit (Safari/Chrome 10) */
+  background-image: -webkit-gradient(linear, left top, right top, color-stop(00, #FFFFFF), color-stop(100, #c5c5d3));
+
+  /* Webkit (Chrome 11+) */
+  background-image: -webkit-linear-gradient(left, #FFFFFF 00%, #c5c5d3 100%);
+
+  /* W3C Markup */
+  background-image: linear-gradient(to right, #FFFFFF 00%, #c5c5d3 100%);
+}
+
+
+
+.activeSideButton h3 {
+  width: 100%;
+  position: relative;
+  margin: 0;
+  transform: rotate(-90deg);
+  top:50%;
+}
+.sideBase{
+
+  max-width: 0;
+  transition: max-width 2s;
+}
+.SideStartState{
+
+  max-width: 10%;
+  max-height: 100%;
+  background-color: #606285;
+  border: 1px solid black;
+  border-radius: 8px 0 0 8px;
+  position: absolute;
+  top:0;
+  right:0;
+  display: flex;
+  z-index: 5;
+  opacity: 1;
+  flex-direction: column;
+  transition: 2s;
+  overflow: hidden;
+}
+.SideEndState{
+
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  transition: all 2s ease-in-out;
+
+}
+
+/*at base*/
+.activeSideContainer{
+  height: 100%;
+  width: 100%;
+  max-width:100%;
+  background-color: #ffffff;
+  position: absolute;
+  top:0;
+  right:0;
+  display: block;
+  z-index: 5;
+  box-sizing: content-box;
+}
+.disabledSide{
+  height: 100%;
+  width: 1px;
+  max-width:0;
+  background-color: #B6B6B6;
+  position: absolute;
+  top:0;
+  right:0;
+  display: none;
+}
+
+.SChead{
+
+
+
+  max-height: 345px;
+  opacity: 1;
+  display: flex;
+  color:#ffffff;
+  font-size: 5vh;
+  text-align: center;
+  width: 100%;
+  background-color: #606285;
+  margin-bottom: 2%;
+}
+.SideEndState h1, h2, h3, h4 {
+  padding: 0;
+  margin: 0;
+}
+.SideStartState ::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 2px;
+}
+.SideStartState ::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(0,0,0,.5);
+    -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+}
+.SCcontent {
+
+      padding: 2%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+}
+.SClongContainer {
+  cursor: ns-resize;
+  height:70%;
+  margin-bottom: 2%;
+  width: 98%;
+  padding: 2% 0;
+  background-color: #606285;
+  display: flex;
+  justify-content: space-between;
+  -webkit-box-shadow: 3px 10px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 3px 10px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 3px 10px 5px 0px rgba(0,0,0,0.75);
+    background-color: #F8F8FF;
+}
+.SChamburgerFoldBot{
+  display: flex;
+    flex-direction: column;
+    list-style-type: none;
+    /* height: 17%; */
+    width: 100%;
+    background-color: #0193b8;
+    font-size: 2em;
+    color: #F8F8FF;
+    text-align: center;
+    /* padding: 4%; */
+  }
+  .SChamburgerFoldBot ul{
+    padding: 2%;
+        margin: 0;
+        /* width: 75%; */
+        height: 15%;
+        font-size: 1em;
+        list-style-type: none;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+  }
+  .SChamburgerFoldBot a{
+    font-size: 1em;
+  }
+
+  .SChamburgerFoldTop{
+    height:15%;
+    width: 100%;
+    text-align: center;
+    font-size: 7em;
+    line-height: 100%;
+    text-shadow: 1px -1px 0px #B8A197,4px 1px 1px #606285,5px 2px 0px black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

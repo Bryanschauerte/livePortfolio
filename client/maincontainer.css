@@ -1,0 +1,35 @@
+.mCBase{
+  position: absolute;
+  top: 0%;
+  height: 100%;
+  width: 100%;
+  background-color: #2196F3;
+  z-index: 2;
+}
+.mcHead{
+  height: 10%;
+  width: 100%;
+  position: absolute;
+  top:0%;
+  background-color: red;
+}
+.mcContentContainer{
+  height: 80%;
+  width: 100%;
+  position: relative;
+  top: 10%;
+  float: left;
+
+}
+.mcContents{
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+.mcFooter{
+  height: 100%;
+  width: 100%;
+  background-color: black;
+  float: left;
+}

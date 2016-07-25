@@ -1,0 +1,114 @@
+/*-webkit-transition-property: -webkit-transform;
+   -moz-transition-property:    -moz-transform;
+    -ms-transition-property:     -ms-transform;
+     -o-transition-property:      -o-transform;
+        transition-property:         transform;*/
+.icContentsBaseClass h1, h2, h3, h4, h5 {
+  padding: 0;
+  margin: 0;
+}
+.textBoxPreview p{
+  opacity: 1;
+  color: blue;
+  transition: all 500ms ease-in-out;
+}
+
+.infoBase{
+  box-sizing: border-box;
+  /*display: flex;*/
+  justify-content: center;
+  padding:2%;
+  transition: color 1s;
+  z-index: 0;
+  float: left;
+  /*padding: 5%;*/
+
+}
+.icContentsTypeClass{
+
+  position: absolute;
+  top:-10%;
+  left:0;
+}
+.icContentsBaseClass{
+  height: 100%;
+  cursor: pointer;
+  width: 100%;
+  /*background-color: white;*/
+  color:white;
+  text-align: center;
+  z-index: 5;
+  position: relative;
+  top:0;
+  transition: all 500ms;
+}
+.ICInfoPic{
+position: absolute;
+height:100%;
+width: 100%;
+top:0;
+transition: all 500ms;
+}
+.ICInfoPicHovering{
+  transition: all 500ms;
+/*position: absolute;*/
+opacity: .3;
+/*height:100%;
+width: 100%;
+top:0;*/
+}
+
+.ICInfoOverlay{
+  color:white;
+  font-size: large;
+  position: absolute;
+  height:100%;
+  width: 100%;
+  top:10%;
+  transition: all 500ms;
+}
+.ICInfoOverlay h2{
+
+}
+
+.bigBox{
+  color:white;
+  float:left;
+  box-sizing: border-box;
+
+  padding: 0 1% 0 1%;
+  font-size: 1.5em;
+  text-align: center;
+  transition: all 500ms ease-in-out;
+}
+.infoTypeLabel{
+
+}
+
+.smallBox{
+  float: right;
+  /*background-color: white;*/
+  position: relative;
+  padding: 0 1% 0 1%;;
+  top: 14;
+  box-sizing: border-box;
+  border: 2px solid black;
+  max-width: 50%;
+  font-size: 1em;
+  transition: all 500ms ease-in-out;
+
+}
+.smallBoxHover{
+  border: 2px 2px 2px 0;
+  /*border-style: solid black;*/
+  top:0;
+}
+
+
+.ICTextContainer{
+  height:100%;
+  width:100%;
+  box-sizing: border-box;
+  display: flex;
+  z-index: 0;
+}

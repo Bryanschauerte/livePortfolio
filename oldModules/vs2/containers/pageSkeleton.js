@@ -57,9 +57,6 @@ const mapStateToProps= (state)=> {
   };
 }
 
-// const { isFollowing } = stateProps;
-// const { dispatch } = dispatchProps;
-// const { id } = ownProps;
 
 const mergeProps= (stateProps, dispatchProps) => {
 

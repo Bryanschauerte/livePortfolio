@@ -19,58 +19,46 @@ export function setState(state, newState){
 }
 export function getCategories(state){
   return state.get('categories');
+
 }
 
  export const INITIAL_STATE= fromJS({
    categories:{
-     'About':{
-       title:'About',
+     'About':[{
+       title:'About One',
        header:"An intro to About",
-       mainContent:'hey there welcome to the site. This is a lot of text about stuff. I am up way too late and Immutable is cool but the docs are bad.',
-       cards:[{
-         style:[],
-         title: "default",
-         header:'some small phrase',
-         subHead:'a little bit longer introduction to topic',
-         sideNote:'this goes in s a side box next to the thing',
-         mainContent:'hey there welcome to THIS  DEFAULT BOX. This is a lot of text about stuff. I am up way too late and working while watching a show with a terrible plot.',
-         userHasRead:false // boolean to be set on local storage
-       },
-       {
-         style:[],
-         title: "default test 2",
-         header:'some small phrase',
-         subHead:'a little bit longer introduction to topic',
-         sideNote:'this goes in s a side box next to the thing',
-         mainContent:'hey there welcome to DEFAULT BOX Number 2!!. This is a lot of text about stuff. I am up way too late and Love React more than sleep.',
-         userHasRead:false // boolean to be set on local storage
-       }]
+       mainContent:'hey there welcome to the site. This is a lot of text about stuff. I am up way too late and Immutable is cool but the docs are bad.'
+
        //
-     },
-     'Blog':{
-       title:'Blog',
-       header:"an intro to the blog",
-       mainContent:'hey there welcome to the site. This is a lot of text about stuff. I am up way too late and this is a very dumb show that uses sex to sell a no story line plot.',
-       cards:[{}]
-     },
-     'CodeShare':{
-       title:'Code Share',
-       header:"An intro to the Codeshare",
-       mainContent:'hey there welcome to the site. This is a lot of text about stuff. I am up way too late and this is a very dumb show that uses sex to sell a no story line plot.',
-       cards:[{}]
-     },
-     'Projects':{
-       title:'Projects',
-       header:"An intro to the Projects",
-       mainContent:'hey there welcome to the site. This is a lot of text about stuff. I am up way too late and this is a very dumb show that uses sex to sell a no story line plot.',
-       cards:[{}]
-     },
-     'Future':{
-       title:'Future',
-       header:"An Intro to my Future",
-       mainContent:'hey there welcome to the site. This is a lot of text about stuff. I am up way too late and this is a very dumb show that uses sex to sell a no story line plot.',
-       cards:[{}]
-     }
+     }],
+     'Blog':[{
+       title:'Blog One',
+       header:"An intro to About",
+       mainContent:'hey there welcome to the site. This is a lot of text about stuff. I am up way too late and Immutable is cool but the docs are bad.'
+
+       //
+     }],
+     'CodeShare':[{
+       title:'CodeShare One',
+       header:"An intro to About",
+       mainContent:'hey there welcome to the site. This is a lot of text about stuff. I am up way too late and Immutable is cool but the docs are bad.'
+
+       //
+     }],
+     'Projects':[{
+       title:'Projects One',
+       header:"An intro to About",
+       mainContent:'hey there welcome to the site. This is a lot of text about stuff. I am up way too late and Immutable is cool but the docs are bad.'
+
+       //
+     }],
+     'Future':[{
+       title:'Future One',
+       header:"An intro to About",
+       mainContent:'hey there welcome to the site. This is a lot of text about stuff. I am up way too late and Immutable is cool but the docs are bad.'
+
+       //
+     }],
    },
   activeView: 'About',
   isLoading: true,

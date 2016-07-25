@@ -1,7 +1,10 @@
 var webpack = require('webpack')
 
 module.exports = {
-  entry: './index.js',
+  entry: './index.jsx',
+  resolve: {
+   extensions: ['', '.js', '.jsx']
+ },
   output: {
     path: 'client',
     filename: 'bundle.js',
@@ -17,9 +20,13 @@ module.exports = {
   module: {
     loaders: [
       {
-        test: /\.js$/,
+        test: /\.jsx$/,
         exclude: /node_modules/,
-        loader: 'babel-loader?presets[]=es2015&presets[]=react' }
+        loader: 'babel-loader?presets[]=es2015&presets[]=react' },
+        {
+          test: /\.js$/,
+          exclude: /node_modules/,
+          loader: 'babel-loader?presets[]=es2015&presets[]=react' }
     ]
   }
 }

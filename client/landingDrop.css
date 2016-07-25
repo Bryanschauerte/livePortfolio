@@ -1,0 +1,84 @@
+.landingContainer{
+  z-index: 4;
+}
+.landingBase {
+
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+
+  background-position: top left;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: 0;
+  padding: 0;
+  opacity: 0.6;
+  transition: opacity 1s, height 2s;
+}
+.landingMastHead {
+  font-family: esteban;
+  align-items: center;
+  position: absolute;
+  top:0;
+  left:0;
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  opacity: 1;
+  color: #FFFFFF;
+transition: opacity 1s, height 2s;
+}
+
+.landingInnerMastHead{
+  line-height: 1em;
+  transition: opacity 1s, height 2s;
+}
+.landingTitle{
+  display: flex;
+  justify-content: center;
+  font-family: "Open Sans Condensed";
+  font-size: 4em;
+  text-shadow: grey 1px 1px 0.3px, white 1.3px 1.3px .4px, black 3px 4px 0.3px;
+  transition: opacity 1s, height 2s;
+}
+.landingHeader {
+  font-size: 3em;
+  font-weight: 300;
+  transition: opacity 1s, height 2s;
+}
+.landingSubHeader {
+  font-family: "Open Sans Condensed";
+  font-size: 2em;
+  font-weight: 300;
+  display: flex;
+  justify-content: center;
+  transition: opacity 1s, height 2s;
+}
+
+/* change to header */
+
+.landingTitleSTwo{
+  /*font-size: 3em;*/
+  opacity: 0;
+}
+.landingHeaderSTwo{
+  /*font-size: 2em;*/
+  opacity: 0;
+}
+.landingSubHeaderSTwo{
+  /*display: none;*/
+  opacity: 0;
+}
+.landingMastHeadSTwo{
+
+  height:0%
+  opacity: 0;
+  width: 100%;
+
+}
+.landingBaseSTwo{
+  height: 0%;
+  opacity: 0;
+
+}

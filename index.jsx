@@ -9,24 +9,23 @@ import {getState, getInitialState,setState} from './logic/action_creators';
 const store = makeStore();
 store.dispatch(getState());
 
-
-function select(state) {
-  return state
-}
-
-let currentValue
-function handleChange() {
-  let previousValue = currentValue
-  currentValue = store.getState()
-  if (previousValue !== currentValue) {
-    store.dispatch(setState(previousValue, currentValue));
-    console.log('Some deep nested property changed from', previousValue, 'to', currentValue)
-  }
-}
-
-let unsubscribe = store.subscribe(handleChange)
-handleChange()
-
+//
+// function select(state) {
+//   return state
+// }
+//
+// let currentValue
+// function handleChange() {
+//   let previousValue = currentValue
+//   currentValue = store.getState()
+//   if (previousValue !== currentValue) {
+//     store.dispatch(setState(previousValue, currentValue));
+//   }
+// }
+//
+// let unsubscribe = store.subscribe(handleChange)
+// handleChange()
+//
 
 
 
