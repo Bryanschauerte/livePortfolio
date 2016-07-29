@@ -17,15 +17,15 @@ let sizeObject = {
     codePen:{
       textIndent:0,
       height: (screenSize.height * .9) *.5,
-       width: (screenSize.width * .7) },
+       width: (screenSize.width * .7)*.9 },
     image:{height: (screenSize.height * .9) *.3 , width: (screenSize.width * .7) *.3 }
   },
   footerOuter: {height: screenSize.height * .05, width: screenSize.width * .7}
 }
 console.log(sizeObject, "sizeObject")
-//  <div onMouseLeave={props.unClick} style={sizeObject.screen} className="LS_OuterCont">
+
   return( <div>
-    <div style={sizeObject.screen} onMouseLeave={props.unClick} className='LS_Overlay'></div>
+    <div style={sizeObject.screen} onMouseLeave={console.log("props.unClick")} className='LS_Overlay'></div>
         <div style={sizeObject.contentsOuter} className="LS_OuterCont">
 
             <div className="LS_titleOuter">

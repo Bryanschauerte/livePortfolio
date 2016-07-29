@@ -142,6 +142,8 @@ render(){
   return (
     <div style={sizes.fullscreen}>
       <Header
+        sideActive={this.state.sideContainerActive}
+        activateInfo={this._handleSideButton}
         filtering={this.state.filteringOut}
         editFilter = {this._editFilterOutType}
         listItems ={headerFilterArray}
@@ -154,10 +156,7 @@ render(){
         sizes = {this.state.sideContainerActive? sizes.sideContainer: sizes.none}
         key ={tokgen.generate()}/>
 
-      <div onMouseEnter={this._handleSideButton} className={sideButtonClasses}>
-        <i className="fa fa-angle-double-left fa-4x" aria-hidden="true"></i>
 
-      </div>
           <MainContainer
               filtering ={this.state.filteringOut}
               contdimen ={sizes.mainView}

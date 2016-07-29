@@ -28,5 +28,6 @@ export const colors = {
   sky:        "#0193b8",
   lightText:  "#cacaca",
   darkText:   "#000000",
-  stone:      "#5c5c5c"
+  stone:      "#5c5c5c",
+  prettyBlu: "#2196F3"
 }

@@ -43,13 +43,7 @@ class InfoBit extends React.Component{
     let {shape, information} = this.props;
     let biggerBoxH = shape.height;
     let biggerBoxW = shape.width * .6;
-    let smallerBoxH = shape.height * .7
-    let smallerBoxw = shape.width * .4
-    let float = 'left';
 
-//     -webkit-box-shadow: 3px 4px 5px 0px rgba(1,184,38,1);
-// -moz-box-shadow: 3px 4px 5px 0px rgba(1,184,38,1);
-// box-shadow: 3px 4px 5px 0px rgba(1,184,38,1);
 
     let boxesStyle = {
       boxesContainer:{
@@ -103,7 +97,7 @@ _handleText(startText, hoverText){
     let colorObj ={
       blog:"#B8A197",
       demo:"#7FC461",
-      project:"#606285"
+      project:"#0B1968"
     }
 
     let iCContentClass  = {
@@ -132,7 +126,7 @@ _handleText(startText, hoverText){
     return (
       <div>
         <div
-          onMouseLeave={this._handleClick}>
+          onMouseLeave={console.log("this._handleClick")}>
           {this.state.isClicked?
               <LargeSingle
             information = {information}

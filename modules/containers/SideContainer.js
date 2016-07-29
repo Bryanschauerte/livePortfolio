@@ -3,18 +3,7 @@ import classNames from 'classnames';
 import _SideContainer from '../StyleEffects/_SideContainer';
 
 
-// needs and object passed in content = {
-//   header:'',
-//   bottomBox:'',
-//   rightBox: '',
-//   leftBox:'',
-//   topBox:''
-// }
 const SideContainer = (props)=>{
-let temp = true;
-let times = 10;
-
-
 
 let baseSideClass = classNames({
 

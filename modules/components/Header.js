@@ -3,10 +3,7 @@ import classNames from 'classnames';
 import TextBoxPreview from './TextBoxPreview';
 
 function Header (props){
- let {classDefault, listItems, filtering} = props;
- //content to be removed later
- let filterTitle = "Filter Me:";
-
+ let {classDefault, listItems, filtering, activateInfo, sideActive} = props;
 
   let headerClass = classNames({
     'headerContainer': true,
@@ -34,12 +31,18 @@ function Header (props){
             <li key ={index}
               className={ isFilteredOut(item)? 'filteredOut': 'notFilteredOut'}
               onClick={props.editFilter.bind(this, item.toLowerCase() )} >
-              {item.toUpperCase()}
+              {item.toUpperCase()}S
             </li>
             )}
 
         </ul>
       </div>
+      <div className="headerTitle">
+        <i onClick={activateInfo}
+          style={sideActive? {color:"#FF6E40"}:null}
+          className="fa fa-info-circle fa-3x"
+          aria-hidden="true"></i>
+        </div>
     </div>
   )
 }

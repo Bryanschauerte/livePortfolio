@@ -3,6 +3,8 @@ import TokenGenerator from 'uuid-token-generator';
 let tokgen = new TokenGenerator();
 import Conversation from '../components/Conversation';
 import CodePenHandler from '../components/CodePenHandler';
+import ImageSlider from '../components/ImageSlider';
+
 const LargeSingleContent = (props)=>{
 
     let {
@@ -18,28 +20,29 @@ const LargeSingleContent = (props)=>{
       <div key ={tokgen.generate()} >
         {item.picture?
           <img
-            src={item.picture}
-            width={item.picture.width}
-            height={item.picture.height} />: null}
+            style={{height:item.picture.height , width:item.picture.width}}
+            src={item.picture} />: null}
         {item.codePenInfo?
-          <CodePenHandler
+          <div><CodePenHandler
               style={sizeObject.contentsOuter.codePen}
               iframeSrc={item.codePenInfo.iframeSrc}
               userPen={item.codePenInfo.userPen}
-              penHref={item.codePenInfo.penHref}/>: null}
+              penHref={item.codePenInfo.penHref}/>
+            <h4 className="LSCaption">{item.codePenInfo.caption}</h4></div>: null}
+
         <div className="paragraph">
-          <h4>{item.intro}</h4>
+          <div className={item.className}>
+            <h4>{item.intro}</h4>
           <p>{item.text}</p>
+          </div>
         </div>
       </div>
     ))
       return <div>
         <div className="LSImageContainer">
           {parentInfo.type != 'demo'?
-            <img
-              src={contentItem.url}
-              width={sizeObject.contentsOuter.image.width}
-              height={sizeObject.contentsOuter.image.height} />
+            <ImageSlider size ={sizeObject.contentsOuter.image}
+              images={contentItem.picturesArray}/>
             : <CodePenHandler
                 style={sizeObject.contentsOuter.codePen}
                 iframeSrc={contentItem.codePenInfo.iframeSrc}

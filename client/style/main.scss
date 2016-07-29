@@ -1,0 +1,18 @@
+.my-datepicker-component {
+  @import 'utils/all';
+  @import 'base/all';
+  @import 'components/all';
+  @import 'themes/all';
+}
+// require('./stylesheets/main.scss'); goes into the index.js
+//
+// index
+// import React from 'react';
+//
+// import Datepicker from './components/datepicker';
+//
+// require('./stylesheets/main.scss');
+//
+// React.render(
+//   <Datepicker />,
+//   document.querySelector('.my-datepicker-component'));
