@@ -28,8 +28,8 @@ class MainView extends React.Component{
     let height = Math.floor( availSize.height );
     let width = Math.floor( availSize.width );
     let sendingW = width/3;
-    let sendingH = height/1.5;
-    // 3 wide
+    let sendingH = height/2;
+
     let returnSize = {height: sendingH, width:sendingW};
     return returnSize;
 

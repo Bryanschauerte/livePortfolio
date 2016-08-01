@@ -60,6 +60,12 @@ const LargeSingleContent = (props)=>{
           </ul>
         </div>:null}
       </div>
+    {  contentItem.video.link? <div className="videoContainer">
+        <div className="paragraph">
+          <h1>{contentItem.video.title}</h1>
+        </div>
+          <video src={contentItem.video.link} width= "100%" type="video/mp4" controls/>
+      </div>: null}
         <div className ="LS_RenderedContents">{text}
           <div className="footer">
             <ul>

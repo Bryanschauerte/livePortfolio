@@ -22,10 +22,10 @@ let sizeObject = {
   },
   footerOuter: {height: screenSize.height * .05, width: screenSize.width * .7}
 }
-console.log(sizeObject, "sizeObject")
+
 
   return( <div>
-    <div style={sizeObject.screen} onMouseLeave={console.log("props.unClick")} className='LS_Overlay'></div>
+    <div style={sizeObject.screen} onMouseLeave={props.unClick} className='LS_Overlay'></div>
         <div style={sizeObject.contentsOuter} className="LS_OuterCont">
 
             <div className="LS_titleOuter">

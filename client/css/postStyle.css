@@ -18,6 +18,7 @@ h5 {
   margin: 0; }
 
 .infoBase {
+  margin-top: 2%;
   -webkit-box-sizing: border-box;
      -moz-box-sizing: border-box;
           box-sizing: border-box;
@@ -26,14 +27,72 @@ h5 {
       -ms-flex-pack: center;
           justify-content: center;
   padding: 2%;
-  max-height: 350px;
   z-index: 0;
-  float: left; }
+  float: left;
+  -webkit-transition: max-height 500ms ease-in-out;
+  -o-transition: max-height 500ms ease-in-out;
+  transition: max-height 500ms ease-in-out; }
 
-.icContentsTypeClass {
-  position: absolute;
-  top: -10%;
-  left: 0; }
+.ICInfoHeaderTitlePost {
+  font-size: large;
+  max-height: 300px;
+  background-color: #f0f5f9;
+  color: #333030;
+  padding-top: 1%;
+  -webkit-transition: max-height 500ms ease-in-out;
+  -o-transition: max-height 500ms ease-in-out;
+  transition: max-height 500ms ease-in-out; }
+
+.ICInfoHeaderTitle {
+  overflow: hidden;
+  max-height: 0;
+  font-size: large;
+  background-color: #f0f5f9;
+  color: #333030;
+  -webkit-transition: max-height 500ms ease-in-out;
+  -o-transition: max-height 500ms ease-in-out;
+  transition: max-height 500ms ease-in-out; }
+
+.ICInfoFooterPost {
+  font-size: large;
+  max-height: 300px;
+  background-color: #0B1968;
+  color: #ffffff;
+  -webkit-transition: max-height 500ms ease-in-out;
+  -o-transition: max-height 500ms ease-in-out;
+  transition: max-height 500ms ease-in-out; }
+
+.ICInfoFooter {
+  overflow: hidden;
+  max-height: 0;
+  font-size: large;
+  -webkit-transition: max-height 500ms ease-in-out;
+  -o-transition: max-height 500ms ease-in-out;
+  transition: max-height 500ms ease-in-out; }
+
+.ICInfoHeaderBottomTitle {
+  font-size: medium; }
+
+.techStack {
+  margin: 0 4%;
+  padding: 0;
+  list-style: none;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 0 2%;
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+  z-index: 5; }
+
+.techStack li {
+  float: left; }
 
 .icContentsBaseClass {
   height: 100%;
@@ -42,8 +101,6 @@ h5 {
   color: #ffffff;
   text-align: center;
   z-index: 5;
-  position: relative;
-  top: 0;
   -webkit-transition: all 500ms;
   -o-transition: all 500ms;
   transition: all 500ms; }
@@ -56,36 +113,6 @@ h5 {
   -webkit-transition: all 500ms;
   -o-transition: all 500ms;
   transition: all 500ms; }
-
-.ICInfoPicHovering {
-  opacity: 0.3;
-  -webkit-transition: all 500ms;
-  -o-transition: all 500ms;
-  transition: all 500ms; }
-
-.ICInfoOverlay {
-  color: #ffffff;
-  font-size: large;
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  top: 10%;
-  -webkit-transition: all 500ms;
-  -o-transition: all 500ms;
-  transition: all 500ms; }
-
-.bigBox {
-  color: #ffffff;
-  float: left;
-  -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
-  padding: 0 1%;
-  font-size: 1.5em;
-  text-align: center;
-  -webkit-transition: all 500ms ease-in-out;
-  -o-transition: all 500ms ease-in-out;
-  transition: all 500ms ease-in-out; }
 
 .ICTextContainer {
   height: 100%;
@@ -213,8 +240,10 @@ h5 {
 /*LargeSingle*/
 /*lsmain*/
 .PartConclusion {
-  background-color: #FF6E40;
-  color: #ffffff;
+  text-indent: 3em;
+  padding: 2%;
+  background-color: #E0E0E0;
+  color: #333030;
   border-radius: 3px; }
 
 .PartsSummary {
@@ -222,11 +251,13 @@ h5 {
   color: #ffffff;
   border-radius: 3px; }
 
-.fa-arrow-left {
-  position: absolute; }
-
-.fa-arrow-right {
-  position: absolute; }
+.arrowContainer {
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex; }
 
 .ImageSliderContainer {
   display: -webkit-box;
@@ -237,7 +268,16 @@ h5 {
   -webkit-box-pack: center;
   -webkit-justify-content: center;
       -ms-flex-pack: center;
-          justify-content: center; }
+          justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center; }
+
+.sliderImage {
+  -webkit-transition: height 500ms ease-in-out, width 500ms ease-in-out;
+  -o-transition: height 500ms ease-in-out, width 500ms ease-in-out;
+  transition: height 500ms ease-in-out, width 500ms ease-in-out; }
 
 .LS_RenderedContents {
   font-size: 2.5em;
@@ -423,19 +463,6 @@ CodePenHandler {
   transition: opacity 1s; }
 
 /*MAIN VIEW*/
-.mainviewContainer {
-  opacity: 1;
-  position: relative;
-  top: 10%;
-  left: 5%;
-  overflow: scroll;
-  height: 5345;
-  max-width: 90%;
-  max-height: 90%;
-  -webkit-transition: max-height 4s ease-in, opacity 2s;
-  -o-transition: max-height 4s ease-in, opacity 2s;
-  transition: max-height 4s ease-in, opacity 2s; }
-
 .mainViewItemContainer span {
   max-height: 100%;
   opacity: 1;
@@ -443,10 +470,7 @@ CodePenHandler {
   width: 100%;
   overflow: scroll;
   position: absolute;
-  top: 7%;
-  -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box; }
+  top: 7%; }
 
 .infoBits-enter {
   opacity: 0.01; }
@@ -978,5 +1002,8 @@ i.fa.fa-info-circle.fa-3x {
       -ms-flex-align: center;
           align-items: center;
   margin-bottom: 1%; }
+
+.videoContainer {
+  padding: 2%; }
 
 /*# sourceMappingURL=postStyle.css.map */

@@ -7,7 +7,7 @@ import TextBoxPreview from '../components/TextBoxPreview';
 import LargeSingle from './LargeSingle';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
-// import ReactCSSTransitionGroup from'react-addons-css-transition-group';
+
 
 class InfoBit extends React.Component{
   constructor(props){
@@ -33,30 +33,16 @@ class InfoBit extends React.Component{
   }
 
 
-  _handleStyle(type){
-    let colorObj ={
-      blog:"#B8A197",
-      demo:"#7FC461",
-      project:"#606285"
-    }
-
+  _handleStyle(){
     let {shape, information} = this.props;
-    let biggerBoxH = shape.height;
-    let biggerBoxW = shape.width * .6;
-
-
     let boxesStyle = {
       boxesContainer:{
 
         height:shape.height,
         width: shape.width
-      },
-
-
-      big: { border:"3px solid "+ colorObj[type], height:biggerBoxH, width: biggerBoxW}
+      }
     }
     return boxesStyle;
-    // let type = this.props.information.typeOfContent;
   }
   mouseEntered(event){
     event.preventDefault();
@@ -94,39 +80,14 @@ _handleText(startText, hoverText){
     });
 
 
-    let colorObj ={
-      blog:"#B8A197",
-      demo:"#7FC461",
-      project:"#0B1968"
-    }
-
-    let iCContentClass  = {
-      outer: classNames({
-      'icContentsBaseClass': true
-    }),
-    type: classNames({
-    'icContentsTypeClass': true
-  }),
-  typeColor: colorObj[information.type],
-    picture: classNames({
-    'ICInfoPic': true,
-    'ICInfoPicHovering': this.state.isHovering
-    }),
-    text: classNames({
-    'ICInfoOverlay': this.state.isHovering
-    })
-  };
 
 
-
-    let boxesDim = this._handleStyle(information.type);
-
-
+    let boxesDim = this._handleStyle();
 
     return (
       <div>
         <div
-          onMouseLeave={console.log("this._handleClick")}>
+          onMouseLeave={this._handleClick}>
           {this.state.isClicked?
               <LargeSingle
             information = {information}
@@ -138,15 +99,15 @@ _handleText(startText, hoverText){
       </div>
 
     <div style ={boxesDim.boxesContainer}
-      className= {baseClass}
+      className= 'infoBase'
       onMouseEnter={this.mouseEntered}
       onMouseLeave={this.mouseLeft}
       onClick={this._handleClick}>
 
           <TextBoxPreview
-            picDim={{height:"100%", width:"100%"}}
-            picturesArray={information.previewPic}
-            classObject={iCContentClass}
+            isHovering= {this.state.isHovering}
+            dimensions={boxesDim.boxesContainer}
+            picturesArray={information.gifPic}
             title={this._handleText('', information.title)}
             shortTitle={this._handleText('', information.shortTitle)}
             type = {this._handleText('', information.type)}

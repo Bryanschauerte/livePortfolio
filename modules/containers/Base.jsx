@@ -63,7 +63,7 @@ class Base extends React.Component{
       },
       mainView:{
         height: screenH,
-        width: screenW * .98
+        width: screenW
       },
 
       sideContainer: {
