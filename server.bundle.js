@@ -60,9 +60,9 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var express = __webpack_require__(7);
-	var path = __webpack_require__(8);
-	var compression = __webpack_require__(9);
+	var express = __webpack_require__(6);
+	var path = __webpack_require__(7);
+	var compression = __webpack_require__(8);
 
 	var app = express();
 	app.use(compression());
@@ -85,7 +85,7 @@
 	});
 
 	function renderPage(appHtml) {
-	  return '\n    <!doctype html client="storage">\n    <html>\n    <meta charset=utf-8/>\n    <title>My First React Router App</title>\n    <link rel=stylesheet href=/index.css>\n    <div id=app>' + appHtml + '</div>\n    <script src="/bundle.js"></script>\n   ';
+	  return '\n    <!doctype html client="storage">\n    <html>\n    <meta charset=utf-8/>\n    <title>Something very whitty</title>\n    <link rel=stylesheet href=/index.css>\n    <div id=app>' + appHtml + '</div>\n    <script src="/bundle.js"></script>\n   ';
 	}
 
 	var PORT = process.env.PORT || 8080;
@@ -124,73 +124,29 @@
 
 	var _reactRouter = __webpack_require__(3);
 
-	var _App = __webpack_require__(5);
+	var _base = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./containers/base.jsx\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
 
-	var _App2 = _interopRequireDefault(_App);
-
-	var _pageSkeleton = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./containers/pageSkeleton\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
-
-	var _pageSkeleton2 = _interopRequireDefault(_pageSkeleton);
+	var _base2 = _interopRequireDefault(_base);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	module.exports = _react2.default.createElement(
-	  _reactRouter.Route,
-	  { path: '/', component: _App2.default },
-	  _react2.default.createElement(_reactRouter.IndexRoute, { component: _pageSkeleton2.default })
-	);
+	module.exports = _react2.default.createElement(_reactRouter.Route, { path: '/', component: _base2.default });
 
 /***/ },
-/* 5 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	exports.default = _react2.default.createClass({
-	  displayName: 'App',
-	  render: function render() {
-	    return _react2.default.createElement(
-	      'div',
-	      null,
-	      _react2.default.createElement(
-	        'h1',
-	        null,
-	        'app rendered'
-	      ),
-	      _react2.default.createElement(
-	        'div',
-	        null,
-	        this.props.children
-	      )
-	    );
-	  }
-	});
-
-/***/ },
-/* 6 */,
-/* 7 */
+/* 5 */,
+/* 6 */
 /***/ function(module, exports) {
 
 	module.exports = require("express");
 
 /***/ },
-/* 8 */
+/* 7 */
 /***/ function(module, exports) {
 
 	module.exports = require("path");
 
 /***/ },
-/* 9 */
+/* 8 */
 /***/ function(module, exports) {
 
 	module.exports = require("compression");

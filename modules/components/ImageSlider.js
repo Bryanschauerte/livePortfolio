@@ -6,7 +6,7 @@ constructor(props){
   super(props);
   this.state = {
     currentIndex:0,
-    isHovering: false
+    imageHovering: false
   }
   this._handleLeftClick = this._handleLeftClick.bind(this);
   this._handleRightClick = this._handleRightClick.bind(this);
@@ -21,15 +21,15 @@ _handleStyle(){
     height:this.props.size.height*2,
      width: this.props.size.width*2}
 
-  return this.state.isHovering? biggerSize : size;
+  return this.state.imageHovering? biggerSize : size;
 }
 mouseEntered(event){
   event.preventDefault();
-  this.setState({isHovering: true});
+  this.setState({imageHovering: true});
 }
 mouseLeft(event){
   event.preventDefault();
-  this.setState({isHovering: false});
+  this.setState({imageHovering: false});
 }
 _handleLeftClick(){
   let index = this.state.currentIndex;
@@ -50,37 +50,41 @@ _handleRendering(){
      width: this.props.size.width*2}
   let images = this.props.images;
   let length = this.props.images.length;
-  
-  return this.props.images.length? (
-    <div
-          onMouseEnter={this.mouseEntered}
-          onMouseLeave={this.mouseLeft}
-          >
-    <div className="imageSliderContainer" >
-      <div className="arrows"><i onClick={this._handleLeftClick}
-        className=" fa fa-arrow-left fa-3x" aria-hidden="true"></i>
-      </div>
-    <img
-      className="sliderImage"
-      style={this._handleStyle()}
-      src={images[this.state.currentIndex]} />
 
-    <div className="arrows">
-     <i  onClick={this._handleRightClick}
-       className=" fa fa-arrow-right fa-3x" aria-hidden="true"></i>
-     </div>
-   </div>
- </div>
-  )
+  return this.props.images.length? (
+        <div  onMouseEnter={this.mouseEntered}
+              onMouseLeave={this.mouseLeft}>
+
+        <div className="imageSliderContainer" >
+
+          <div className="arrows">
+            <i onClick={this._handleLeftClick}
+            className="fa fa-arrow-left fa-3x"
+            aria-hidden="true"></i>
+          </div>
+
+        <img
+          className="sliderImage"
+          style={this._handleStyle()}
+          src={images[this.state.currentIndex]} />
+
+        <div className="arrows">
+         <i onClick={this._handleRightClick}
+           className="fa fa-arrow-right fa-3x" aria-hidden="true"></i>
+         </div>
+       </div>
+     </div>)
   :null;
 }
+
   render(){
 
 
-    return(<div>
-
-{this._handleRendering}
-       </div>)
+    return(
+        <div>
+          {this._handleRendering()}
+       </div>
+     )
   }
 }
 export default ImageSlider;

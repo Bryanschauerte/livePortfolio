@@ -1,9 +1,12 @@
 var webpack = require('webpack')
-
+var path = require('path');
 module.exports = {
   entry: './index.jsx',
   resolve: {
-   extensions: ['', '.js', '.jsx']
+   extensions: ['', '.js', '.jsx'],
+   root: [
+  path.resolve('./modules')
+]
  },
   output: {
     path: 'client',
@@ -14,9 +17,21 @@ module.exports = {
   [
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.OccurrenceOrderPlugin(),
-    new webpack.optimize.UglifyJsPlugin()
+    new webpack.optimize.UglifyJsPlugin(),
+    new webpack.DefinePlugin({
+    'process.env': {
+        'NODE_ENV': JSON.stringify('production')
+    }
+}),
+new webpack.ProvidePlugin({
+   'React':     'react'
+ })
   ]
-  : [],
+  : [
+    new webpack.ProvidePlugin({
+   'React':     'react'
+ })
+  ],
   module: {
     loaders: [
       {

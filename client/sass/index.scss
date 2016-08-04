@@ -264,6 +264,7 @@ display: flex;
   z-index: 5;
 }
 .LS_OuterCont {
+  height:100%;
   transform: translateX(20%);
   padding: 1%;
   opacity: 1;
@@ -277,8 +278,12 @@ display: flex;
   flex-direction: column;
   align-items: center;
 }
+.meSumList{
+  text-align: left;
+  text-indent: 0;
+}
 .LS_titleOuter {
-  height: 10%;
+
   justify-content: center;
   color: $LightText;
   width: 100%;
@@ -304,7 +309,7 @@ display: flex;
   background-color: $Primary;
 }
 .LSImageContainer {
-  height: 100%;
+  // height: 100%;
   width: 100%;
   background-color: $Primary;
   display: flex;
@@ -316,7 +321,7 @@ CodePenHandler {
   text-indent: 0;
 }
 .LS_headerContents {
-  height: 10%;
+
   font-size: 5vh;
   text-align: center;
 }
@@ -549,7 +554,7 @@ CodePenHandler {
   padding: 0 4% 0 2%;
   color: $DarkText;
   position: relative;
-  width: 50%;
+  width: 100%;
   list-style-type: none;
   transition: opacity 1s;
   display: flex;
@@ -572,8 +577,8 @@ CodePenHandler {
 }
 .headerList li {
   transition: all 250ms;
-  width: 10em;
-  font-size: 3vh;
+  width: 100%;
+  font-size: 2.5vh;
   margin: 0 2;
   display: flex;
   justify-content: center;
@@ -591,9 +596,9 @@ CodePenHandler {
 }
 .notFilteredOut {
   background-color: $ActionColor;
-  // border: 1px solid white;
-  /* text-decoration: line-through; */
   transform: skew(-12deg);
+  width: 100%;
+
 }
 
 i.fa.fa-info-circle.fa-3x{
@@ -774,6 +779,7 @@ justify-content: center;
 .SChamburgerFoldBot ul {
   padding: 2%;
   margin: 0;
+  color:$LightText;
   /* width: 75%; */
   height: 15%;
   font-size: 1em;
@@ -784,6 +790,7 @@ justify-content: center;
 }
 .SChamburgerFoldBot a {
   font-size: 1em;
+  color:$LightText;
 }
 .SChamburgerFoldTop {
   color:$LightText;
@@ -799,5 +806,8 @@ justify-content: center;
   margin-bottom: 1%;
 }
 .videoContainer{
-  padding:2%;
+  margin:2%;
+}
+.loading{
+  background-image: url("https://s3-us-west-2.amazonaws.com/elasticbeanstalk-us-west-2-671953655197/showertea.gif");
 }

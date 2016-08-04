@@ -1,19 +1,10 @@
 import React from 'react';
 import classNames from 'classnames';
-
-
-//utils
 import TokenGenerator from 'uuid-token-generator';
 let tokgen = new TokenGenerator(); //for generating keys, tokgen.generate()
-import delayStyleChange from "../StyleEffects/helpers";
-import {content, headerFilterArray} from '../../logic/PsuedoData';
-//sizes
-import {_sizesConfig} from '../StyleEffects/_sizesConfig';
+//soon to be replaced and made to connect to DB
+import {content, headerFilterArray} from '../../PsuedoData';
 
-//components styling
-import {_Base} from '../StyleEffects/_Base';
-
-// containers
 import MainContainer from './MainContainer';
 import SideContainer from './SideContainer';
 import Header from '../components/Header';
@@ -48,11 +39,13 @@ class Base extends React.Component{
   }
 
   _generateSizes(){
-    let ratios = {_sizesConfig};
+
     let screenH = this.state.windowHeight;
     let screenW = this.state.windowWidth;
+    let ratio = screenH/screenW;
 
     let sizes = {
+
       fullscreen:{
         height: screenH,
         width: screenW
@@ -63,7 +56,8 @@ class Base extends React.Component{
       },
       mainView:{
         height: screenH,
-        width: screenW
+        width: screenW,
+        ratio:ratio,
       },
 
       sideContainer: {
@@ -75,6 +69,7 @@ class Base extends React.Component{
   }
 
   _handleViewChange(view){
+
     this.setState({
       currentView: view
     })

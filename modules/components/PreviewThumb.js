@@ -3,9 +3,14 @@ import React from 'react';
 
 
 //need this to make a delay on the rendering of the text
-const TextBoxPreview = (props)=> {
+const PreviewThumb = (props)=> {
   let {
-    title,picturesArray, dimensions,type, shortTitle,techStack, isHovering
+    loadHandling,
+    title,
+    picturesArray,
+    dimensions,
+    type,
+    shortTitle,techStack, isHovering
   } = props;
 
 
@@ -33,10 +38,13 @@ let footerClass = classNames({
       <div className={titleClass}>{props.title}: {props.type.toUpperCase()}</div>
 
 
-
+      {/*{props.isLoaded?<span className="loading">Loading</span>:null}*/}
         {picturesArray? <img src={picturesArray[isHovering? 1:0]}
           height={isHovering? dimObj.image.hover.height: dimObj.image.noHover.height}
-          width={dimObj.image.hover.width}/>:null}
+          width={dimObj.image.hover.width}
+          onLoad={props.loadHandling}
+          onError={props.loadHandling}
+          />:null}
 
 
       <div className={footerClass}>
@@ -46,20 +54,4 @@ let footerClass = classNames({
   </div>)
 
 };
-export default TextBoxPreview;
-
-{/*<div className={classObject.outer} >
-  <div className={classObject.picture}>
-    <img src={picturesArray} height={picDim.height} width={picDim.width}/>
-  </div>
-  <div className={classObject.text}>
-
-      <h2>{title}</h2>
-      <h4 className ="icContentsTypeClass"
-        style={{color:classObject.typeColor}}>{type.toUpperCase()}</h4>
-      <h4>{shortTitle}</h4>
-      <h4 style={{color:classObject.typeColor}}>{techStack}</h4>
-      <br/>
-      <p style={{color:classObject.typeColor}}><i className="fa fa-ellipsis-h fa-3x" aria-hidden="true"></i></p>
-    </div>
-  </div>*/}
+export default PreviewThumb;

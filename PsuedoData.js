@@ -19,6 +19,7 @@ let testinfo =[
   parts:[
     {
       id:0,
+      pictures:['https://s3-us-west-2.amazonaws.com/elasticbeanstalk-us-west-2-671953655197/components/codePen/codePen.png'],
       content:[
       {intro:'DRY', text:"If you find yourself writing the same thing more than twice- pull that code out and make a component. The above presentational/dumb/stateless ( so many words for the same thing! ) is how I handled embedding the CodePens on this site." },
       {intro:'Starting', text:"When choosing how to start a component, think about what it will do. This particular component makes adding a new pen simpler by handling the conversion from regular \'o fashion HTML to jsx and feeds in the unique parts through props."},
@@ -51,9 +52,9 @@ techStack:['Node','Express','Angular', 'Stripe', 'Mongo'],
 type: "project",
 gifPic:["https://s3-us-west-2.amazonaws.com/elasticbeanstalk-us-west-2-671953655197/reportGen/homeTR1.png",
 "https://s3-us-west-2.amazonaws.com/elasticbeanstalk-us-west-2-671953655197/reportGen/1-1.gif"],
-linkTo:"",
+
 parts:[
-  {
+  {linkTo:"https://github.com/Bryanschauerte/report-generator",
     id:0,
     picturesArray:[
       "https://s3-us-west-2.amazonaws.com/elasticbeanstalk-us-west-2-671953655197/reportGen/homeTR1.png",
@@ -64,9 +65,9 @@ parts:[
       "https://s3-us-west-2.amazonaws.com/elasticbeanstalk-us-west-2-671953655197/reportGen/studentaddtr6.png",
       "https://s3-us-west-2.amazonaws.com/elasticbeanstalk-us-west-2-671953655197/reportGen/7.png",
     ],
-    video:{link:"https://s3-us-west-2.amazonaws.com/elasticbeanstalk-us-west-2-671953655197/theQ/ReportGenW.mp4", title: "Video OverView of Site's Functionality"},
+    video:{link:"https://s3-us-west-2.amazonaws.com/elasticbeanstalk-us-west-2-671953655197/theQ/ReportGenW.mp4", title: "Video Overview of Site's Functionality"},
     content:[
-      {intro:"OverView", text:"It creates a collection of classes for each user. Users can add/remove classes and students. Each student has attributes related to their abilities, the user selects the appropriate value for each characteristic. Upon submission, my API creates a report for each student and returns them. The reports are never the same and always accurate. Payments are made possible by StripeJs and Passport"},
+      {intro:"Overview", text:"It creates a collection of classes for each user. Users can add/remove classes and students. Each student has attributes related to their abilities, the user selects the appropriate value for each characteristic. Upon submission, my API creates a report for each student and returns them. The reports are never the same and always accurate. Payments are made possible by StripeJs and Passport"},
     {intro:'Why.. **Not code Related** (Skip away!) ', text:"My very first programming experience was with solving this very problem. I was teaching english in South Korea and I was just so lucky that my first boss was a very bad person. The schedule looks a bit like this: 10-12 classes a day, was told what classes I was teaching about 15 min before the start of the day and reports were due randomly for the next day 2-4 times a month. Reports had to be different each time, had to contain only positive things and were certain to be compared among mothers.  Ah yes. Did I mention each class had 8-16 students? Yeah. Not a good time. Hair loss, crying and long nights before long days. "},
     {intro:'', text:"GOOGLE ENTER-> I had started copy-pasting single sentences from past reports and using them to construct new unique reports to save time. It was very repetitive, which shook free a memory. My science background screamed at me that an equation could be made from all those pieces. So. Like every person with internet and a question, I Googled it. Hmm. ‘Programming’ you say..? Flash forward through a month doing all the codeAcademy/treehouse videos I could find. I learned enough to make an interface that spat out a paragraph based on which checkboxes were marked. It was purple, pink and super ugly. But hey, it worked and I found something fun. Below is a description of Report Generator Mark II, the first project I made money from after DevMountain’s full time course. "},
     {intro:"On To Code Logic!", text:"This will be a brief description of logic behind certain major pieces. It would take way to long to write out steps and there are much better ways to learn to code than using tutorials. Tutorials are great for getting an idea of capabilities, but at a certain point in getting your brain programming-ready, the docs are better. Feel free to follow the link at the bottom, take a look at the raw site and fire any interworking questions my way."},
@@ -107,6 +108,7 @@ parts:[
   {
     id:0,
     video:{link:"https://s3-us-west-2.amazonaws.com/elasticbeanstalk-us-west-2-671953655197/theQ/theQ.mp4", title: "Video Overview of Site's Functionality"},
+    pictures:[],
     content:[
       {intro:"Overview", text:"This is a Mean-Stack app created in a group of five using Scrum methodology. It is broken into three pieces; StatsDashbord, StudentDashboard and AdminDashboard. StudentDashBoard is where students see todays curriculum, objectives, get help and see past questions. AdminDashboard is the mentors landing page, it handles attendance, managing the queue and initiating flash polls. The stats dashboard uses D3 and agChart to give mentors and teachers a visual synopsis of how students feel about their understanding of the objectives taught."},
       {intro:"On Viewing the Code", text:"Unfortunately, since this was done for devMountain, I no longer have access to the gitHub repository. Since this project, I have done a lot of manipulation of data displays using a similar structure. Below you will find the summary video we used for this project's presentation. As always, feel free to ask questions and I'll happily post the response."},
@@ -130,10 +132,11 @@ techStack:["'MEAN' stack", 'Material', 'Mongoose', 'OAuth'],
 type: "project",
 gifPic:["https://s3-us-west-2.amazonaws.com/elasticbeanstalk-us-west-2-671953655197/librarybrowsing/landing.png",
 "https://s3-us-west-2.amazonaws.com/elasticbeanstalk-us-west-2-671953655197/librarybrowsing/landing.gif"],
-linkTo:"",
+
 parts:[
-  {
+  {linkTo:"https://github.com/Bryanschauerte/date-a-book",
     id:0,
+    pictures:[],
     video:{link:"https://s3-us-west-2.amazonaws.com/elasticbeanstalk-us-west-2-671953655197/theQ/lib.mp4", title: "Video Overview of Site's Functionality"},
     content:[
       {intro:"Overview", text:"A website for finding books based on particular characteristics. It takes the average reviews of all users, cycling over each book and averages such characteristics as horror, science fiction content, violence, etc. In Searching for a book, you select how much of each characteristic you want and the site shows a list with the description of each book matching your search criteria (within a user-chosen range)."},

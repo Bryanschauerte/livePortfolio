@@ -13,7 +13,7 @@ let sizeObject = {
   screen: screenSize,
   titleOuter: {height: screenSize.height * .05, width: screenSize.width * .7},
   contentsOuter: {
-    maxHeight: screenSize.height * .9, width: screenSize.width * .7,
+    maxHeight: {height:screenSize.height * .9, width: screenSize.width * .7},
     codePen:{
       textIndent:0,
       height: (screenSize.height * .9) *.5,
@@ -22,10 +22,10 @@ let sizeObject = {
   },
   footerOuter: {height: screenSize.height * .05, width: screenSize.width * .7}
 }
-
+console.log(sizeObject, "sizeObject")
 
   return( <div>
-    <div style={sizeObject.screen} onMouseLeave={props.unClick} className='LS_Overlay'></div>
+    <div style={sizeObject.screen} onMouseEnter={props.unClick} className='LS_Overlay'></div>
         <div style={sizeObject.contentsOuter} className="LS_OuterCont">
 
             <div className="LS_titleOuter">
@@ -42,10 +42,13 @@ let sizeObject = {
                       sizeObject={sizeObject}
                       parentInfo ={information}
                       index = {index}
-                      contentItem= {contentItem}/>
+                      contentItem= {contentItem}
+                      loadHandling={props.loadHandling}/>
                   </div>
+
                 </div>)
                 )}
+
             </div>
 
 </div>)}

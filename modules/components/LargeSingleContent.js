@@ -11,9 +11,10 @@ const LargeSingleContent = (props)=>{
       contentItem,
       index,
       parentInfo,
-      sizeObject,
+      sizeObject, 
       unClick,
-      type } = props;
+      type,
+    loadHandling } = props;
 
     let text = contentItem.content.map(item =>(
 
@@ -64,13 +65,19 @@ const LargeSingleContent = (props)=>{
         <div className="paragraph">
           <h1>{contentItem.video.title}</h1>
         </div>
-          <video src={contentItem.video.link} width= "100%" type="video/mp4" controls/>
+          <video
+            src={contentItem.video.link}
+            width= "100%"
+            type="video/mp4"
+            controls
+            onLoad={loadHandling}
+            onError={loadHandling} />
       </div>: null}
         <div className ="LS_RenderedContents">{text}
           <div className="footer">
             <ul>
               <li><a href="mailto:bryan.schauerte@gmail.com?Subject=Hey%20Bryan%20nice%20site" target="_top"><i className="fa fa-envelope fa-1x" aria-hidden="true"></i></a></li>
-              <li><a href="https://github.com/Bryanschauerte" target="_blank"><i className="fa fa-github-square fa-1x" aria-hidden="true"></i></a></li>
+              <li><a href={contentItem.linkTo} target="_blank"><i className="fa fa-github-square fa-1x" aria-hidden="true"></i></a></li>
               <li><a href="https://www.linkedin.com/in/bryanschauerte" target="_blank"><i className="fa fa-linkedin-square fa-1x" aria-hidden="true"></i></a></li>
               </ul>
           </div></div>

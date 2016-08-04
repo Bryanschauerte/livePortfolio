@@ -6,7 +6,7 @@ let tokgen = new TokenGenerator();
 import LargeSingle from './LargeSingle'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
-import {testinfo} from '../../logic/PsuedoData'
+import {testinfo} from '../../PsuedoData'
 
 class MainView extends React.Component{
   constructor(props){
@@ -24,12 +24,10 @@ class MainView extends React.Component{
 
   _handleSize(){
 
-    let availSize = this.props.dimensions;
-    let height = Math.floor( availSize.height );
-    let width = Math.floor( availSize.width );
+    let height = Math.floor( this.props.dimensions.height );
+    let width = Math.floor( this.props.dimensions.width );
     let sendingW = width/3;
-    let sendingH = height/2;
-
+    let sendingH = sendingW*this.props.dimensions.ratio;
     let returnSize = {height: sendingH, width:sendingW};
     return returnSize;
 
@@ -41,26 +39,26 @@ class MainView extends React.Component{
         infoBit.type.toLowerCase()) == -1? true: false;
     }
     if(this.props.showItems){
-      const dimensions = this._handleSize();
+      const thumbDimensions = this._handleSize();
       let infostuff = info.map(item =>{
         if( filter(item) ){
         return (
           <div key ={tokgen.generate()}>
             <InfoBit
               screenSize={this.props.dimensions}
-              shape = {dimensions}
+              shape = {thumbDimensions}
               key ={tokgen.generate()}
               information={item}
               />
           </div>)
-          }
-      })
+          }}
+        )
           return infostuff;
         }
   }
 
 
-render(){
+  render(){
       let mainContainerClass = classNames({
         'mainViewHide': true,
         'mainViewShow': this.props.showItems

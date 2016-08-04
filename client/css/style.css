@@ -213,6 +213,7 @@ h5 {
   z-index: 5; }
 
 .LS_OuterCont {
+  height: 100%;
   transform: translateX(20%);
   padding: 1%;
   opacity: 1;
@@ -226,8 +227,11 @@ h5 {
   flex-direction: column;
   align-items: center; }
 
+.meSumList {
+  text-align: left;
+  text-indent: 0; }
+
 .LS_titleOuter {
-  height: 10%;
   justify-content: center;
   color: #ffffff;
   width: 100%;
@@ -253,7 +257,6 @@ h5 {
   background-color: #f0f5f9; }
 
 .LSImageContainer {
-  height: 100%;
   width: 100%;
   background-color: #f0f5f9;
   display: flex;
@@ -265,7 +268,6 @@ CodePenHandler {
   text-indent: 0; }
 
 .LS_headerContents {
-  height: 10%;
   font-size: 5vh;
   text-align: center; }
 
@@ -480,7 +482,7 @@ CodePenHandler {
   padding: 0 4% 0 2%;
   color: #333030;
   position: relative;
-  width: 50%;
+  width: 100%;
   list-style-type: none;
   transition: opacity 1s;
   display: flex;
@@ -503,8 +505,8 @@ CodePenHandler {
 
 .headerList li {
   transition: all 250ms;
-  width: 10em;
-  font-size: 3vh;
+  width: 100%;
+  font-size: 2.5vh;
   margin: 0 2;
   display: flex;
   justify-content: center;
@@ -521,8 +523,8 @@ CodePenHandler {
 
 .notFilteredOut {
   background-color: #FF6E40;
-  /* text-decoration: line-through; */
-  transform: skew(-12deg); }
+  transform: skew(-12deg);
+  width: 100%; }
 
 i.fa.fa-info-circle.fa-3x {
   margin: 0;
@@ -701,6 +703,7 @@ i.fa.fa-info-circle.fa-3x {
 .SChamburgerFoldBot ul {
   padding: 2%;
   margin: 0;
+  color: #ffffff;
   /* width: 75%; */
   height: 15%;
   font-size: 1em;
@@ -710,7 +713,8 @@ i.fa.fa-info-circle.fa-3x {
   justify-content: center; }
 
 .SChamburgerFoldBot a {
-  font-size: 1em; }
+  font-size: 1em;
+  color: #ffffff; }
 
 .SChamburgerFoldTop {
   color: #ffffff;
@@ -726,6 +730,9 @@ i.fa.fa-info-circle.fa-3x {
   margin-bottom: 1%; }
 
 .videoContainer {
-  padding: 2%; }
+  margin: 2%; }
+
+.loading {
+  background-image: url("https://s3-us-west-2.amazonaws.com/elasticbeanstalk-us-west-2-671953655197/showertea.gif"); }
 
 /*# sourceMappingURL=style.css.map */

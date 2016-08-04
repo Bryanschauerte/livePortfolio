@@ -41,7 +41,7 @@ function renderPage( appHtml ) {
    `
 }
 
-var PORT = process.env.PORT || 8080;
+var PORT = process.env.NODE_ENV == "development"? 8080 || 80;
 app.listen( PORT, function() {
   console.log( 'Production panda dancing at localhost:' + PORT )
 });

@@ -295,6 +295,7 @@ h5 {
   z-index: 5; }
 
 .LS_OuterCont {
+  height: 100%;
   -webkit-transform: translateX(20%);
       -ms-transform: translateX(20%);
        -o-transform: translateX(20%);
@@ -321,8 +322,11 @@ h5 {
       -ms-flex-align: center;
           align-items: center; }
 
+.meSumList {
+  text-align: left;
+  text-indent: 0; }
+
 .LS_titleOuter {
-  height: 10%;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
       -ms-flex-pack: center;
@@ -354,7 +358,6 @@ h5 {
   background-color: #f0f5f9; }
 
 .LSImageContainer {
-  height: 100%;
   width: 100%;
   background-color: #f0f5f9;
   display: -webkit-box;
@@ -372,7 +375,6 @@ CodePenHandler {
   text-indent: 0; }
 
 .LS_headerContents {
-  height: 10%;
   font-size: 5vh;
   text-align: center; }
 
@@ -656,7 +658,7 @@ CodePenHandler {
   padding: 0 4% 0 2%;
   color: #333030;
   position: relative;
-  width: 50%;
+  width: 100%;
   list-style-type: none;
   -webkit-transition: opacity 1s;
   -o-transition: opacity 1s;
@@ -703,8 +705,8 @@ CodePenHandler {
   -webkit-transition: all 250ms;
   -o-transition: all 250ms;
   transition: all 250ms;
-  width: 10em;
-  font-size: 3vh;
+  width: 100%;
+  font-size: 2.5vh;
   margin: 0 2;
   display: -webkit-box;
   display: -webkit-flex;
@@ -730,11 +732,11 @@ CodePenHandler {
 
 .notFilteredOut {
   background-color: #FF6E40;
-  /* text-decoration: line-through; */
   -webkit-transform: skew(-12deg);
       -ms-transform: skew(-12deg);
        -o-transform: skew(-12deg);
-          transform: skew(-12deg); }
+          transform: skew(-12deg);
+  width: 100%; }
 
 i.fa.fa-info-circle.fa-3x {
   margin: 0;
@@ -960,6 +962,7 @@ i.fa.fa-info-circle.fa-3x {
 .SChamburgerFoldBot ul {
   padding: 2%;
   margin: 0;
+  color: #ffffff;
   /* width: 75%; */
   height: 15%;
   font-size: 1em;
@@ -979,7 +982,8 @@ i.fa.fa-info-circle.fa-3x {
           justify-content: center; }
 
 .SChamburgerFoldBot a {
-  font-size: 1em; }
+  font-size: 1em;
+  color: #ffffff; }
 
 .SChamburgerFoldTop {
   color: #ffffff;
@@ -1004,6 +1008,9 @@ i.fa.fa-info-circle.fa-3x {
   margin-bottom: 1%; }
 
 .videoContainer {
-  padding: 2%; }
+  margin: 2%; }
+
+.loading {
+  background-image: url("https://s3-us-west-2.amazonaws.com/elasticbeanstalk-us-west-2-671953655197/showertea.gif"); }
 
 /*# sourceMappingURL=postStyle.css.map */

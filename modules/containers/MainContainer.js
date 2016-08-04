@@ -21,7 +21,7 @@ function MainContainer (props){
       'mainViewHide': true,
       'mainViewShow': activateTrans
     });
-
+console.log(contdimen, "main contdimen")
     return (
       <div className='mCBase'>
           <div>

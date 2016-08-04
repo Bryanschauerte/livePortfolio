@@ -1,9 +1,10 @@
 import React from "react";
 import classNames from 'classnames';
-import TextBoxPreview from './TextBoxPreview';
 
-function Header (props){
- let {classDefault, listItems, filtering, activateInfo, sideActive} = props;
+
+const Header= (props)=> {
+
+  let {classDefault, listItems, filtering, activateInfo, sideActive} = props;
 
   let headerClass = classNames({
     'headerContainer': true,
@@ -23,17 +24,15 @@ function Header (props){
         <h1>Bryan Schauerte</h1>
       </div>
       <div className="headerFilterContainer">
-        {/*<TextBoxPreview classObject ={filterClass} text = {filterTitle}/>*/}
-
         <ul className='headerList'>
           <li >SHOW:</li>
+
           {props.listItems.map( (item, index) =>
             <li key ={index}
               className={ isFilteredOut(item)? 'filteredOut': 'notFilteredOut'}
               onClick={props.editFilter.bind(this, item.toLowerCase() )} >
               {item.toUpperCase()}S
-            </li>
-            )}
+            </li>)}
 
         </ul>
       </div>
