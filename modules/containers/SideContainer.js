@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import _SideContainer from '../StyleEffects/_SideContainer';
+
 
 
 const SideContainer = (props)=>{

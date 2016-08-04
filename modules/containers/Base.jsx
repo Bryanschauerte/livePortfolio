@@ -63,7 +63,7 @@ class Base extends React.Component{
     }
     return sizes;
   }
-
+ 
   _handleViewChange(view){
 
     this.setState({
