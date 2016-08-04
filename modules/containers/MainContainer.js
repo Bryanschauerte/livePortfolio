@@ -1,6 +1,5 @@
 import React from 'react';
 import Introduction from '../components/Introduction';
-import Title from '../components/Title';
 import classNames from 'classnames';
 import Header from '../components/Header';
 
@@ -21,7 +20,7 @@ function MainContainer (props){
       'mainViewHide': true,
       'mainViewShow': activateTrans
     });
-console.log(contdimen, "main contdimen")
+
     return (
       <div className='mCBase'>
           <div>

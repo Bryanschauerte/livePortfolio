@@ -15,6 +15,10 @@ $ActionColor: $pumpkin;
 $DarkText: #333030;
 $LightText: #ffffff;
 
+
+a:-webkit-any-link{
+  color:$ActionColor;
+}
 body {
   margin: 0;
   font-size: 62.5%;
@@ -31,6 +35,9 @@ h4,
 h5 {
   padding: 0;
   margin: 0;
+}
+.noShow{
+  display: none;
 }
 .ICInfoOverlay p {
   margin: 0;
@@ -285,7 +292,7 @@ display: flex;
 .LS_titleOuter {
 
   justify-content: center;
-  color: $LightText;
+
   width: 100%;
   background-color: $PrimaryS1;
   -webkit-box-shadow: 0 4px 3px 0 $black;
@@ -339,19 +346,28 @@ CodePenHandler {
   font-size: 1em;
   overflow: scroll;
 }
+
 .footer {
+  border: 1px solid $Accent;
+  align-items: center;
+  color: $LightText;
+  border-radius: 4px;
+margin-top: .5em;
   display: flex;
-  background-color: $Accent;
+
   font-size: 2em;
-  border: 1px solid $Secondary;
   justify-content: center;
+  width: 100%;
+  height:2em;
 }
 .footer ul {
+
+  height:100%;
   color: #5c5c5c;
   list-style: none;
   margin: 0;
   padding: 0;
-  font-size: 0.5em;
+  font-size: 1em;
 }
 .footer li {
   float: left;
@@ -810,4 +826,12 @@ justify-content: center;
 }
 .loading{
   background-image: url("https://s3-us-west-2.amazonaws.com/elasticbeanstalk-us-west-2-671953655197/showertea.gif");
+}
+.imageLoading{
+  opacity: 0;
+  transition: opacity 500ms ease-in-out;
+
+}
+.imageDoneLoading{
+  opacity:1;
 }

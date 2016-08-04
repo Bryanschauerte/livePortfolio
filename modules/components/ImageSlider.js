@@ -1,12 +1,13 @@
 import React from 'react';
-
+import classNames from 'classnames'
 
 class ImageSlider extends React.Component{
 constructor(props){
   super(props);
   this.state = {
     currentIndex:0,
-    imageHovering: false
+    imageHovering: false,
+    isLoaded:null
   }
   this._handleLeftClick = this._handleLeftClick.bind(this);
   this._handleRightClick = this._handleRightClick.bind(this);
@@ -14,6 +15,7 @@ constructor(props){
   this.mouseLeft = this.mouseLeft.bind(this);
   this._handleStyle = this._handleStyle.bind(this);
   this._handleRendering = this._handleRendering.bind(this);
+  this._changeLoadState = this._changeLoadState.bind(this);
 }
 _handleStyle(){
   let size = this.props.size;
@@ -43,13 +45,21 @@ _handleRightClick(){
     this.setState({currentIndex:0})
     :this.setState({currentIndex:index+=1})
 }
+_changeLoadState(){
+  this.setState({ isLoaded: true });
+}
 _handleRendering(){
+
   let size = this.props.size;
   let biggerSize = {
     height:this.props.size.height*2,
      width: this.props.size.width*2}
   let images = this.props.images;
   let length = this.props.images.length;
+  let arrowClass = classNames({
+    arrows: true,
+    noShow: images && images.length <=1
+  })
 
   return this.props.images.length? (
         <div  onMouseEnter={this.mouseEntered}
@@ -57,7 +67,7 @@ _handleRendering(){
 
         <div className="imageSliderContainer" >
 
-          <div className="arrows">
+          <div className={arrowClass}>
             <i onClick={this._handleLeftClick}
             className="fa fa-arrow-left fa-3x"
             aria-hidden="true"></i>
@@ -66,9 +76,10 @@ _handleRendering(){
         <img
           className="sliderImage"
           style={this._handleStyle()}
+          onLoad={this._changeLoadState}
           src={images[this.state.currentIndex]} />
 
-        <div className="arrows">
+        <div className={arrowClass}>
          <i onClick={this._handleRightClick}
            className="fa fa-arrow-right fa-3x" aria-hidden="true"></i>
          </div>
@@ -79,10 +90,15 @@ _handleRendering(){
 
   render(){
 
+    let imageClass = classNames({
+      imageLoading: true,
+      imageDoneLoading: this.state.isLoaded
 
+    })
     return(
         <div>
-          {this._handleRendering()}
+
+          <div className={imageClass}>{this._handleRendering()}</div>
        </div>
      )
   }

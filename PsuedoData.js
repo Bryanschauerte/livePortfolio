@@ -15,7 +15,7 @@ let testinfo =[
   techStack:['Es6','React'],
   type: "demo",
   gifPic:["https://s3-us-west-2.amazonaws.com/elasticbeanstalk-us-west-2-671953655197/codz.png","https://s3-us-west-2.amazonaws.com/elasticbeanstalk-us-west-2-671953655197/codz.png"],
-
+linkTo:"https://github.com/Bryanschauerte/reusableReactComponents/blob/master/CodePenHandler.js",
   parts:[
     {
       id:0,
@@ -52,9 +52,9 @@ techStack:['Node','Express','Angular', 'Stripe', 'Mongo'],
 type: "project",
 gifPic:["https://s3-us-west-2.amazonaws.com/elasticbeanstalk-us-west-2-671953655197/reportGen/homeTR1.png",
 "https://s3-us-west-2.amazonaws.com/elasticbeanstalk-us-west-2-671953655197/reportGen/1-1.gif"],
-
+linkTo:"https://github.com/Bryanschauerte/report-generator",
 parts:[
-  {linkTo:"https://github.com/Bryanschauerte/report-generator",
+  {
     id:0,
     picturesArray:[
       "https://s3-us-west-2.amazonaws.com/elasticbeanstalk-us-west-2-671953655197/reportGen/homeTR1.png",
@@ -108,7 +108,14 @@ parts:[
   {
     id:0,
     video:{link:"https://s3-us-west-2.amazonaws.com/elasticbeanstalk-us-west-2-671953655197/theQ/theQ.mp4", title: "Video Overview of Site's Functionality"},
-    pictures:[],
+    picturesArray:[
+      'https://s3-us-west-2.amazonaws.com/elasticbeanstalk-us-west-2-671953655197/theQpics/adminConfiG.png',
+      'https://s3-us-west-2.amazonaws.com/elasticbeanstalk-us-west-2-671953655197/theQpics/attG.png',
+      'https://s3-us-west-2.amazonaws.com/elasticbeanstalk-us-west-2-671953655197/theQpics/mentorAtt.png',
+      'https://s3-us-west-2.amazonaws.com/elasticbeanstalk-us-west-2-671953655197/theQpics/mentorQ.png',
+      'https://s3-us-west-2.amazonaws.com/elasticbeanstalk-us-west-2-671953655197/theQpics/studentDash.png',
+      'https://s3-us-west-2.amazonaws.com/elasticbeanstalk-us-west-2-671953655197/theQpics/studentdashQ.png'
+    ],
     content:[
       {intro:"Overview", text:"This is a Mean-Stack app created in a group of five using Scrum methodology. It is broken into three pieces; StatsDashbord, StudentDashboard and AdminDashboard. StudentDashBoard is where students see todays curriculum, objectives, get help and see past questions. AdminDashboard is the mentors landing page, it handles attendance, managing the queue and initiating flash polls. The stats dashboard uses D3 and agChart to give mentors and teachers a visual synopsis of how students feel about their understanding of the objectives taught."},
       {intro:"On Viewing the Code", text:"Unfortunately, since this was done for devMountain, I no longer have access to the gitHub repository. Since this project, I have done a lot of manipulation of data displays using a similar structure. Below you will find the summary video we used for this project's presentation. As always, feel free to ask questions and I'll happily post the response."},
@@ -132,11 +139,15 @@ techStack:["'MEAN' stack", 'Material', 'Mongoose', 'OAuth'],
 type: "project",
 gifPic:["https://s3-us-west-2.amazonaws.com/elasticbeanstalk-us-west-2-671953655197/librarybrowsing/landing.png",
 "https://s3-us-west-2.amazonaws.com/elasticbeanstalk-us-west-2-671953655197/librarybrowsing/landing.gif"],
-
+linkTo:"https://github.com/Bryanschauerte/date-a-book",
 parts:[
-  {linkTo:"https://github.com/Bryanschauerte/date-a-book",
+  {
     id:0,
-    pictures:[],
+    pictures:[
+      'https://s3-us-west-2.amazonaws.com/elasticbeanstalk-us-west-2-671953655197/librarybrowsing/landing.png',
+      'https://s3-us-west-2.amazonaws.com/elasticbeanstalk-us-west-2-671953655197/librarybrowsing/review.png',
+      'https://s3-us-west-2.amazonaws.com/elasticbeanstalk-us-west-2-671953655197/librarybrowsing/search.png'
+    ],
     video:{link:"https://s3-us-west-2.amazonaws.com/elasticbeanstalk-us-west-2-671953655197/theQ/lib.mp4", title: "Video Overview of Site's Functionality"},
     content:[
       {intro:"Overview", text:"A website for finding books based on particular characteristics. It takes the average reviews of all users, cycling over each book and averages such characteristics as horror, science fiction content, violence, etc. In Searching for a book, you select how much of each characteristic you want and the site shows a list with the description of each book matching your search criteria (within a user-chosen range)."},

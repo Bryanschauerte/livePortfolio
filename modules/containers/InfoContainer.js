@@ -15,15 +15,15 @@ class InfoBit extends React.Component{
     this.state = {
       isHovering: false,
       isClicked: false,
-       isLoaded: false
+       imageIsLoaded: null
      };
     this.mouseEntered = this.mouseEntered.bind(this);
     this.mouseLeft = this.mouseLeft.bind(this);
     this._handleClick = this._handleClick.bind(this);
     this._handleStyle = this._handleStyle.bind(this);
     this._handleText = this._handleText.bind(this);
-    this._handleLoadingStateChange = this._handleLoadingStateChange.bind(this);
 
+    this._changeLoadState = this._changeLoadState.bind(this);
 
   }
   _handleClick(){
@@ -45,47 +45,34 @@ class InfoBit extends React.Component{
       }
     }
     return boxesStyle;
-  }
-  mouseEntered(event){
-    event.preventDefault();
-    this.setState({isHovering: true});
-  }
-  mouseLeft(event){
-    event.preventDefault();
-    this.setState({isHovering: false});
+    }
+
+    mouseEntered(event){
+      event.preventDefault();
+      this.setState({isHovering: true});
+    }
+
+    mouseLeft(event){
+      event.preventDefault();
+      this.setState({isHovering: false});
+    }
+
+
+  _changeLoadState(){
+    this.setState({imageIsLoaded: true})
+
+
   }
 
-componentDidMount(){
-  //will be using this for ajax calls for smooth picture rendering
-  this.setState({isLoaded: false});
-
-}
-    _handleLoadingStateChange(){
-
-      const imagesLoaded=(elem)=> {
-        const imgElements = elem.querySelectorAll('img');
-        for (const img of imgElements) {
-          if (!img.complete) {
-            return false;
-          }
-        }
-        return true;
+  _handleText(startText, hoverText){
+    const convert = (item) => {
+      let temp=[];
+        item.map(item=>temp.push(<li key ={tokgen.generate()}>{item}</li>))
+          return temp;
       }
+    const checker = (item)=>  typeof(item)== 'string'? item : convert(item);
 
-      const imageElement = this.refs.PreviewThumb;
-        this.setState({
-        isLoaded: !imagesLoaded(imageElement),
-  });
-    }
-_handleText(startText, hoverText){
-  const convert = (item) => {
-    let temp=[];
-      item.map(item=>temp.push(<li key ={tokgen.generate()}>{item}</li>))
-        return temp;
-    }
-  const checker = (item)=>  typeof(item)== 'string'? item : convert(item);
-
-        return this.state.isHovering? checker(hoverText): checker(startText);
+          return this.state.isHovering? checker(hoverText): checker(startText);
     }
 
 
@@ -98,11 +85,13 @@ _handleText(startText, hoverText){
     let baseClass  = classNames({
       'infoBase': true,
       'clickedClass': this.state.isClicked
-    });
+      });
 
+    let imageClass = classNames({
+      imageLoading: true,
+      imageDoneLoading: this.state.imageIsLoaded
 
-
-
+      })
     let boxesDim = this._handleStyle();
 
     return (
@@ -111,10 +100,9 @@ _handleText(startText, hoverText){
           onMouseLeave={this._handleClick}>
           {this.state.isClicked?
               <LargeSingle
-            information = {information}
-            unClick={this._handleClick}
-            screenSize={this.props.screenSize}
-            loadHandling= {this._handleLoadingStateChange.bind(this)} />
+                information = {information}
+                unClick={this._handleClick}
+                screenSize={this.props.screenSize} />
 
             : null}
 
@@ -127,7 +115,7 @@ _handleText(startText, hoverText){
       onClick={this._handleClick}>
 
           <PreviewThumb
-            isLoaded={this.state.isLoaded}
+            imageClass={imageClass}
             isHovering= {this.state.isHovering}
             dimensions={boxesDim.boxesContainer}
             picturesArray={information.gifPic}
@@ -135,10 +123,10 @@ _handleText(startText, hoverText){
             shortTitle={this._handleText('', information.shortTitle)}
             type = {this._handleText('', information.type)}
             techStack ={this._handleText('', information.techStack)}
-            loadHandling= {this._handleLoadingStateChange.bind(this)}             />
-  </div>
-</div>)
-  }
+            loadHandling= {this._changeLoadState.bind(this)}/>
+    </div>
+  </div>  )
+        }
 }
 
 export default InfoBit;

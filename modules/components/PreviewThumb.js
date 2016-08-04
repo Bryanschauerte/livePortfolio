@@ -10,7 +10,7 @@ const PreviewThumb = (props)=> {
     picturesArray,
     dimensions,
     type,
-    shortTitle,techStack, isHovering
+    shortTitle,techStack, isHovering,imageClass
   } = props;
 
 
@@ -44,6 +44,7 @@ let footerClass = classNames({
           width={dimObj.image.hover.width}
           onLoad={props.loadHandling}
           onError={props.loadHandling}
+          className={imageClass}
           />:null}
 
 

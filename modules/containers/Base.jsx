@@ -9,10 +9,6 @@ import MainContainer from './MainContainer';
 import SideContainer from './SideContainer';
 import Header from '../components/Header';
 
-//landing
-
-
-
 
 class Base extends React.Component{
   constructor(props){

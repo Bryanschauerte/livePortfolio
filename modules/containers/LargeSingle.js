@@ -22,7 +22,7 @@ let sizeObject = {
   },
   footerOuter: {height: screenSize.height * .05, width: screenSize.width * .7}
 }
-console.log(sizeObject, "sizeObject")
+
 
   return( <div>
     <div style={sizeObject.screen} onMouseEnter={props.unClick} className='LS_Overlay'></div>
@@ -42,13 +42,22 @@ console.log(sizeObject, "sizeObject")
                       sizeObject={sizeObject}
                       parentInfo ={information}
                       index = {index}
+                      linkTo={information.linkTo}
                       contentItem= {contentItem}
-                      loadHandling={props.loadHandling}/>
+                      />
+
+
                   </div>
 
                 </div>)
                 )}
-
+                <div className="footer">
+                  <ul>
+                    <li><a href="mailto:bryan.schauerte@gmail.com?Subject=Hey%20Bryan%20nice%20site" target="_top"><i className="fa fa-envelope fa-2x" aria-hidden="true"></i></a></li>
+                    <li><a href={information.linkTo} target="_blank"><i className="fa fa-github-square fa-2x" aria-hidden="true"></i></a></li>
+                    <li><a href="https://www.linkedin.com/in/bryanschauerte" target="_blank"><i className="fa fa-linkedin-square fa-2x" aria-hidden="true"></i></a></li>
+                    </ul>
+                </div>
             </div>
 
 </div>)}

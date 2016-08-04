@@ -36,7 +36,7 @@ contents:{height: size.height*.93, width: size.width}
               Hello and welcome to my portfolio/demo thing! Working all day with really old CakePHP gets stale quickly, so I took up learning React. I recently found myself learning more than doing. Flux lead to Redux, Redux led to Relay...React Native... Time to start doing.
               This is my effort to pull my head out of docs and into doing some side projects using React. I am already more than comfortable with Angular and I'd like to get as proficient with another framework.<i className="fa fa-arrows-v" aria-hidden="true"></i></p>
             <br/>
-            <p className="talking">
+            <div className="talking">
               <span className="TitlesTag">About Me</span><br/>
               I am a software Engineer 2 ( Yay promotion ) at TCS here in Salt Lake City. I fix/create new features for our clients using CakePHP, JavaScript, jQuery, Less, HTML, PHP and some home-brewed magic.
                <br/>
@@ -52,7 +52,7 @@ contents:{height: size.height*.93, width: size.width}
                  <li>Now, I work... then come home and program in JS for 4 more hours (wife doesnt love that). Weekends, I do more. (Wife REALLY doesnt like that..) </li>
                </ul>
 
-            </p>
+            </div>
             <br/>
             <span className="TitlesTag"> Demos and Projects</span><br/>
             <p className="talking" >Instead of writing <i>HOW</i> to do things ( plenty of those out there ), Ill be walking through the thought process of
