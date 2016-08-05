@@ -88,7 +88,7 @@
 	  return '\n    <!doctype html client="storage">\n    <html>\n    <meta charset=utf-8/>\n    <title>Something very whitty</title>\n    <link rel=stylesheet href=/index.css>\n    <div id=app>' + appHtml + '</div>\n    <script src="/bundle.js"></script>\n   ';
 	}
 
-	var PORT = process.env.PORT || 8080;
+	var PORT = process.env.NODE_ENV == "development" ? 8080 : 80;
 	app.listen(PORT, function () {
 	  console.log('Production panda dancing at localhost:' + PORT);
 	});
