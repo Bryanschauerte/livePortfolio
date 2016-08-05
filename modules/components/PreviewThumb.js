@@ -35,7 +35,7 @@ let footerClass = classNames({
   return (<div className='icContentsBaseClass' >
 
 
-      <div className={titleClass}>{props.title}: {props.type.toUpperCase()}</div>
+      <div className={titleClass}>{props.title} {props.type.toUpperCase()}</div>
 
 
       {/*{props.isLoaded?<span className="loading">Loading</span>:null}*/}

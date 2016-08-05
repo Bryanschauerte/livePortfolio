@@ -143,7 +143,7 @@ linkTo:"https://github.com/Bryanschauerte/date-a-book",
 parts:[
   {
     id:0,
-    pictures:[
+    picturesArray:[
       'https://s3-us-west-2.amazonaws.com/elasticbeanstalk-us-west-2-671953655197/librarybrowsing/landing.png',
       'https://s3-us-west-2.amazonaws.com/elasticbeanstalk-us-west-2-671953655197/librarybrowsing/review.png',
       'https://s3-us-west-2.amazonaws.com/elasticbeanstalk-us-west-2-671953655197/librarybrowsing/search.png'
