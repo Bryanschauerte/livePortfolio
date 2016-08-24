@@ -1,47 +1,40 @@
 var webpack = require('webpack')
 var path = require('path');
+var fs = require('fs');
+
 module.exports = {
-  entry: './index.js',
-  resolve: {
-   extensions: ['', '.js', '.jsx'],
-   root: [
-  path.resolve('./modules')
-]
- },
+  entry: path.resolve('./modules/client.js'),
+
   output: {
-    path: 'client',
-    filename: 'bundle.js',
-    client: '/'
+    path: __dirname + '/__build__',
+    filename: '[name].js',
+    chunkFilename: '[id].chunk.js',
+    publicPath: '/__build__/'
   },
-  plugins: process.env.NODE_ENV === 'production' ?
-  [
-    new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.OccurrenceOrderPlugin(),
-    new webpack.optimize.UglifyJsPlugin(),
-    new webpack.DefinePlugin({
-    'process.env': {
-        'NODE_ENV': JSON.stringify('production')
-    }
-}),
-new webpack.ProvidePlugin({
-   'React':     'react'
- })
-  ]
-  : [
-    new webpack.ProvidePlugin({
-   'React':     'react'
- })
-  ],
+
   module: {
     loaders: [
+      { test: /\.js$/, exclude: /node_modules/, loader: 'babel' },
       {
-        test: /\.jsx$/,
-        exclude: /node_modules/,
-        loader: 'babel-loader?presets[]=es2015&presets[]=react' },
-        {
-          test: /\.js$/,
-          exclude: /node_modules/,
-          loader: 'babel-loader?presets[]=es2015&presets[]=react' }
-    ]
-  }
-}
+        test: /\.js$/,
+        loader: 'babel-loader',
+        query: {
+          presets: ["es2015", "babel-preset-react", "stage-0", require.resolve("babel-preset-es2015")],
+          plugins: ["transform-react-constant-elements", "transform-react-inline-elements"]
+                },
+                exclude: /(node_modules)/
+              },
+            ]
+          },
+          plugins: [
+            new webpack.optimize.CommonsChunkPlugin('client', null, false),
+            new webpack.optimize.OccurenceOrderPlugin(),
+            new webpack.optimize.DedupePlugin(),
+            new webpack.optimize.UglifyJsPlugin({
+              compressor: { warnings: false },
+            }),
+            new webpack.DefinePlugin({
+              'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
+            })
+          ]
+        }

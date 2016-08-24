@@ -1,0 +1,1 @@
+{ "presets": ["babel-preset-react","stage-0", "es2015"] }
