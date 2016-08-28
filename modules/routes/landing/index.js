@@ -8,7 +8,6 @@ export default {
     getComponents (location, cb) {
       require.ensure([
         './components/Landing'
-        // ,'../../components/SvgGenerator'
         // './reducer'
       ], (require) => {
         // let Landing = require('./components/Landing').default

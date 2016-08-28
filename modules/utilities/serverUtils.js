@@ -1,6 +1,7 @@
 import zlib from 'zlib'
 
 
+
 export function writeError(msg, res) {
   res.writeHead(500, { 'Content-Type': 'text/html' })
   res.write('ERROR!')
@@ -29,7 +30,9 @@ export function write(string, type, res) {
     res.end()
   });
 }
-
+// export function serveStye(location){
+//   return location
+// }
 export function createPage(html) {
   return `
   <!doctype html>
@@ -37,10 +40,11 @@ export function createPage(html) {
     <head>
       <meta charset="utf-8"/>
       <title>Bryan Schauerte</title>
+      <link rel="stylesheet" type="text/css" href="/style.css">
     </head>
     <body>
       <div id="app">${html}</div>
-      <script src="/__build__/main.js"></script>
+      <script src="/app.js"></script>
     </body>
 
   </html>

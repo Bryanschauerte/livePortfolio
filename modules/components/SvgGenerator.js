@@ -24,7 +24,7 @@ import classNames from 'classnames';
      let area = height*width;
      let numberNeeded = area/triangleA;
      let config={numberNeeded:numberNeeded, triH: Th, triW: Tw, colorTwo:"#1976d2" ,colorOne:"#c12b2b"};
-console.log(config, "config gen size")
+
      return config
    }
 
@@ -128,11 +128,11 @@ let internals=[];
 
      let backgroundStyle= { stroke: 'blue', strokeWidth: 3}
 
-//className="svgOuter" style = {{height:this.props.dimensions,width:this.props.dimensions}}
+
 return(
 
 
-  <div key ={tokgen.generate()} className='svgContainer' style={{height:this.props.dimensions,width:this.props.dimensions}} >
+  <div key ={tokgen.generate()} className='svgContainer' style={{height:this.props.dimensions.windowHeight,width:this.props.dimensions.windowWidth}} >
 
     {this._generateCircles()}
   </div>
@@ -146,8 +146,3 @@ return(
 SvgGenerator.defaultProps={ width: 800, height: 600 };;
 
  export default SvgGenerator;
- // <animate attributeType="XML"
- //          attributeName="x"
- //          from="0" to="100"
- //          dur="10s"
- //          repeatCount="indefinite"/>

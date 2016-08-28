@@ -37,10 +37,11 @@ class App extends React.Component{
 
 
     let windowWidth=this.state.windowWidth;
-    let windowHeight = this.state.windowHeight ;
+    let windowHeight = this.state.windowHeight;
+
     return(<div className="appding">
 
-    {React.cloneElement(children, {windowWidth: windowWidth, windowHeight: windowHeight })}
+    {React.cloneElement(children, {dimensions:{windowWidth: windowWidth, windowHeight: windowHeight} })}
   </div>)
   }
 
