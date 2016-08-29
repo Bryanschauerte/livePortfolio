@@ -13,7 +13,11 @@ export default {
       cb(null, [
         // require('./home').default,
 
-        require('./landing').default
+
+        require('./landing').default,
+        require('./admin').default
+
+
         // ,require('./notFound').default
 
       ])

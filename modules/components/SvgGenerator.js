@@ -127,12 +127,12 @@ let internals=[];
 
 
      let backgroundStyle= { stroke: 'blue', strokeWidth: 3}
-
+     console.log(this.props, "props")
 
 return(
 
 
-  <div key ={tokgen.generate()} className='svgContainer' style={{height:this.props.dimensions.windowHeight,width:this.props.dimensions.windowWidth}} >
+  <div key ={tokgen.generate()} className='svgContainer' style={{height:this.props.windowHeight,width:this.props.windowWidth}} >
 
     {this._generateCircles()}
   </div>

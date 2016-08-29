@@ -8,6 +8,8 @@ class Landing extends React.Component{
   constructor(props){
     super(props);
     this._handleClick= this._handleClick.bind(this);
+
+
   }
 
   _handleClick(e){
@@ -19,7 +21,8 @@ class Landing extends React.Component{
     return(
       <div className="testing"><h1>Landing</h1>
         <h2><Link to='home'>go home</Link></h2>
-        <div onClick={this._handleClick}><SvgGenerator dimensions={this.props.dimensions}/></div>
+        <div onClick={this._handleClick}>
+          <SvgGenerator windowHeight={this.props.windowHeight} windowWidth={this.props.windowWidth}/></div>
         </div>
     )
   }
