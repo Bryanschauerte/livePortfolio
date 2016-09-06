@@ -1,3 +1,4 @@
+import "babel-polyfill"
 import React from 'react'
 
 
@@ -38,6 +39,7 @@ class App extends React.Component{
 
     let windowWidth=this.state.windowWidth;
     let windowHeight = this.state.windowHeight;
+    console.log('app hit')
     return(<div className="appding">
 
     {React.cloneElement(children, {windowWidth: windowWidth, windowHeight: windowHeight })}

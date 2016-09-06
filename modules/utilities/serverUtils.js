@@ -45,6 +45,7 @@ export function createPage(html) {
     <body>
       <div id="app">${html}</div>
       <script src="/app.js"></script>
+
     </body>
 
   </html>

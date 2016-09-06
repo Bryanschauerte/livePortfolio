@@ -1,3 +1,40 @@
 .testing{
   background-color: yellow;
 }
+.creationContainer{
+width: 100%;
+background-color: red;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+}
+
+.emptyInputContainer{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+}
+
+.inputControlContainer{
+width:100%;
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+}
+
+// admin
+
+.adminContainer{
+
+}
+.adminCreationContainer{
+  width: 50%;
+  height: 100%;
+  background-color: blue;
+  padding:3px;
+  position: absolute;
+  left: 0px;
+  top:0;
+}

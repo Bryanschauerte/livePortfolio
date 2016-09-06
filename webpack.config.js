@@ -5,18 +5,22 @@ var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
   entry: {
-  app:  [path.resolve('./modules/client.js'), 'babel-polyfill'],
+  app:  ['babel-polyfill', path.resolve('./modules/client.js')],
   style: path.join(__dirname, './modules/styles', 'main.scss')},
 
 
 
   output: {
-    path: __dirname + '/modules/__build__',
+    path: __dirname + '/modules/__build__/',
     filename: '[name].js',
-    chunkFilename: '[id].chunk.js',
-    publicPath: '/__build__/'
+    chunkFilename: '[name].js'
+    // , this led to a webjson not found 404 error on request to server... 
+    // publicPath: '/__build__/'
   },
-
+  extensions: [
+       '',
+       '.jsx', '.js'
+   ],
   module: {
     loaders: [
       { test: /\.js$/, exclude: /node_modules/, loader: 'babel' },
@@ -41,7 +45,7 @@ module.exports = {
             ]
           },
           plugins: [
-            new webpack.optimize.CommonsChunkPlugin('client', null, false),
+            // new webpack.optimize.CommonsChunkPlugin('client', null, false),
             new webpack.optimize.OccurenceOrderPlugin(),
             new webpack.optimize.DedupePlugin(),
             new webpack.optimize.UglifyJsPlugin({
@@ -50,7 +54,7 @@ module.exports = {
             new webpack.DefinePlugin({
               'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
             }),
-            // new webpack.optimize.CommonsChunkPlugin("commons", "commons.js", Infinity),
+            new webpack.optimize.CommonsChunkPlugin("app", "app.js"),
             new ExtractTextPlugin("[name].css")
           ]
         }
