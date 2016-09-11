@@ -11,25 +11,11 @@ class Creation extends React.Component{
     super(props);
     this.state= {
       mainShowing: 0,
-      feilds:{
-        title: '',
-        header:'',
-        dateCreated:'',
-        beenSaved:false,
-        main: [
-          {
-            subHeader:'',
-            link:'',
-            linkSource:'',
-            content:'',
-            style:''
-          }
-        ],
-        footer:'',
-
-      },
+      feilds: this.props.feilds,
+      editing: false
 
     }
+
     this._addRemoveMainGroup = this._addRemoveMainGroup.bind(this)
     this._handleSubmit= this._handleSubmit.bind(this);
     this.grabData= this.grabData.bind(this);
@@ -39,6 +25,8 @@ class Creation extends React.Component{
     this._removeIndex = this._removeIndex.bind(this);
     this._handleButton= this._handleButton.bind(this);
     this._handleKeydown = this._handleKeydown.bind(this);
+    this._handlePreviewInputDataChange = this._handlePreviewInputDataChange.bind(this);
+
   }
 
   _handleKeydown(event) {
@@ -49,7 +37,15 @@ class Creation extends React.Component{
     }
   }
   componentDidMount(){
+    this.setState({feilds: this.props.feilds})
     window.addEventListener('keydown', this._handleKeydown);
+
+  }
+  componentWillReceiveProps(nextProps){
+    console.log(nextProps, "nextProps")
+    this.setState({
+    feilds: nextProps.feilds
+  });
   }
   componentWillUnmount(){
     window.addEventListener('keydown', this._handleKeydown)
@@ -57,7 +53,7 @@ class Creation extends React.Component{
 
   _changeMainIndex(indexWish){
 
-    let numOfItems = this.state.feilds.main.length;
+    let numOfItems = this.state.feilds.contentItems.main.length;
     if(indexWish < numOfItems && indexWish >=0 ){
       return this.setState({
         mainShowing: indexWish
@@ -71,7 +67,7 @@ class Creation extends React.Component{
 
   _removeIndex(index){
       let currentStateFeilds= this.state.feilds;
-      currentStateFeilds.main.slice(index, 1);
+      currentStateFeilds.contentItems.main.slice(index, 1);
 
       if(this.state.mainShowing === index){
         this.setState({mainShowing: index -=1, feilds:currentStateFeilds})
@@ -83,16 +79,33 @@ class Creation extends React.Component{
 
   _handleInputDataChange(dataObj){
 
+
     let currentStateFeilds = this.state.feilds;
-    dataObj.indexNum === 'NA'? currentStateFeilds[dataObj.name] = dataObj.value:
-      currentStateFeilds.main[dataObj.indexNum][dataObj.name] = dataObj.value;
+
+    dataObj.indexNum === 'NA'? currentStateFeilds.contentItems[dataObj.name] = dataObj.value:
+      currentStateFeilds.contentItems.main[dataObj.indexNum][dataObj.name] = dataObj.value;
+
     this.setState({feilds: currentStateFeilds});
+
+  }
+  _handlePreviewInputDataChange(dataObj){
+console.log(dataObj, "PREVIEW HIT")
+
+    let currentStateFeilds = this.state.feilds;
+
+    currentStateFeilds.contentItems.previewContents[dataObj.name] = dataObj.value;
+
+
+    this.setState({feilds: currentStateFeilds});
+
   }
 
 
   grabData(dataIn){
 
-      this._handleInputDataChange(dataIn)
+
+      this._handleInputDataChange(dataIn);
+
   }
   _handleButton(e,){
     e.preventDefault();
@@ -106,19 +119,21 @@ class Creation extends React.Component{
 
   _addRemoveMainGroup(isAdd){
 
-    let index = this.state.feilds.main.length
+    let index = this.state.feilds.contentItems.main.length
     const plainMainContent= {
                 subHeader:'',
                 link:'',
                 linkSource:'',
                 content:'',
-                style:''
+                style:'',
+                containsCodePen:false,
+                containsOther: ''
               };
 
     let currentStateFeilds = this.state.feilds;
 
     if(isAdd === true){
-      currentStateFeilds.main.push(plainMainContent);
+      currentStateFeilds.contentItems.main.push(plainMainContent);
       this.setState({
         feilds: currentStateFeilds,
         mainShowing: this.state.mainShowing += 1
@@ -129,25 +144,25 @@ class Creation extends React.Component{
         this._removeIndex(index);
       }
       if(index <= 0){
-        currentStateFeilds.main[0]= plainMainContent
+        currentStateFeilds.contentItems.main[0]= plainMainContent
          this.setState({feilds: currentStateFeilds})
       }
     }
 
   }
   _renderMainInput(){
- let SubBTN = SubmittingHOC(SubmitBTN)
 
-
-
-
+    let SubBTN = SubmittingHOC(SubmitBTN)
     let Showing = this.state.mainShowing;
-    let totalSections = this.state.feilds.main.length;
-    console.log(Showing, "shwoing")
-    return this.state.feilds.main.map( (item,index)=>{
+    let totalSections = this.state.feilds.contentItems.main.length;
+
+    return this.state.feilds.contentItems.main.map( (item,index)=>{
        if(Showing === index){
          return(<div className="creationContainer" key={index}>
-           <h2>Current Index: {index}</h2>
+           <div className="creationTitle">
+              <h2>Main Contents</h2>
+               <p>Current Index: {index}</p>
+            </div>
            <div className='inputControlContainer'>
              <BtnHandler
                clickAction={this._addRemoveMainGroup}
@@ -172,14 +187,21 @@ class Creation extends React.Component{
 
            <EmptyInput
              _handleInputDataChangePass={this.grabData}
-             stateValue={this.state.feilds.main[index]['subheader']}
+             stateValue={this.state.feilds.contentItems.main[index]['subheader']}
              indexNum={index}
              name="subheader"
              label="Sub-Header"/>
 
+           <EmptyInput
+             _handleInputDataChangePass={this.grabData}
+             stateValue={this.state.feilds.contentItems.main[index]['contents']}
+             indexNum={index}
+             name="contents"
+             label="Contents"/>
+
             <EmptyInput
               _handleInputDataChangePass={this.grabData}
-              stateValue={this.state.feilds.main[index]['link']}
+              stateValue={this.state.feilds.contentItems.main[index]['link']}
               indexNum={index}
               name="link"
               label="Link"/>
@@ -187,51 +209,103 @@ class Creation extends React.Component{
             <EmptyInput
               _handleInputDataChangePass={this.grabData}
               indexNum={index}
-              stateValue={this.state.feilds.main[index]['linkSource']}
+              stateValue={this.state.feilds.contentItems.main[index]['linkSource']}
               name= "linkSource"
               label="Link Source"/>
 
             <EmptyInput
               _handleInputDataChangePass={this.grabData}
               indexNum={index}
-              stateValue={this.state.feilds.main[index]['style']}
+              stateValue={this.state.feilds.contentItems.main[index]['style']}
               name="style"
               label="Style"/>
+
+            <EmptyInput
+              _handleInputDataChangePass={this.grabData}
+              indexNum={index}
+              stateValue={this.state.feilds.contentItems.main[index]['containsCodePen']}
+              name="containsCodePen"
+              label="Contains CodePen"/>
+
+            <EmptyInput
+              _handleInputDataChangePass={this.grabData}
+              indexNum={index}
+              stateValue={this.state.feilds.contentItems.main[index]['containsOther']}
+              name="Contains Other"
+              label="containsOther"/>
 
         </div>)} } )
   }
 
 
   render(){
-    let mainContentInput = this._renderMainInput();
-
+console.log(this.props, "props")
+    let feildValues = this.state.feilds.contentItems;
+console.log(this.state, "creation state")
     return (  <div className="creationContainer">
           <h1>Creation</h1>
 
 
               <EmptyInput
                 _handleInputDataChangePass={this.grabData}
-                stateValue={this.state.feilds.title}
+                stateValue={feildValues.title}
                 name="title"
                 label="Title"/>
 
                <EmptyInput
                  _handleInputDataChangePass={this.grabData}
-                 stateValue={this.state.feilds.header}
+                 stateValue={feildValues.header}
                  name="header"
                  label="Header"/>
 
-               <h1>Main</h1>
-                {mainContentInput}
+               <EmptyInput
+                 _handleInputDataChangePass={this.grabData}
+                 stateValue={feildValues.type}
+                 name="type"
+                 label="Type"/>
+
+
+                {this._renderMainInput()}
 
               <EmptyInput
                 _handleInputDataChangePass={this.grabData}
-                stateValue={this.state.feilds.footer}
+                stateValue={feildValues.footer}
                 name="footer"
                 label="Footer"/>
 
-            <h1>Presentation</h1>
-              <EmptyDisplay text={this.state.feilds.title}/>
+                <h1>Preview</h1>
+                <EmptyInput
+                  _handleInputDataChangePass={this._handlePreviewInputDataChange}
+                  stateValue={feildValues.previewContents.previewTitle}
+                  name="PreviewTitle"
+                  isPreview ="true"
+                  label="Preview Title"/>
+                <EmptyInput
+                  _handleInputDataChangePass={this._handlePreviewInputDataChange}
+                  stateValue={feildValues.previewContents.previewHeader}
+                  name="previewHeader"
+                  isPreview ="true"
+                  label="Preview Header"/>
+                <EmptyInput
+                  _handleInputDataChangePass={this._handlePreviewInputDataChange}
+                  stateValue={feildValues.previewContents.previewFooter}
+                  name="previewFooter"
+                  isPreview ="true"
+                  label="Preview Footer"/>
+                <EmptyInput
+                  _handleInputDataChangePass={this._handlePreviewInputDataChange}
+                  isPreview ="true"
+                  stateValue={feildValues.previewContents.previewExtra}
+                  name="previewExtra"
+                  label="Preview Extra"/>
+                <EmptyInput
+                  _handleInputDataChangePass={this._handlePreviewInputDataChange}
+                  isPreview ="true"
+                  stateValue={feildValues.previewContents.imageArrayPreview}
+                  name="imageArrayPreview"
+                  label="Image Array Preview"/>
+
+
             </div>);
   }
 }

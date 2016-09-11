@@ -1,7 +1,9 @@
-import "babel-polyfill"
-import React from 'react'
+
+import React from 'react';
 
 
+
+import SvgGenerator from './SvgGenerator';
 // container for the / route
 class App extends React.Component{
   constructor(props){
@@ -11,42 +13,48 @@ class App extends React.Component{
       windowHeight: null
     }
     this._handleResize = this._handleResize.bind(this);
-  }
-  _handleResize(e){
-      this.setState({
-        windowWidth: window.innerWidth,
-        windowHeight: window.innerHeight
-       })
-  }
-  componentWillMount(){
-    // this.setState({
-    //   calculatedHeight: this.state.windowHeight,
-    //   calculatedWidth: this.state.windowWidth
-    // })
-  }
-  componentDidMount(){
-    this.setState({loaded:true});
-    window.addEventListener('resize', this._handleResize);
-    this._handleResize()
 
-  }
-  componentWillUnmount(){
-    window.removeEventListener('resize', this._handleResize)
-  }
-  render(){
-    let { children} = this.props;
+    }
 
 
-    let windowWidth=this.state.windowWidth;
-    let windowHeight = this.state.windowHeight;
-    console.log('app hit')
-    return(<div className="appding">
+      _handleResize(e){
+          this.setState({
+            windowWidth: window.innerWidth,
+            windowHeight: window.innerHeight
+           })
+      }
 
-    {React.cloneElement(children, {windowWidth: windowWidth, windowHeight: windowHeight })}
-  </div>)
-  }
 
-}
+      componentDidMount(){
+
+        window.addEventListener('resize', this._handleResize);
+        this._handleResize()
+
+      }
+      componentWillUnmount(){
+        window.removeEventListener('resize', this._handleResize)
+      }
+
+
+      render(){
+        let { children} = this.props;
+        let currentLocation = this.props.location.pathname
+        let windowWidth=this.state.windowWidth;
+        let windowHeight = this.state.windowHeight;
+
+
+
+        return(<div className="appding">
+
+
+        {React.cloneElement(children, {
+          windowWidth: windowWidth,
+          windowHeight: windowHeight})}
+          <SvgGenerator windowHeight={windowHeight} showBackgAni={currentLocation =='/'} windowWidth={windowWidth}/>
+      </div>)
+      }
+
+    }
 
 
 export default App

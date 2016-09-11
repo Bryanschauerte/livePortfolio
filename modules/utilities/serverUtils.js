@@ -40,6 +40,8 @@ export function createPage(html) {
     <head>
       <meta charset="utf-8"/>
       <title>Bryan Schauerte</title>
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700' rel='stylesheet' type='text/css'>
+        <script src="https://use.fontawesome.com/6054dcb69e.js"></script>
       <link rel="stylesheet" type="text/css" href="/style.css">
     </head>
     <body>

@@ -16,7 +16,8 @@ export default {
 
 
         require('./landing').default,
-        require('./admin').default
+        require('./admin').default,
+        require('./home').default,
 
 
         // ,require('./notFound').default

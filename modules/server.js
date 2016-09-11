@@ -44,7 +44,7 @@ const requestHandling = {
 
     let date = new Date();
     req.body.dateCreated = date;
-    console.log(req.body, "request hit")
+
 
     db.collection('contents').save(req.body, (err, result) => {
       if (err) return res.send(err);
@@ -54,21 +54,19 @@ const requestHandling = {
 
   updateContent: (req, res) => {
 
-  let targetTitle = req.body.title;
-  let content = req.body;
+  let targetID = req.body._id;
+  let content = req.body.contentItems;
 
-    db.collection('contents', (err, collection) => {
-            collection.update(
-              {'title': targetTitle}, content, {safe:true}, (err, result)=>{
-                if (err) {
-                    console.log('Error updating content: ' + err);
-                    res.send({'error':'An error has occurred'});
-                } else {
-                    console.log('' + result + ' document(s) updated');
-                    res.send(content);
-                }
-            });
-        });
+    db.collection('contents').update(
+      {'_id': targetID},
+      {$set: {'contentItems':content}},
+      { upsert: true }, (err, result)=>{
+      if(err){
+        console.log(err)
+      }else{
+        res.send(result)
+      }
+    } );
 
   },
 
@@ -109,11 +107,11 @@ app.get('*', (req, res) => {
           db.collection('contents').find().toArray(function(err, results) {
               if (err) {
                  console.log(err)
-                 return res.send(err).sendStatus(404);
+                 return res.sendStatus(404);
               }
 
               if(results) {
-                return res.send(contents).sendStatus(200);
+                return res.send(results);
               }
 
 

@@ -15,28 +15,36 @@ return class SubmittingContainer extends React.Component{
           }
 
           submit(){
-            let sendingData= this.props.sendData;
-            sendingData.beenSaved = true;
 
+            let sendingData= this.props.sendData;
+            let typeOfReq = sendingData.contentItems.beenSaved? 'put': 'post';
             let currentState = this.state;
-            if(currentState.hasErrorSending){
-              //reset time
+            let self = this;
+console.log(typeOfReq, "typeOfReq");
+            if( sendingData.contentItems.beenSaved == false ){
+              sendingData.contentItems.beenSaved = true;
+            }
+
+            if( currentState.hasErrorSending ){
               return this.clearSendData();
             }
+
             currentState.makingRequest = true;
             currentState.result = false;
             this.setState({currentState})
-            let self = this;
-            axios.post('/maincontents', sendingData)
-              .then(function (res) {
+console.log(sendingData, "sendingData");
+            axios[typeOfReq]('/maincontents', sendingData)
+              .then( (res)=> {
                     console.log(res, "res client")
                     currentState.makingRequest = true;
                     currentState.result = true;
 
-                    self.setState({currentState})
+                    self.setState({
+                      currentState
+                    })
                   })
                       .catch(function (err) {
-                        sendingData.beenSaved = false;
+                        sendingData.contentItems.beenSaved = false;
                         currentState.makingRequest = false;
                         currentState.result = false;
                         currentState.hasErrorSending = true;
@@ -77,14 +85,3 @@ return class SubmittingContainer extends React.Component{
         }
 }
 export default SubmittingHOC;
-
-
-// submitAction(event) {
-//       event.preventDefault()
-//       this.props.router.push({
-//         pathname: '/page',
-//         query: {
-//           qsparam: this.state.value
-//         }
-//       })
-//     },

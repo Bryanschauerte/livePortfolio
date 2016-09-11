@@ -1,6 +1,8 @@
 import React from 'react'
 import Creation from './Creation';
 import axios from 'axios';
+import Preview from './Preview'
+import classNames from 'classnames';
 
 
 class Admin extends React.Component{
@@ -9,29 +11,67 @@ class Admin extends React.Component{
     this.state = {
 
     mode: "adding",
-    dataBaseContents: []
-
-
-
-
+    dataBaseContents: [],
+    selected: null,
+    isLoaded:false
     }
+
     this._changeMode = this._changeMode.bind(this);
     this._requestAllContents = this._requestAllContents.bind(this);
+    this._handleSelectItem = this._handleSelectItem.bind(this);
+    this._handleFeildRendering = this._handleFeildRendering.bind(this);
+    this._handleClick = this._handleClick.bind(this);
   }
+  _handleClick(){
 
+  }
+  _handleFeildRendering(hasSelected){
+    const emptyData = {
+      title: '',
+      header:'',
+      type:'',
+      beenSaved:false,
+      main: [
+        {
+          subHeader:'',
+          link:'',
+          linkSource:'',
+          content:'',
+          style:'',
+          containsCodePen:false,
+          containsOther: ''
+        }
+      ],
+      footer:'',
+      previewContents:{
+        previewTitle:'',
+        previewHeader: '',
+        previewFooter:'',
+        previewExtra: '',
+        imageArrayPreview:''
+    }
 
+    }
+      return hasSelected ? this.state.selected: {contentItems: emptyData};
+  }
+  _handleSelectItem(previewItem){
 
+    this.setState({
+      selected:previewItem,
+
+    })
+  }
   _requestAllContents(){
 
       axios.get('/maincontents')
           .then( (response)=> {
               console.log(response, "db response");
-              let dbReturn = [];
-
+              let dbReturn = response.data
+              this.setState({
+                dataBaseContents:dbReturn,
+                isLoaded: true
+              })
             })
-            .catch( (error) => {
-              console.log(error);
-            });
     }
 
 
@@ -50,27 +90,52 @@ class Admin extends React.Component{
   }
 
   componentDidMount(){
-    // this._requestAllContents()
+    this._requestAllContents()
     // ask to log in and if not right, send back to home
   }
 
   render(){
 
+    let contents = this.state.dataBaseContents;
+    let adminIndex = 0;
+    let itemToEdit = this._handleFeildRendering(this.state.selected)
+    console.log("ADMIN itemToEdit", itemToEdit);
+    console.log("ADMIN state", this.state);
+    let navBtnsClasses= classNames({
+      'adminNavBtns': true,
+      // 'adminNavBtnsSelected': false
+    })
 
     return(<div className="adminContainer">
-        <h1>Admin</h1>
+              <div className = "adminControl">
+                <ul>
+                  <li
+                    className='adminNavBtns'>
+                    Make a content Inactive</li>
+                  <li
+                    className='adminNavBtns'>Delete a content</li>
+                  <li
+                    className='adminNavBtns'>Create new content</li>
+                  <li
+                    className='adminNavBtns'>Edit a content</li>
+                </ul>
 
-      <div className="adminCreationContainer">
-        <h3>Header</h3>
-        <Creation />
-      </div>
-      <div>
-        
-      </div>
+              </div>
+              <div className="adminSections">
 
-      <div>
+                <div className="adminCreationContainer">
+                  <div className= "adminCreationInnerContainer">
+                    {this.state.isLoaded? <Creation feilds = {itemToEdit}/>: null}
+                  </div>
+                </div>
 
-      </div>
+                <div className="adminPreviewContainer">
+                  {this.state.isLoaded? <Preview
+                    getItemTarget={this._handleSelectItem}
+                    showItems="true"
+                    infoArray={contents}/>: null}
+                </div>
+              </div>
       </div>
     )
   }
