@@ -12,82 +12,89 @@ class Home extends React.Component{
             loaded: false,
             dataBaseContents: null,
             filteredOut:[],
-            typesAvaliable:null
+            typesAvaliable:[]
 
     }
 
     this._requestAllContents = this._requestAllContents.bind(this);
-    this._formatTypes = this._formatTypes.bind(this);
-
+    this._constructTypeList = this._constructTypeList.bind(this);
+    this._handleFilter = this._handleFilter.bind(this);
 
   }
+      _constructTypeList(contents){
+
+        let tempTypes = this.state.typesAvaliable;
+
+        contents.map((item)=>{
+          console.log(item, "const item home")
+          if(item.contentItems.type &&
+            tempTypes.indexOf(item.contentItems.type)== -1){
+
+             tempTypes.push(item.contentItems.type)
+          }
+        })
+
+        this.setState({
+          typesAvaliable:tempTypes
+        })
+
+
+      }
+      _handleFilter(type){
+        console.log(type, "type from home filter")
+        let currentFilter = this.state.filteredOut;
+        currentFilter.indexOf(type) == -1? currentFilter.push(type):
+          currentFilter.splice(currentFilter.indexOf(type), 1);
+        this.setState({
+          filteredOut: currentFilter
+        })
+
+      }
 
       _requestAllContents(){
         axios.get('/maincontents')
             .then( (response)=> {
                 console.log(response, "db response");
                 let contents = response.data;
-                let formattedObs = this._formatTypes(contents);
-                let list = Object.keys(formattedObs)
-                console.log(formattedObs, "formattedObs")
-                console.log(list, "formattedObs")
+                this._constructTypeList(contents)
                 this.setState({
                   dataBaseContents: contents,
-                  loaded: true,
-                  formattedObs: formattedObs,
-                  contentTypes: list
-
+                  loaded: true
                 })
 
               })
-              // .catch( (error) => {
-              //   console.log(error);
-              // });
+
             }
 
     componentWillMount(){
       this._requestAllContents();
 
     }
-
-
-
-    _formatTypes(data){
-      let typesList={};
-
-        data.map(item=>{
-
-          if(typesList[item.type]){
-            typesList[item.type].push(item);
-          }
-          if(!typesList[item.type]){
-            typesList[item.type] = [];
-            typesList[item.type].push(item);
-          }
-        })
-        return typesList;
+    componentDidMount(){
 
     }
 
-
-
   render(){
     let contents = this.state.dataBaseContents;
-    let list = this.state.contentTypes;
+    let filteredOut = this.state.filteredOut;
+
+    let listItems = this.state.typesAvaliable;
+
     console.log(this.state, "state of home");
     console.log(this.props, "PROps home")
-
 
     return(<div className="homeContainer">
           <Header
             classDefault = {this.state.loaded}
-            listItems={list} />
+            listItems={listItems}
+            filteringPassBack={this._handleFilter}
+            filteredOut={filteredOut} />
 
 
       <div classDefault={this.state.loaded} className="homeMainContainer">
-        <MainView
+        {/* <MainView
           dataBaseContents= {this.state.dataBaseContents}
-          {...this.props}/>
+          {...this.props}/> */}
 
       </div>
 

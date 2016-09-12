@@ -4,16 +4,12 @@ import classNames from 'classnames';
 
 const Header= (props)=> {
 
-  let {classDefault, listItems, filtering, activateInfo, sideActive} = props;
+  let {classDefault, listItems, filteringPassBack, filteredOut} = props;
 
   let headerClass = classNames({
     'headerContainer': true,
     'headerContainerP2': classDefault
   })
-  let filterClass = classNames({
-    'FilterText': true
-  })
-
 
 
 
@@ -26,16 +22,17 @@ const Header= (props)=> {
         <ul className='headerList'>
           <li >SHOW:</li>
 
-          {props.listItems? props.listItems.map( (item, index) =>
+          {listItems && classDefault? listItems.map( (item, index) =>
             <li key ={index}
-              className={ 'notFilteredOut'}>
+              onClick={filteringPassBack.bind(null, item)}
+              className={ filteredOut.indexOf(item)!= -1? 'filteredOut': 'notFilteredOut'}>
               {item.toUpperCase()}S
             </li>): null}
 
         </ul>
       </div>
       <div className="headerTitle">
-        <i style={sideActive? {color:"#FF6E40"}:null}
+        <i
           className="fa fa-info-circle fa-3x"
           aria-hidden="true"></i>
         </div>
@@ -43,3 +40,4 @@ const Header= (props)=> {
   )
 }
 export default Header;
+// sideActive? {color:"#FF6E40"}:null

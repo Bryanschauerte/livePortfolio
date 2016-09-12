@@ -42,7 +42,7 @@ class Creation extends React.Component{
 
   }
   componentWillReceiveProps(nextProps){
-    console.log(nextProps, "nextProps")
+
     this.setState({
     feilds: nextProps.feilds
   });
@@ -89,7 +89,7 @@ class Creation extends React.Component{
 
   }
   _handlePreviewInputDataChange(dataObj){
-console.log(dataObj, "PREVIEW HIT")
+
 
     let currentStateFeilds = this.state.feilds;
 
@@ -239,9 +239,9 @@ console.log(dataObj, "PREVIEW HIT")
 
 
   render(){
-console.log(this.props, "props")
+
     let feildValues = this.state.feilds.contentItems;
-console.log(this.state, "creation state")
+
     return (  <div className="creationContainer">
           <h1>Creation</h1>
 

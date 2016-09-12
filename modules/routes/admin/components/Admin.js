@@ -99,8 +99,7 @@ class Admin extends React.Component{
     let contents = this.state.dataBaseContents;
     let adminIndex = 0;
     let itemToEdit = this._handleFeildRendering(this.state.selected)
-    console.log("ADMIN itemToEdit", itemToEdit);
-    console.log("ADMIN state", this.state);
+
     let navBtnsClasses= classNames({
       'adminNavBtns': true,
       // 'adminNavBtnsSelected': false

@@ -59,7 +59,7 @@ class Preview extends React.Component{
 
 
   _handleItemRendering(info){
-    console.log(info, "info on preview _handleItemRendering")
+
       const thumbDimensions = this._handleSize();
       let infostuff = info.map(item =>{
 
@@ -92,19 +92,14 @@ componentDidMount(){
     isLoaded: true
   })
 }
-// componentWillReceiveProps(nextProps){
-//   console.log(nextProps, "nextProps")
-//   this.setState({
-//   feilds: nextProps
-// });
-// }
+
   render(){
 
     let contents = this.props.infoArray;
 
 
     let items = this._handleItemRendering(this.props.infoArray);
-    console.log('items on preview, props infoArray', items)
+
     return(<div className='previewListContainer'>
 <h1 className="previewTitle">Select contents to edit or create new</h1>
               <ul>
