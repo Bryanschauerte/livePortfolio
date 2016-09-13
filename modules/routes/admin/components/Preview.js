@@ -5,7 +5,7 @@ let tokgen = new TokenGenerator(); //for generating keys, tokgen.generate()
 import classNames from 'classnames';
 // import InfoBit from './InfoContainer';
 // import LargeSingle from './LargeSingle'
-import HoverHOC from '../../../containers/HoverHOC';
+import HoverHOC from './HoverHOC';
 // import PreviewThumb from './PreviewThumb'
 // const Preview = (props)=>{
 //

@@ -277,7 +277,7 @@ class Creation extends React.Component{
                 <EmptyInput
                   _handleInputDataChangePass={this._handlePreviewInputDataChange}
                   stateValue={feildValues.previewContents.previewTitle}
-                  name="PreviewTitle"
+                  name="previewTitle"
                   isPreview ="true"
                   label="Preview Title"/>
                 <EmptyInput

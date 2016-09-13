@@ -8,12 +8,11 @@ class Home extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-            contents: null,
             loaded: false,
             dataBaseContents: null,
             filteredOut:[],
-            typesAvaliable:[]
-
+            typesAvaliable:[],
+            showItems:true
     }
 
     this._requestAllContents = this._requestAllContents.bind(this);
@@ -26,7 +25,7 @@ class Home extends React.Component{
         let tempTypes = this.state.typesAvaliable;
 
         contents.map((item)=>{
-          console.log(item, "const item home")
+
           if(item.contentItems.type &&
             tempTypes.indexOf(item.contentItems.type)== -1){
 
@@ -41,7 +40,7 @@ class Home extends React.Component{
 
       }
       _handleFilter(type){
-        console.log(type, "type from home filter")
+
         let currentFilter = this.state.filteredOut;
         currentFilter.indexOf(type) == -1? currentFilter.push(type):
           currentFilter.splice(currentFilter.indexOf(type), 1);
@@ -80,8 +79,6 @@ class Home extends React.Component{
 
     let listItems = this.state.typesAvaliable;
 
-    console.log(this.state, "state of home");
-    console.log(this.props, "PROps home")
 
     return(<div className="homeContainer">
           <Header
@@ -92,9 +89,13 @@ class Home extends React.Component{
 
 
       <div classDefault={this.state.loaded} className="homeMainContainer">
-        {/* <MainView
+        <MainView
           dataBaseContents= {this.state.dataBaseContents}
-          {...this.props}/> */}
+          loaded={this.state.loaded}
+          filteredOut={this.state.filteredOut}
+          typesAvaliable={this.state.typesAvaliable}
+          showItems={this.state.showItems}
+          {...this.props}/>
 
       </div>
 

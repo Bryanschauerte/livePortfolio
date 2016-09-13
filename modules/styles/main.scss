@@ -96,15 +96,7 @@ z-index: 5;
 .techStack li{
   float: left;
 }
-.icContentsBaseClass {
-  height: 100%;
-  cursor: pointer;
-  width: 100%;
-  color: #ffffff;
-  text-align: center;
-  z-index: 5;
-  transition: all 500ms;
-}
+
 .ICInfoPic {
   position: absolute;
   height: 100%;
@@ -950,4 +942,17 @@ textarea.emptyInputDefault {
   height: 97%;
   top:7%;
   overflow: scroll;
+}
+.previewThumbContainer {
+  cursor: pointer;
+  background-color: #f0f5f9;
+  color:#333030;
+  text-align: center;
+  z-index: 5;
+  transition: all 500ms;
+}
+.mainViewContainer{
+  position: absolute;
+  top: 7%;
+  display: flex;
 }

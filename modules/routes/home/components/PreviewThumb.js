@@ -3,7 +3,92 @@ import React from 'react';
 
 
 
-const PreviewThumb = (props)=> {
+class PreviewThumb extends React.Component{
+  constructor(props){
+    super(props);
+    this.state={
+      isHovering: false,
+      isClicked: false,
+    }
+    this._mouseEntered = this._mouseEntered.bind(this);
+    this._mouseLeft = this._mouseLeft.bind(this);
+    this._handleClick = this._handleClick.bind(this);
+
+  }
+
+  _handleClick(){
+console.log("I gots clicked!")
+    let current = this.state.isClicked;
+    this.setState({
+      isClicked: !current
+    })
+
+  }
+
+  _mouseEntered(event){
+    console.log("I gots hovered!")
+    event.preventDefault();
+    this.setState({isHovering: true});
+  }
+
+  _mouseLeft(event){
+    console.log("I gots ...er.. unhovered?!")
+    event.preventDefault();
+    this.setState({isHovering: false});
+  }
+
+  render(){
+
+
+
+    // let titleClass = classNames({
+    //   ICInfoHeaderTitle:!isHovering,
+    //   ICInfoHeaderTitlePost: isHovering
+    // })
+    // let footerClass = classNames({
+    //   ICInfoFooter:!isHovering,
+    //   ICInfoFooterPost: isHovering
+    // })style={calcDimensions}
+    //imageArrayPreview
+      return (<div
+                onClick={this._handleClick}
+                onMouseEnter={this._mouseEntered}
+                onMouseLeave={this._mouseLeft}
+                className="previewThumbContainer" >
+    <div className="previewImageContainer">
+      {/* scrub images here */}
+    </div>
+                <div>
+                  <h1>
+                    {this.props.displayInfo.previewContents.title}
+                  </h1>
+                  <h3>
+                    {this.props.displayInfo.previewContents.previewHeader}
+                  </h3>
+                </div>
+                <div>
+                  <p>
+                    {this.props.displayInfo.previewContents.previewExtra}
+                  </p>
+                </div>
+                <div>
+                  {this.props.children}
+                </div>
+
+                  {/* <div className={classPreviewTitle}>
+                    {previewTitle}
+                    <div className={classType}>{type.toUpperCase()}</div>
+                  </div>
+                  <div className={classPreviewHeader}>{classPreviewHeader}</div>
+                  <div className={classPreviewExtra}>{classPreviewExtra}</div>
+                  <div className={classPreviewFooter}>
+                    <div className="ICInfoHeaderBottomTitle">
+                      {classPreviewFooter}
+                    </div>
+                  </div> */}
+                </div>)
+  }
+}
 
   // let {
   //
@@ -29,44 +114,6 @@ const PreviewThumb = (props)=> {
   // } = props;
 
 
-let paddingReady= {height:dimensions.height,width:dimensions.width}
-let dimObj = {
 
-  image:{
-    hover:{
-      height:paddingReady.height*.75,
-      width:paddingReady.width*.88},
-    noHover:{
-      height:paddingReady.height*.9,
-      width:paddingReady.width*.9
-    }
-  }
-}
 
-let titleClass = classNames({
-  ICInfoHeaderTitle:!isHovering,
-  ICInfoHeaderTitlePost: isHovering
-})
-let footerClass = classNames({
-  ICInfoFooter:!isHovering,
-  ICInfoFooterPost: isHovering
-})
-  console.log(infoArray, "array")
-  return (<div className='icContentsBaseClass' >
-  {/* {imagePreview? <img className={classImagePreview} src={imagePreview}/>: null} */}
-<div>{props.PreviewTitle}</div>
-              {/* <div className={classPreviewTitle}>
-                {previewTitle}
-                <div className={classType}>{type.toUpperCase()}</div>
-              </div>
-              <div className={classPreviewHeader}>{classPreviewHeader}</div>
-              <div className={classPreviewExtra}>{classPreviewExtra}</div>
-              <div className={classPreviewFooter}>
-                <div className="ICInfoHeaderBottomTitle">
-                  {classPreviewFooter}
-                </div>
-              </div> */}
-            </div>)
-
-};
 export default PreviewThumb;
