@@ -9,11 +9,22 @@ class PreviewThumb extends React.Component{
     this.state={
       isHovering: false,
       isClicked: false,
+      imageArray:null
     }
     this._mouseEntered = this._mouseEntered.bind(this);
     this._mouseLeft = this._mouseLeft.bind(this);
     this._handleClick = this._handleClick.bind(this);
+    this._handleImages = this._handleImages.bind(this);
+    this._handleStringForUrlArray = this._handleStringForUrlArray.bind(this);
 
+  }
+
+
+  _handleStringForUrlArray(string){
+    let arr = string.split(', ');
+    this.setState({
+      imageArray: arr
+    })
   }
 
   _handleClick(){
@@ -36,6 +47,23 @@ console.log("I gots clicked!")
     event.preventDefault();
     this.setState({isHovering: false});
   }
+  _handleImages(imageUrl){
+
+
+    let styleObj = {
+      backgroundImage: 'url('+imageUrl+')',
+      backgroundSize:'contain',
+      minHeight:this.props.windowHeight/2,
+      width:this.props.windowWidth/5,
+      backgroundRepeat:'no-repeat'};
+    return styleObj;
+  }
+  componentWillMount(){
+    this._handleStringForUrlArray(
+      this.props.displayInfo.previewContents.imageArrayPreview);
+
+  }
+  // background-image: url("x");
 
   render(){
 
@@ -45,19 +73,19 @@ console.log("I gots clicked!")
     //   ICInfoHeaderTitle:!isHovering,
     //   ICInfoHeaderTitlePost: isHovering
     // })
-    // let footerClass = classNames({
-    //   ICInfoFooter:!isHovering,
-    //   ICInfoFooterPost: isHovering
-    // })style={calcDimensions}
-    //imageArrayPreview
+console.log(this.state, "state of preThumb");
+console.log(this.props, "props of preThumb");
+let style = this._handleImages(this.state.imageArray[0])
       return (<div
                 onClick={this._handleClick}
                 onMouseEnter={this._mouseEntered}
                 onMouseLeave={this._mouseLeft}
                 className="previewThumbContainer" >
-    <div className="previewImageContainer">
-      {/* scrub images here */}
-    </div>
+<div className="previewImageContainer">
+  <div style={style}>
+     </div>
+</div>
+
                 <div>
                   <h1>
                     {this.props.displayInfo.previewContents.title}

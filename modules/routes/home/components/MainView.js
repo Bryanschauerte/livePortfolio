@@ -41,7 +41,10 @@ class MainView extends React.Component{
 
             <PreviewThumb
               showItems={this.props.showItems}
-              displayInfo={item.contentItems}>
+              displayInfo={item.contentItems}
+              loaded={this.props.loaded}
+              windowHeight={this.props.windowHeight}
+              windowWidth={this.props.windowWidth}>
               {/* <LargeVersion {...this.props}/> */}<div><h1>test</h1></div>
               </PreviewThumb>
 

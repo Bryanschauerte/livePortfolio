@@ -938,8 +938,9 @@ textarea.emptyInputDefault {
   top:0;
 }
 .homeMainContainer{
+  position: absolute;
   width: 100%;
-  height: 97%;
+  height: 93%;
   top:7%;
   overflow: scroll;
 }
@@ -950,9 +951,15 @@ textarea.emptyInputDefault {
   text-align: center;
   z-index: 5;
   transition: all 500ms;
+  padding: 5%;
+  border: 2px solid black;
+  border-radius: 5px;
+}
+.previewImageContainer{
+
+
 }
 .mainViewContainer{
-  position: absolute;
-  top: 7%;
+  justify-content: space-around;
   display: flex;
 }
