@@ -4,22 +4,31 @@ import classNames from 'classnames';
 
 const Header= (props)=> {
 
-  let {classDefault, listItems, filteringPassBack, filteredOut} = props;
-
-  let headerClass = classNames({
+  let {classDefault, listItems, filteringPassBack, filteredOut, fullHeader} = props;
+console.log("header", fullHeader)
+  let headerContainerClass = classNames({
     'headerContainer': true,
     'headerContainerP2': classDefault
+  })
+  let titleClass = classNames({
+    'headerTitle': true,
+  })
+  let filterContainerClass = classNames({
+    'headerFilterContainer': true,
+  })
+  let headerListClass = classNames({
+    'headerList': true,
   })
 
 
 
   return (
-    <div className ={headerClass}>
-      <div className='headerTitle'>
+    <div className ={headerContainerClass}>
+      <div className={titleClass}>
         <h1>Bryan Schauerte</h1>
       </div>
-      <div className="headerFilterContainer">
-        <ul className='headerList'>
+      <div className={filterContainerClass}>
+        <ul className={headerListClass}>
           <li >SHOW:</li>
 
           {listItems && classDefault? listItems.map( (item, index) =>
@@ -31,7 +40,7 @@ const Header= (props)=> {
 
         </ul>
       </div>
-      <div className="headerTitle">
+      <div className={titleClass}>
         <i
           className="fa fa-info-circle fa-3x"
           aria-hidden="true"></i>

@@ -28,7 +28,7 @@ class PreviewThumb extends React.Component{
   }
 
   _handleClick(){
-console.log("I gots clicked!")
+    this.props.setActiveItem(this.props.displayInfo.title);
     let current = this.state.isClicked;
     this.setState({
       isClicked: !current
@@ -37,13 +37,13 @@ console.log("I gots clicked!")
   }
 
   _mouseEntered(event){
-    console.log("I gots hovered!")
+
     event.preventDefault();
     this.setState({isHovering: true});
   }
 
   _mouseLeft(event){
-    console.log("I gots ...er.. unhovered?!")
+
     event.preventDefault();
     this.setState({isHovering: false});
   }
@@ -52,10 +52,12 @@ console.log("I gots clicked!")
 
     let styleObj = {
       backgroundImage: 'url('+imageUrl+')',
-      backgroundSize:'contain',
-      minHeight:this.props.windowHeight/2,
-      width:this.props.windowWidth/5,
-      backgroundRepeat:'no-repeat'};
+      backgroundSize:'cover',
+      backgroundPosition:'center',
+      minHeight:this.props.windowHeight/3,
+      width:this.props.windowWidth*.25,
+      backgroundRepeat:'no-repeat',
+    backgroundColor: "#0B1968"};
     return styleObj;
   }
   componentWillMount(){
@@ -68,52 +70,56 @@ console.log("I gots clicked!")
   render(){
 
 
+    let itemActiveClasses = classNames({
+      isActive: this.props.isActive
 
-    // let titleClass = classNames({
-    //   ICInfoHeaderTitle:!isHovering,
-    //   ICInfoHeaderTitlePost: isHovering
-    // })
-console.log(this.state, "state of preThumb");
-console.log(this.props, "props of preThumb");
-let style = this._handleImages(this.state.imageArray[0])
+    })
+
+
+
+      let imageStyle = this._handleImages(this.state.imageArray[0])
+console.log('isActive', this.props.isActive)
       return (<div
+                style={this.props._colorHandling(this.props.displayInfo.type)}
                 onClick={this._handleClick}
                 onMouseEnter={this._mouseEntered}
                 onMouseLeave={this._mouseLeft}
                 className="previewThumbContainer" >
-<div className="previewImageContainer">
-  <div style={style}>
-     </div>
-</div>
 
-                <div>
+
+                <div style={this.props._colorHandling(this.props.displayInfo.type)}
+                  className="previewTextContainer">
                   <h1>
-                    {this.props.displayInfo.previewContents.title}
+                    {this.props.displayInfo.previewContents.previewTitle}
                   </h1>
+                </div>
+                  <div
+                    style={this.props._colorHandling(this.props.displayInfo.type)}
+                    className="previewImageContainer">
+                    <div className='previewImage'
+                       style={imageStyle}>
+                       </div>
+                  </div>
+                <div className="previewTextContainer">
+                  <div>
                   <h3>
                     {this.props.displayInfo.previewContents.previewHeader}
                   </h3>
-                </div>
+
                 <div>
                   <p>
                     {this.props.displayInfo.previewContents.previewExtra}
                   </p>
                 </div>
+                <div className="previewFooter">
+                  {this.props.displayInfo.footer}
+                </div>
+                </div>
+              </div>
                 <div>
-                  {this.props.children}
+                  {this.props.isActive == this.props.displayInfo.title? this.props.children: null}
                 </div>
 
-                  {/* <div className={classPreviewTitle}>
-                    {previewTitle}
-                    <div className={classType}>{type.toUpperCase()}</div>
-                  </div>
-                  <div className={classPreviewHeader}>{classPreviewHeader}</div>
-                  <div className={classPreviewExtra}>{classPreviewExtra}</div>
-                  <div className={classPreviewFooter}>
-                    <div className="ICInfoHeaderBottomTitle">
-                      {classPreviewFooter}
-                    </div>
-                  </div> */}
                 </div>)
   }
 }

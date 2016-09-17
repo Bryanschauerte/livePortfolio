@@ -16,7 +16,6 @@ class App extends React.Component{
 
     }
 
-
       _handleResize(e){
           this.setState({
             windowWidth: window.innerWidth,
@@ -26,6 +25,7 @@ class App extends React.Component{
 
 
       componentDidMount(){
+
 
         window.addEventListener('resize', this._handleResize);
         this._handleResize()
@@ -44,12 +44,14 @@ class App extends React.Component{
 
 
 
+
         return(<div className="appding">
 
 
         {React.cloneElement(children, {
           windowWidth: windowWidth,
-          windowHeight: windowHeight})}
+          windowHeight: windowHeight
+        })}
           <SvgGenerator windowHeight={windowHeight} showBackgAni={currentLocation =='/'} windowWidth={windowWidth}/>
       </div>)
       }

@@ -5,6 +5,8 @@ import TokenGenerator from 'uuid-token-generator';
 let tokgen = new TokenGenerator();
 import PreviewThumb from './PreviewThumb';
 import HoverHOC from './HoverHOC';
+import LargeVersion from './LargeVersion';
+
 // import LargeSingle from './LargeSingle'
 // import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
@@ -14,48 +16,81 @@ class MainView extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-      activeItem: null,
+      activeItemTitle: null,
       loaded: this.props.loaded,
 
      };
 
     this._handleItemRendering = this._handleItemRendering.bind(this);
+    this._colorHandling = this._colorHandling.bind(this);
+    this._handleActiveItemReset = this._handleActiveItemReset.bind(this);
+    this._setActiveItem = this._setActiveItem.bind(this);
 
   }
+  _setActiveItem(item){
+    console.log(item, "item in main view to go to large")
+    item == this.state.activeItemTitle? this.setState({activeItemTitle: null}):
+    this.setState({
+      activeItemTitle: item
+    })
+  }
+_handleActiveItemReset(){
+  this.setState({activeItemTitle: null})
+}
 
 
+_colorHandling(type){
+
+  let types = this.props.typesAvaliable;
+  let colorArray = ['#01b826','#0B1968', '#0193b8', '#813772','#b82601','#062f4f' ]
+  let index = types.indexOf(type);
+  if(index > colorArray.length-1){
+    index = index - (colorArray.length-1)
+  }
+  let styling = {backgroundColor:colorArray[index]}
+  return styling;
+
+}
 
 
   _handleItemRendering(info){
     if(info.length > 0 && this.props.showItems){
     const filter = (infoBit) => {
+      // if(this.state.activeItemTitle != null){
+      //   infoBit.title == this.state.activeItemTitle? true: false
+      // }
       return this.props.filteredOut.indexOf(
         infoBit.contentItems.type.toLowerCase()) == -1? true: false;
     }
 
 
-      let infostuff = info.map(item =>{
+      let infostuff = info.map((item, index) =>{
         if( filter(item) ){
+
+
         return (
-          <div key ={tokgen.generate()}>
+
 
             <PreviewThumb
-              showItems={this.props.showItems}
+              {...this.props}
+              isActive= {this.state.activeItemTitle}
+              setActiveItem ={this._setActiveItem}
               displayInfo={item.contentItems}
-              loaded={this.props.loaded}
-              windowHeight={this.props.windowHeight}
-              windowWidth={this.props.windowWidth}>
-              {/* <LargeVersion {...this.props}/> */}<div><h1>test</h1></div>
+              _colorHandling={this._colorHandling}>
+                <LargeVersion
+                  displayInfo={item.contentItems}
+                  handleClose={this._handleActiveItemReset}
+                  {...this.props}/>
+
               </PreviewThumb>
 
-          </div>)
+        )
           }}
         )
           return infostuff;
 
       }
   }
-
 
   render(){
       // let mainContainerClass = classNames({
@@ -66,8 +101,9 @@ class MainView extends React.Component{
         'mainViewItemContainer': this.props.showItems
       })
 console.log("Main view props", this.props)
+console.log("Main view state", this.state)
   return (
-      <div className="mainViewContainer">
+      <div  className="mainViewContainer">
 
 
         {this.props.loaded?this._handleItemRendering(this.props.dataBaseContents): null}

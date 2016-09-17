@@ -12,12 +12,29 @@ class Home extends React.Component{
             dataBaseContents: null,
             filteredOut:[],
             typesAvaliable:[],
-            showItems:true
+            showItems:true,
+            fullHeader: true,
+            scrollInitLoc:null
     }
 
     this._requestAllContents = this._requestAllContents.bind(this);
     this._constructTypeList = this._constructTypeList.bind(this);
     this._handleFilter = this._handleFilter.bind(this);
+    this._handleScroll = this._handleScroll.bind(this);
+
+  }
+  _handleScroll(e){
+console.log(window.scrollY, "window.scrollY " );
+    const delayedChange= ()=> { window.setTimeout(
+      this.state.fullHeader? ()=>{
+        this.setState({fullHeader: false})
+        }:
+        ()=>{
+          this.setState({fullHeader: true})
+        }, 500).bind(this);
+    }
+
+    window.scrollY == this.state.scrollInitLoc? delayedChange(): null;
 
   }
       _constructTypeList(contents){
@@ -70,7 +87,13 @@ class Home extends React.Component{
 
     }
     componentDidMount(){
+      let yPosition = window.scrollY;
+      this.setState({scrollInitLoc: yPosition})
 
+      window.addEventListener('scroll', this._handleScroll);
+    }
+    componentWillUnmount(){
+      window.removeEventListener('scroll', this._handleScroll)
     }
 
   render(){
@@ -78,10 +101,11 @@ class Home extends React.Component{
     let filteredOut = this.state.filteredOut;
 
     let listItems = this.state.typesAvaliable;
-
+console.log(this.state, "state")
 
     return(<div className="homeContainer">
           <Header
+            fullHeader = {this.props.fullHeader}
             classDefault = {this.state.loaded}
             listItems={listItems}
             filteringPassBack={this._handleFilter}
