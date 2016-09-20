@@ -25,14 +25,17 @@ class MainView extends React.Component{
     this._colorHandling = this._colorHandling.bind(this);
     this._handleActiveItemReset = this._handleActiveItemReset.bind(this);
     this._setActiveItem = this._setActiveItem.bind(this);
+    
 
   }
   _setActiveItem(item){
     console.log(item, "item in main view to go to large")
-    item == this.state.activeItemTitle? this.setState({activeItemTitle: null}):
-    this.setState({
-      activeItemTitle: item
-    })
+    if(item != this.state.activeItemTitle){
+      this.setState({
+        activeItemTitle: item
+      })
+    }
+
   }
 _handleActiveItemReset(){
   this.setState({activeItemTitle: null})
@@ -42,14 +45,12 @@ _handleActiveItemReset(){
 _colorHandling(type){
 
   let types = this.props.typesAvaliable;
-  let colorArray = ['#01b826','#0B1968', '#0193b8', '#813772','#b82601','#062f4f' ]
+  let colorArray = ['#0B1968', '#0193b8', '#813772', '#01b826', '#b82601','#062f4f' ]
   let index = types.indexOf(type);
   if(index > colorArray.length-1){
     index = index - (colorArray.length-1)
   }
-  let styling = {backgroundColor:colorArray[index]}
-  return styling;
-
+  return colorArray[index];
 }
 
 
@@ -66,11 +67,7 @@ _colorHandling(type){
 
       let infostuff = info.map((item, index) =>{
         if( filter(item) ){
-
-
         return (
-
-
             <PreviewThumb
               {...this.props}
               isActive= {this.state.activeItemTitle}

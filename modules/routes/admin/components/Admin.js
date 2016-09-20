@@ -20,29 +20,33 @@ class Admin extends React.Component{
     this._requestAllContents = this._requestAllContents.bind(this);
     this._handleSelectItem = this._handleSelectItem.bind(this);
     this._handleFeildRendering = this._handleFeildRendering.bind(this);
-    this._handleClick = this._handleClick.bind(this);
-  }
-  _handleClick(){
 
   }
+
   _handleFeildRendering(hasSelected){
     const emptyData = {
       title: '',
       header:'',
+      footer:'',
+      techStack:'',
+      link:'',
       type:'',
       beenSaved:false,
       main: [
         {
           subHeader:'',
-          link:'',
-          linkSource:'',
+          links:'',
           content:'',
           style:'',
           containsCodePen:false,
-          containsOther: ''
+          containsMedia: '',
+          mediaTitle:'',
+          problem:'',
+          solution:'',
+          conclusion:''
         }
       ],
-      footer:'',
+
       previewContents:{
         previewTitle:'',
         previewHeader: '',
@@ -111,12 +115,11 @@ class Admin extends React.Component{
                   <li
                     className='adminNavBtns'>
                     Make a content Inactive</li>
-                  <li
-                    className='adminNavBtns'>Delete a content</li>
-                  <li
-                    className='adminNavBtns'>Create new content</li>
-                  <li
-                    className='adminNavBtns'>Edit a content</li>
+                  <li href="/home"
+                    className='adminNavBtns'>Home</li>
+                  <li href="/"
+                    className='adminNavBtns'>Start</li>
+
                 </ul>
 
               </div>

@@ -5,7 +5,7 @@ import classNames from 'classnames';
 const Header= (props)=> {
 
   let {classDefault, listItems, filteringPassBack, filteredOut, fullHeader} = props;
-console.log("header", fullHeader)
+
   let headerContainerClass = classNames({
     'headerContainer': true,
     'headerContainerP2': classDefault

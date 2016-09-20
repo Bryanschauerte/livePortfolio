@@ -122,12 +122,15 @@ class Creation extends React.Component{
     let index = this.state.feilds.contentItems.main.length
     const plainMainContent= {
                 subHeader:'',
-                link:'',
-                linkSource:'',
+                links:'',
                 content:'',
                 style:'',
                 containsCodePen:false,
-                containsOther: ''
+                containsMedia: '',
+                mediaTitle:'',
+                problem:'',
+                solution:'',
+                conclusion:''
               };
 
     let currentStateFeilds = this.state.feilds;
@@ -194,24 +197,39 @@ class Creation extends React.Component{
 
            <EmptyInput
              _handleInputDataChangePass={this.grabData}
+             indexNum={index}
+             stateValue={this.state.feilds.contentItems.main[index]['problem']}
+             name="problem"
+             label="Problem"/>
+
+           <EmptyInput
+             _handleInputDataChangePass={this.grabData}
+             indexNum={index}
+             stateValue={this.state.feilds.contentItems.main[index]['solution']}
+             name="solution"
+             label="Solution"/>
+
+           <EmptyInput
+             _handleInputDataChangePass={this.grabData}
              stateValue={this.state.feilds.contentItems.main[index]['contents']}
              indexNum={index}
              name="contents"
              label="Contents"/>
 
-            <EmptyInput
-              _handleInputDataChangePass={this.grabData}
-              stateValue={this.state.feilds.contentItems.main[index]['link']}
-              indexNum={index}
-              name="link"
-              label="Link"/>
+           <EmptyInput
+             _handleInputDataChangePass={this.grabData}
+             indexNum={index}
+             stateValue={this.state.feilds.contentItems.main[index]['linkSource']}
+             name="linkSource"
+             label="LinkSource"/>
 
-            <EmptyInput
-              _handleInputDataChangePass={this.grabData}
-              indexNum={index}
-              stateValue={this.state.feilds.contentItems.main[index]['linkSource']}
-              name= "linkSource"
-              label="Link Source"/>
+           <EmptyInput
+             _handleInputDataChangePass={this.grabData}
+             indexNum={index}
+             stateValue={this.state.feilds.contentItems.main[index]['conclusion']}
+             name= "conclusion"
+             label="Conclusion"/>
+
 
             <EmptyInput
               _handleInputDataChangePass={this.grabData}
@@ -225,14 +243,31 @@ class Creation extends React.Component{
               indexNum={index}
               stateValue={this.state.feilds.contentItems.main[index]['containsCodePen']}
               name="containsCodePen"
-              label="Contains CodePen"/>
+              label="Contains CodePen; false or iframeUrl then CodePenUrl"/>
+
 
             <EmptyInput
               _handleInputDataChangePass={this.grabData}
               indexNum={index}
-              stateValue={this.state.feilds.contentItems.main[index]['containsOther']}
-              name="Contains Other"
-              label="containsOther"/>
+              stateValue={this.state.feilds.contentItems.main[index]['containsMedia']}
+              name="containsMedia"
+              label="Contains 'images' or 'video': use 'images' or 'video'"
+              />
+            <EmptyInput
+              _handleInputDataChangePass={this.grabData}
+              indexNum={index}
+              stateValue={this.state.feilds.contentItems.main[index]['links']}
+              name="links"
+              label="Links to images Or video, put the url(s)"/>
+
+
+            <EmptyInput
+              _handleInputDataChangePass={this.grabData}
+              indexNum={index}
+              stateValue={this.state.feilds.contentItems.main[index]['mediaTitle']}
+              name="Title for Video or Images"
+              label="mediaTitle"
+              />
 
         </div>)} } )
   }
@@ -260,6 +295,23 @@ class Creation extends React.Component{
 
                <EmptyInput
                  _handleInputDataChangePass={this.grabData}
+                 stateValue={feildValues.link}
+                 name="link"
+                 label="Link to follow"/>
+               
+               <EmptyInput
+                 _handleInputDataChangePass={this.grabData}
+                 stateValue={feildValues.footer}
+                 name="footer"
+                 label="Footer"/>
+               <EmptyInput
+                 _handleInputDataChangePass={this.grabData}
+                 stateValue={feildValues.techStack}
+                 name="techStack"
+                 label="Tech Stack"/>
+
+               <EmptyInput
+                 _handleInputDataChangePass={this.grabData}
                  stateValue={feildValues.type}
                  name="type"
                  label="Type"/>
@@ -267,11 +319,7 @@ class Creation extends React.Component{
 
                 {this._renderMainInput()}
 
-              <EmptyInput
-                _handleInputDataChangePass={this.grabData}
-                stateValue={feildValues.footer}
-                name="footer"
-                label="Footer"/>
+
 
                 <h1>Preview</h1>
                 <EmptyInput

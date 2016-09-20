@@ -36,11 +36,11 @@ console.log(sendingData, "sendingData");
             axios[typeOfReq]('/maincontents', sendingData)
               .then( (res)=> {
                     console.log(res, "res client")
-                    currentState.makingRequest = true;
-                    currentState.result = true;
+  
 
                     self.setState({
-                      currentState
+                      makingRequest:false,
+                      result: true
                     })
                   })
                       .catch(function (err) {
@@ -60,22 +60,18 @@ console.log(sendingData, "sendingData");
               hasErrorSending:false
             })
           }
-          checkState(){
-            console.log(this.state);
-            return this.state;
-          }
+
 
           render(){
 
             const props = Object.assign({}, this.props, {
-
-              checkState: this.checkState.bind(this),
               submit: this.submit.bind(this),
-              clearSendData: this.clearSendData.bind(this)
+              clearSendData: this.clearSendData.bind(this),
+              btnState: this.state
 
 
             })
-
+console.log(this.state, "state")
             return(
               <div>
                 <WrappedComponent {...props} />

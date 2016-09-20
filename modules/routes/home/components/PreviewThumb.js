@@ -16,9 +16,54 @@ class PreviewThumb extends React.Component{
     this._handleClick = this._handleClick.bind(this);
     this._handleImages = this._handleImages.bind(this);
     this._handleStringForUrlArray = this._handleStringForUrlArray.bind(this);
+    this._buttonStyle = this._buttonStyle.bind(this);
+    this._handleSummary = this._handleSummary.bind(this);
+    this._setSize = this._setSize.bind(this);
 
   }
+  _setSize(){
+    let sizeOb = {
+      maxHeight: this.props.height/2,
+      width: this.props.width/3
+    }
+    return sizeOb;
+  }
+  _buttonStyle(isInverted, type){
+    let color = this.props._colorHandling(type);
 
+    let style = {
+      backgroundColor: color,
+      border: "1px solid "+ '#ffffff',
+      color: '#ffffff',
+
+      width: '100%',
+      textAlign: "center",
+      fontFamily: 'Roboto',
+      boxShadow: "0 0 0 2px "+ color,
+      borderRadius: '2px',
+      letterSpacing: '.4em',
+      textShadow: '1px 1px 3px',
+      cursor: 'pointer',
+      transition: "background-color 250ms ease-in-out"
+
+    }
+
+    let invStyle = {
+      backgroundColor:'#ffffff',
+      border: "1px solid "+ color,
+      textAlign: "center",
+      fontFamily: 'Roboto',
+      color:color,
+      boxShadow: "0 0 0 2px #ffffff",
+      borderRadius: '2px',
+      letterSpacing: '.4em',
+      textShadow: '1px 1px 3px',
+      cursor: 'pointer',
+      transition: "background-color 250ms ease-in-out"
+
+    }
+    return isInverted? invStyle: style;
+  }
 
   _handleStringForUrlArray(string){
     let arr = string.split(', ');
@@ -52,20 +97,29 @@ class PreviewThumb extends React.Component{
 
     let styleObj = {
       backgroundImage: 'url('+imageUrl+')',
-      backgroundSize:'cover',
+      backgroundSize:'contain',
       backgroundPosition:'center',
-      minHeight:this.props.windowHeight/3,
-      width:this.props.windowWidth*.25,
-      backgroundRepeat:'no-repeat',
-    backgroundColor: "#0B1968"};
+      minHeight:this.props.windowHeight/5.6,
+      width:this.props.windowWidth*.3,
+      backgroundRepeat:'no-repeat'
+  };
     return styleObj;
   }
+  _handleSummary(){
+
+    let list = this.props.displayInfo.main.map((item, index)=>{
+      return <li key ={Math.random()}>{item.subheader}</li>
+    })
+    console.log('list', list)
+    return list;
+  }
+
   componentWillMount(){
     this._handleStringForUrlArray(
       this.props.displayInfo.previewContents.imageArrayPreview);
 
   }
-  // background-image: url("x");
+
 
   render(){
 
@@ -78,76 +132,49 @@ class PreviewThumb extends React.Component{
 
 
       let imageStyle = this._handleImages(this.state.imageArray[0])
-console.log('isActive', this.props.isActive)
+      let listSummary = this._handleSummary();
       return (<div
-                style={this.props._colorHandling(this.props.displayInfo.type)}
-                onClick={this._handleClick}
-                onMouseEnter={this._mouseEntered}
-                onMouseLeave={this._mouseLeft}
-                className="previewThumbContainer" >
+              onMouseEnter={this._mouseEntered}
+              onMouseLeave ={this._mouseLeft}
+              className="previewThumbContainer" >
 
-
-                <div style={this.props._colorHandling(this.props.displayInfo.type)}
-                  className="previewTextContainer">
-                  <h1>
-                    {this.props.displayInfo.previewContents.previewTitle}
-                  </h1>
-                </div>
-                  <div
-                    style={this.props._colorHandling(this.props.displayInfo.type)}
-                    className="previewImageContainer">
-                    <div className='previewImage'
+              <div className= "seperator">
+                    {!this.state.isHovering?<div className='previewImage'
                        style={imageStyle}>
-                       </div>
-                  </div>
-                <div className="previewTextContainer">
-                  <div>
-                  <h3>
-                    {this.props.displayInfo.previewContents.previewHeader}
-                  </h3>
+                     </div>: null}
 
-                <div>
-                  <p>
-                    {this.props.displayInfo.previewContents.previewExtra}
-                  </p>
-                </div>
+                <div className="previewTextContainer">
+                  <h3>
+                    {this.props.displayInfo.previewContents.previewTitle}
+                  </h3>
+                  {this.props.displayInfo.previewContents.previewHeader}
+
+                  {this.state.isHovering?<ul className='previewThumbList'>
+                    <h4 style={{paddingBottom:'2%'}}>Summary:</h4>
+                    {this._handleSummary()}
+                  </ul>: null}
+
+
                 <div className="previewFooter">
                   {this.props.displayInfo.footer}
                 </div>
-                </div>
-              </div>
-                <div>
-                  {this.props.isActive == this.props.displayInfo.title? this.props.children: null}
-                </div>
 
+              </div>
+
+                  {this.props.isActive == this.props.displayInfo.title? this.props.children: null}
+
+              </div>
+                  <div className="previewThumbBtn"
+                    onMouseEnter={this._mouseEntered}
+
+                    onClick={this._handleClick}
+                    style ={
+                      this.state.isHovering? this._buttonStyle(true, this.props.displayInfo.type):
+                    this._buttonStyle(false, this.props.displayInfo.type)}>
+                    View This {this.props.displayInfo.type}
+                  </div>
                 </div>)
   }
 }
-
-  // let {
-  //
-  //   //
-  //   title,
-  //   dimensions,
-  //   type,
-  //   shortTitle,
-  //   isHovering,
-  //   previewTitle,
-  //   previewType,
-  //   previewHeader,
-  //   previewFooter,
-  //   previewExtra,
-  //   imagePreview,
-  //
-  //   classPreviewTitle,
-  //   classPreviewHeader,
-  //   classPreviewFooter,
-  //   classPreviewExtra,
-  //   classImagePreview
-  //
-  // } = props;
-
-
-
 
 export default PreviewThumb;

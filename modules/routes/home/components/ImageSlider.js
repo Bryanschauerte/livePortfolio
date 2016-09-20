@@ -33,13 +33,15 @@ mouseLeft(event){
   event.preventDefault();
   this.setState({imageHovering: false});
 }
-_handleLeftClick(){
+_handleLeftClick(event){
+  event.preventDefault();
   let index = this.state.currentIndex;
   index == 0?
     this.setState({currentIndex:this.props.images.length-1})
     :this.setState({currentIndex:index-=1})
 }
-_handleRightClick(){
+_handleRightClick(event){
+  event.preventDefault();
   let index = this.state.currentIndex;
   index == this.props.images.length-1?
     this.setState({currentIndex:0})
@@ -60,7 +62,7 @@ _handleRendering(){
     arrows: true,
     noShow: images && images.length <=1
   })
-
+console.log(this.props, "props from image slider")
   return this.props.images.length? (
         <div  onMouseEnter={this.mouseEntered}
               onMouseLeave={this.mouseLeft}>
