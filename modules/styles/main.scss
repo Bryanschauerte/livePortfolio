@@ -8,6 +8,7 @@ width:100%;
 display: flex;
 flex-direction: row;
 justify-content: space-between;
+padding:2%;
 }
 
 a:-webkit-any-link{
@@ -755,7 +756,7 @@ justify-content: center;
 }
 .adminPreviewContainer{
   width: 48%;
-  height: 100%;
+
   float:left;
   padding:3px;
 
@@ -786,10 +787,20 @@ justify-content: center;
 }
 .emptyInputDefault{
   max-height: 0px;
-  height: 5em;
+  height: 2em;
   transition: all 0.5s ease-in-out;
 }
 .emptyInputShowtime{
+  max-height: 2em;
+  height: 2em;
+  transition: all 0.5s ease-in-out;
+}
+.emptyTextAreaDefault{
+  max-height: 0px;
+  height: 5em;
+  transition: all 0.5s ease-in-out;
+}
+.emptyTextAreaShowtime{
   max-height: 5em;
   height: 5em;
   transition: all 0.5s ease-in-out;
@@ -803,7 +814,7 @@ justify-content: center;
   list-style: none;
 }
 .previewListContainer li{
-font-size: 1.5em;
+font-size: 1em;
 }
 textarea.emptyInputDefault {
     font-size: 1em;
@@ -858,6 +869,7 @@ textarea.emptyInputDefault {
   transition: all 500ms;
   margin-bottom: 2%;
   border-radius: 5px;
+  transition: 500ms
 }
 .previewImageContainer{
     display: flex;
@@ -917,26 +929,30 @@ textarea.emptyInputDefault {
   background-color: #f0f5f9;
 }
 .footer {
-  border: 1px solid #0B1968;
+  background-color: #062f4f;
   align-items: center;
-  color: #ffffff;
+  color: #f0f5f9;
   border-radius: 4px;
-margin-top: .5em;
+  margin-top: .5em;
   display: flex;
-
   font-size: 2em;
   justify-content: center;
   width: 100%;
-  height:2em;
+  box-shadow: 0px 0px 2px #FF6E40;
+
+
 }
 .footer ul {
 
   height:100%;
-  color: #5c5c5c;
+  color: #FF6E40;
   list-style: none;
   margin: 0;
   padding: 0;
   font-size: 1em;
+  display: flex;
+  justify-content: space-around;
+  width: 25%;
 }
 .footer li {
   float: left;
@@ -1014,5 +1030,32 @@ display: flex;
 }
 .previewThumbList{
   list-style: none;
-  text-align: left;  
+  text-align: left;
+}
+.footerDisplay{
+  text-align: end;
+}
+.goGone{
+  opacity: 0;
+  transition: opacity 500ms ease-in-out;
+}
+.hereHere{
+  opacity: 1;
+  transition: opacity 500ms ease-in-out;
+}
+.contentContainer{
+width: 100%;
+}
+.previewInputContainer{
+  float:left;
+  width: 45%;
+  padding: 0 2%;
+}
+.mainInfoInputContainer{
+  float:left;
+  width: 45%;
+  padding: 0 2%;
+}
+.topCreationContainer{
+  width: 100%;
 }

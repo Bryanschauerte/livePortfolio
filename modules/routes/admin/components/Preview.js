@@ -101,7 +101,7 @@ componentDidMount(){
     let items = this._handleItemRendering(this.props.infoArray);
 
     return(<div className='previewListContainer'>
-<h1 className="previewTitle">Select contents to edit or create new</h1>
+<h3 className="previewTitle">Select contents to edit or create new</h3>
               <ul>
                 {items}
               </ul>

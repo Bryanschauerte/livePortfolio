@@ -19,6 +19,7 @@ class PreviewThumb extends React.Component{
     this._buttonStyle = this._buttonStyle.bind(this);
     this._handleSummary = this._handleSummary.bind(this);
     this._setSize = this._setSize.bind(this);
+    this._classNameAddition = this._classNameAddition.bind(this);
 
   }
   _setSize(){
@@ -76,7 +77,8 @@ class PreviewThumb extends React.Component{
     this.props.setActiveItem(this.props.displayInfo.title);
     let current = this.state.isClicked;
     this.setState({
-      isClicked: !current
+      isClicked: !current,
+      isHovering: false
     })
 
   }
@@ -120,6 +122,14 @@ class PreviewThumb extends React.Component{
 
   }
 
+_classNameAddition(addition){
+  let classesSmash = classNames(addition, {
+    hereHere: this.props.isActive == null,
+    goGone: this.props.isActive != this.props.displayInfo.title || null
+
+  })
+  return classesSmash;
+}
 
   render(){
 
@@ -131,6 +141,7 @@ class PreviewThumb extends React.Component{
 
 
 
+
       let imageStyle = this._handleImages(this.state.imageArray[0])
       let listSummary = this._handleSummary();
       return (<div
@@ -138,12 +149,12 @@ class PreviewThumb extends React.Component{
               onMouseLeave ={this._mouseLeft}
               className="previewThumbContainer" >
 
-              <div className= "seperator">
+              <div className= {this._classNameAddition("seperator")}>
                     {!this.state.isHovering?<div className='previewImage'
                        style={imageStyle}>
                      </div>: null}
 
-                <div className="previewTextContainer">
+                <div className={this._classNameAddition("previewTextContainer")}>
                   <h3>
                     {this.props.displayInfo.previewContents.previewTitle}
                   </h3>
@@ -164,7 +175,7 @@ class PreviewThumb extends React.Component{
                   {this.props.isActive == this.props.displayInfo.title? this.props.children: null}
 
               </div>
-                  <div className="previewThumbBtn"
+                  <div className={this._classNameAddition("previewThumbBtn")}
                     onMouseEnter={this._mouseEntered}
 
                     onClick={this._handleClick}

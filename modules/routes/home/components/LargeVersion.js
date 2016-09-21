@@ -31,10 +31,13 @@ class LargeVersion extends React.Component{
       <div className='LV_OuterCont'>
         <div className='LV_innerContents'>
         <div>{this.props.displayInfo.type}</div>
-        <div onClick= {this.props.handleClose}>CLOSE</div>
+
         <div className="LS_titleOuter">
           {this.props.displayInfo.title}
 
+        </div>
+        <div onClick= {this.props.handleClose}>
+          CLOSE
         </div>
             {this.props.displayInfo.main.map(
               (contentItem, index)=>(
@@ -112,11 +115,14 @@ class LargeVersion extends React.Component{
           {this.props.displayInfo.footer?
 
             <div className="footer">
-              <ul>
+
+              <div className="footerDisplay">
                 <h4>{this.props.displayInfo.footer}</h4>
+              </div>
+              <ul>
   <li><a href="mailto:bryan.schauerte@gmail.com?Subject=Hey%20Bryan%20nice%20site" target="_top"><i className="fa fa-envelope fa-2x" aria-hidden="true"></i></a></li>
   <li><a href={this.props.displayInfo.linkSource} target="_blank"><i className="fa fa-github-square fa-2x" aria-hidden="true"></i></a></li>
-  <li><a href="https://www.linkedin.com/in/bryanschauerte" target="_blank"><i className="fa fa-linkedin-square fa-2x" aria-hidden="true"></i></a></li>
+  <li><a href="https://www.linkedin.com/in/bryanschauerte" target="_blank"><i className="fa fa-linkedin fa-2x" aria-hidden="true"></i></a></li>
   </ul>
 
 

@@ -26,6 +26,10 @@ class Creation extends React.Component{
     this._handleButton= this._handleButton.bind(this);
     this._handleKeydown = this._handleKeydown.bind(this);
     this._handlePreviewInputDataChange = this._handlePreviewInputDataChange.bind(this);
+this._handleMouseEnter= this._handleMouseEnter.bind(this);
+this._handleMouseLeave = this._handleMouseLeave.bind(this);
+this._handlefocus = this._handlefocus.bind(this);
+this._handleBlur = this._handleBlur.bind(this);
 
   }
 
@@ -50,7 +54,28 @@ class Creation extends React.Component{
   componentWillUnmount(){
     window.addEventListener('keydown', this._handleKeydown)
   }
+  _handleBlur(event){
 
+    event.preventDefault();
+    if(this.props.isPreview){
+      this.props._handleInputDataChangePass(this.state, true);
+    }
+    this.props._handleInputDataChangePass(this.state);
+    this.setState({focused: false});
+  }
+  _handlefocus(event){
+
+    event.preventDefault();
+    this.setState({focused: true});
+  }
+  _handleMouseLeave(event){
+    event.preventDefault();
+    this.setState({isHovering: false});
+  }
+  _handleMouseEnter(event){
+    event.preventDefault();
+    this.setState({isHovering: true});
+  }
   _changeMainIndex(indexWish){
 
     let numOfItems = this.state.feilds.contentItems.main.length;
@@ -155,7 +180,7 @@ class Creation extends React.Component{
   }
   _renderMainInput(){
 
-    let SubBTN = SubmittingHOC(SubmitBTN)
+
     let Showing = this.state.mainShowing;
     let totalSections = this.state.feilds.contentItems.main.length;
 
@@ -184,7 +209,7 @@ class Creation extends React.Component{
                callBackProp= {index+1}
                label="Look at next section"/>
 
-             <SubBTN label="Submit" sendData={this.state.feilds}/>
+
 
            </div>
 
@@ -193,6 +218,8 @@ class Creation extends React.Component{
              stateValue={this.state.feilds.contentItems.main[index]['subheader']}
              indexNum={index}
              name="subheader"
+             isTextArea ={false}
+             smallable={false}
              label="Sub-Header"/>
 
            <EmptyInput
@@ -219,6 +246,8 @@ class Creation extends React.Component{
            <EmptyInput
              _handleInputDataChangePass={this.grabData}
              indexNum={index}
+             smallable={false}
+             isTextArea ={false}
              stateValue={this.state.feilds.contentItems.main[index]['linkSource']}
              name="linkSource"
              label="LinkSource"/>
@@ -241,6 +270,8 @@ class Creation extends React.Component{
             <EmptyInput
               _handleInputDataChangePass={this.grabData}
               indexNum={index}
+              isTextArea ={false}
+              smallable={false}
               stateValue={this.state.feilds.contentItems.main[index]['containsCodePen']}
               name="containsCodePen"
               label="Contains CodePen; false or iframeUrl then CodePenUrl"/>
@@ -249,6 +280,8 @@ class Creation extends React.Component{
             <EmptyInput
               _handleInputDataChangePass={this.grabData}
               indexNum={index}
+              isTextArea ={false}
+              smallable={false}
               stateValue={this.state.feilds.contentItems.main[index]['containsMedia']}
               name="containsMedia"
               label="Contains 'images' or 'video': use 'images' or 'video'"
@@ -258,12 +291,16 @@ class Creation extends React.Component{
               indexNum={index}
               stateValue={this.state.feilds.contentItems.main[index]['links']}
               name="links"
+              smallable={false}
+              isTextArea ={false}
               label="Links to images Or video, put the url(s)"/>
 
 
             <EmptyInput
               _handleInputDataChangePass={this.grabData}
               indexNum={index}
+              isTextArea ={false}
+              smallable={false}
               stateValue={this.state.feilds.contentItems.main[index]['mediaTitle']}
               name="Title for Video or Images"
               label="mediaTitle"
@@ -276,84 +313,109 @@ class Creation extends React.Component{
   render(){
 
     let feildValues = this.state.feilds.contentItems;
+    let SubBTN = SubmittingHOC(SubmitBTN);
 
     return (  <div className="creationContainer">
           <h1>Creation</h1>
-
-
+<SubBTN label="Submit" sendData={this.state.feilds}/>
+<div className = "topCreationContainer">
+        <div className="mainInfoInputContainer">
+          <h3>Main</h3>
               <EmptyInput
                 _handleInputDataChangePass={this.grabData}
                 stateValue={feildValues.title}
                 name="title"
+                smallable={false}
+                isTextArea ={false}
                 label="Title"/>
 
                <EmptyInput
                  _handleInputDataChangePass={this.grabData}
                  stateValue={feildValues.header}
                  name="header"
+                 smallable={false}
+                 isTextArea ={false}
                  label="Header"/>
 
                <EmptyInput
                  _handleInputDataChangePass={this.grabData}
                  stateValue={feildValues.link}
                  name="link"
+                 smallable={false}
+                 isTextArea ={false}
                  label="Link to follow"/>
-               
+
                <EmptyInput
                  _handleInputDataChangePass={this.grabData}
                  stateValue={feildValues.footer}
                  name="footer"
+                 smallable={false}
+                 isTextArea ={false}
                  label="Footer"/>
                <EmptyInput
                  _handleInputDataChangePass={this.grabData}
                  stateValue={feildValues.techStack}
                  name="techStack"
+                 smallable={false}
+                 isTextArea ={false}
                  label="Tech Stack"/>
 
                <EmptyInput
                  _handleInputDataChangePass={this.grabData}
                  stateValue={feildValues.type}
                  name="type"
+                 smallable={false}
+                 isTextArea ={false}
                  label="Type"/>
+             </div>
 
 
-                {this._renderMainInput()}
-
-
-
-                <h1>Preview</h1>
+                <div className="previewInputContainer">
+                <h3>Preview</h3>
                 <EmptyInput
                   _handleInputDataChangePass={this._handlePreviewInputDataChange}
                   stateValue={feildValues.previewContents.previewTitle}
                   name="previewTitle"
                   isPreview ="true"
+                  smallable={false}
+                  isTextArea ={false}
                   label="Preview Title"/>
                 <EmptyInput
                   _handleInputDataChangePass={this._handlePreviewInputDataChange}
                   stateValue={feildValues.previewContents.previewHeader}
                   name="previewHeader"
                   isPreview ="true"
+                  smallable={false}
+                  isTextArea ={false}
                   label="Preview Header"/>
                 <EmptyInput
                   _handleInputDataChangePass={this._handlePreviewInputDataChange}
                   stateValue={feildValues.previewContents.previewFooter}
                   name="previewFooter"
                   isPreview ="true"
+                  smallable={false}
+                  isTextArea ={false}
                   label="Preview Footer"/>
                 <EmptyInput
                   _handleInputDataChangePass={this._handlePreviewInputDataChange}
                   isPreview ="true"
                   stateValue={feildValues.previewContents.previewExtra}
                   name="previewExtra"
+                  isTextArea ={false}
+                  smallable={false}
                   label="Preview Extra"/>
                 <EmptyInput
                   _handleInputDataChangePass={this._handlePreviewInputDataChange}
                   isPreview ="true"
+                  smallable={false}
                   stateValue={feildValues.previewContents.imageArrayPreview}
                   name="imageArrayPreview"
                   label="Image Array Preview"/>
-
-
+                </div>
+              </div>
+                <div className="contentContainer">
+                 {this._renderMainInput()}
+                 </div>
             </div>);
   }
 }

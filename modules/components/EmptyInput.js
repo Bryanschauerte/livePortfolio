@@ -9,6 +9,7 @@ import classNames from 'classnames';
                 value:this.props.stateValue,
                 indexNum: this.props.indexNum,
                 isHovering:false,
+                smallable: this.props.smallable,
                 focused: false
                }
               this._handleChange = this._handleChange.bind(this);
@@ -63,8 +64,12 @@ import classNames from 'classnames';
 
             render() {
               let emptyInputClasses= classNames({
-                'emptyInputDefault': true,
-                'emptyInputShowtime': this.state.isHovering || this.state.focused
+                'emptyInputDefault': this.props.smallable,
+                'emptyInputShowtime': (this.state.isHovering || this.state.focused) || !this.props.smallable
+              })
+              let emptyTextAreaClasses= classNames({
+                'emptyTextAreaDefault': this.props.smallable,
+                'emptyTextAreaShowtime': (this.state.isHovering || this.state.focused) || !this.props.smallable
               })
 
               return (<div
@@ -73,21 +78,29 @@ import classNames from 'classnames';
                 className='emptyInputContainer'>
 
                   <label>{this.props.label}</label>
-                  <textarea
-                    className={emptyInputClasses}
-                    onBlur={this._handleBlur}
-                    onFocus={this._handlefocus}
+                  {this.props.isTextArea? <textarea
+                    className={emptyTextAreaClasses}
                     type="text"
                     value={this.state.value || this.props.stateValue}
                     onChange={this._handleChange}
-                    />
+                    />:
+                  <input
+                      className={emptyInputClasses}
+                      onBlur={this._handleBlur}
+                      onFocus={this._handlefocus}
+                      type="text"
+                      value={this.state.value || this.props.stateValue}
+                      onChange={this._handleChange}
+                      />}
                 </div>
               )
               }
             }
         EmptyInput.defaultProps={
           indexNum: 'NA',
-          showfeilds: false
+          showfeilds: false,
+          isTextArea: true,
+          smallable: true
         }
 
           export default EmptyInput;
