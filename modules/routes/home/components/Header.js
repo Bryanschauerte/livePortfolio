@@ -4,7 +4,7 @@ import classNames from 'classnames';
 
 const Header= (props)=> {
 
-  let {classDefault, listItems, filteringPassBack, filteredOut, fullHeader} = props;
+  let {classDefault, listItems, filteringPassBack, filteredOut, fullHeader, handleClose} = props;
 
   let headerContainerClass = classNames({
     'headerContainer': true,
@@ -20,7 +20,11 @@ const Header= (props)=> {
     'headerList': true,
   })
 
-
+// let handleClick = (e)=>{
+//   e.preventDefault();
+//   console.log('header hit')
+//   props.handleClose(e)
+// }
 
   return (
     <div className ={headerContainerClass}>
@@ -40,7 +44,7 @@ const Header= (props)=> {
 
         </ul>
       </div>
-      <div className={titleClass}>
+      <div onClick={handleClose} className={titleClass}>
         <i
           className="fa fa-info-circle fa-3x"
           aria-hidden="true"></i>

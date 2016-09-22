@@ -12,20 +12,20 @@ let baseSideClass = classNames({
 })
 
 let content = props.content;
-let size = props.sizes;
-let sizeOb = {
-main:{height: size.height-2, width: size.width},
-head:{height: size.height*.07, width: size.width},
-contents:{height: size.height*.93, width: size.width}
 
+let sizeOb = {
+
+      height: props.windowHeight,
+      width: props.windowWidth/2
 };
+
 
 
     return (
 
-      <div style = {sizeOb.main} onMouseLeave={props.handleClose}  className ={baseSideClass}>
+      <div style = {sizeOb} onMouseLeave={props.handleClose}  className ={baseSideClass}>
 
-        <div className ='SCcontent' style = {sizeOb.contents}>
+        <div className ='SCcontent' >
           <div className ='SChamburgerFoldTop'>Welcome</div>
           <div className= "SClongContainer">
 

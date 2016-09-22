@@ -483,11 +483,11 @@ justify-content: center;
 }
 .sitede {
   padding: 4%;
-  overflow: scroll;
+
 }
 .talking {
   color: #333030;
-  font-size: 2em;
+  font-size: 1em;
   text-indent: 3em;
   line-height: 1.5em;
 }
@@ -547,8 +547,8 @@ justify-content: center;
   border: 1px solid #333030;
   border-radius: 8px 0 0 8px;
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 2%;
+  right: 12%;
   display: flex;
   z-index: 5;
   opacity: 1;
@@ -560,8 +560,8 @@ justify-content: center;
 
   max-width: 100%;
   max-height: 92%;
-  transition: all 2s ease-in-out;
-  position: absolute;
+  transition: all 500ms ease-in-out;
+  position: fixed;
   top:7%;
   right:0;
 }
@@ -614,19 +614,17 @@ justify-content: center;
 }
 .SCcontent {
   padding: 2%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  overflow: scroll;
+  // display: flex;
+  // flex-direction: column;
+  // justify-content: center;
 }
 .SClongContainer {
   cursor: ns-resize;
-  height: 70%;
   margin-bottom: 2%;
-  width: 98%;
+  border-radius: 3px;
   padding: 2% 0;
   background-color: #f0f5f9;
-  display: flex;
-  justify-content: space-between;
   -webkit-box-shadow: 3px 10px 5px 0 rgba(0,0,0,0.75);
   -moz-box-shadow: 3px 10px 5px 0 rgba(0,0,0,0.75);
   box-shadow: 3px 10px 5px 0 rgba(0,0,0,0.75);
@@ -634,12 +632,13 @@ justify-content: center;
 }
 .SChamburgerFoldBot {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   list-style-type: none;
-  /* height: 17%; */
+  height: 10%;
   width: 100%;
+  border-radius: 3px;
   background-color: #0B1968;
-  font-size: 2em;
+  font-size: 1em;
   color: #ffffff;
   text-align: center;
   /* padding: 4%; */
@@ -648,13 +647,13 @@ justify-content: center;
   padding: 2%;
   margin: 0;
   color:#ffffff;
-  /* width: 75%; */
+  width: 75%;
   height: 15%;
   font-size: 1em;
   list-style-type: none;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: space-between;
 }
 .SChamburgerFoldBot a {
   font-size: 1em;
@@ -662,10 +661,10 @@ justify-content: center;
 }
 .SChamburgerFoldTop {
   color:#ffffff;
-  height: 15%;
+  height: 10%;
   width: 100%;
   text-align: center;
-  font-size: 7em;
+  font-size: 3em;
   line-height: 100%;
   text-shadow: 1px 0px 0 #ffffff,2px 2px 0px #606285,3px 2px 0 black;
   display: flex;
@@ -916,7 +915,7 @@ textarea.emptyInputDefault {
   opacity: 1;
   z-index: 10;
   position: absolute;
-  top: 7%;
+  top: 4%;
   right:1.5%;
   overflow: scroll;
   border-radius: 3px;
@@ -1058,4 +1057,20 @@ width: 100%;
 }
 .topCreationContainer{
   width: 100%;
+}
+.closeBtn{
+  width: 6em;
+  position: fixed;
+  top: 11%;
+  left: 1.6%;
+  cursor: pointer;
+  background-color:red;
+  border: 1px solid blue;
+  text-align: center;
+  font-family: Roboto;
+  color: black;
+  box-shadow: 0 0 0 2px #ffffff;
+  border-radius: 2px;
+  letter-spacing: .4em;
+  text-shadow: 1px 1px 3px;
 }

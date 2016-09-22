@@ -25,7 +25,7 @@ class MainView extends React.Component{
     this._colorHandling = this._colorHandling.bind(this);
     this._handleActiveItemReset = this._handleActiveItemReset.bind(this);
     this._setActiveItem = this._setActiveItem.bind(this);
-    
+
 
   }
   _setActiveItem(item){
@@ -97,8 +97,7 @@ _colorHandling(type){
       let itemContainerClass = classNames({
         'mainViewItemContainer': this.props.showItems
       })
-console.log("Main view props", this.props)
-console.log("Main view state", this.state)
+
   return (
       <div  className="mainViewContainer">
 

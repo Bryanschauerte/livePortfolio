@@ -13,30 +13,38 @@ class Home extends React.Component{
             filteredOut:[],
             typesAvaliable:[],
             showItems:true,
-            fullHeader: true,
-            scrollInitLoc:null
+            displaySideContainer: true,
+            initialScroll:false
     }
 
     this._requestAllContents = this._requestAllContents.bind(this);
     this._constructTypeList = this._constructTypeList.bind(this);
     this._handleFilter = this._handleFilter.bind(this);
     this._handleScroll = this._handleScroll.bind(this);
+    this._handleShowInfoContainer = this._handleShowInfoContainer.bind(this);
 
   }
-  _handleScroll(e){
-console.log(window.scrollY, "window.scrollY " );
-    const delayedChange= ()=> { window.setTimeout(
-      this.state.fullHeader? ()=>{
-        this.setState({fullHeader: false})
-        }:
-        ()=>{
-          this.setState({fullHeader: true})
-        }, 500).bind(this);
-    }
 
-    window.scrollY == this.state.scrollInitLoc? delayedChange(): null;
-
+  _handleShowInfoContainer(){
+    console.log("ding");
+    let containerState = this.state.displaySideContainer;
+    this.setState({
+      displaySideContainer: !containerState
+    })
   }
+
+
+      _handleScroll(e){
+        console.log(window.scrollY, "window.scrollY " );
+
+        if(!this.state.initialScroll){
+          this.setState({
+            initialScroll: true,
+          displaySideContainer: false})
+        }
+
+      }
+
       _constructTypeList(contents){
 
         let tempTypes = this.state.typesAvaliable;
@@ -86,15 +94,7 @@ console.log(window.scrollY, "window.scrollY " );
       this._requestAllContents();
 
     }
-    componentDidMount(){
-      let yPosition = window.scrollY;
-      this.setState({scrollInitLoc: yPosition})
 
-      window.addEventListener('scroll', this._handleScroll);
-    }
-    componentWillUnmount(){
-      window.removeEventListener('scroll', this._handleScroll)
-    }
 
   render(){
     let contents = this.state.dataBaseContents;
@@ -103,13 +103,16 @@ console.log(window.scrollY, "window.scrollY " );
     let listItems = this.state.typesAvaliable;
 console.log(this.state, "state")
 
-    return(<div className="homeContainer">
+    return(<div
+      onScroll={this._handleScroll}
+      onMouseEnter={this.handleClose}
+      className="homeContainer">
           <Header
-            fullHeader = {this.props.fullHeader}
             classDefault = {this.state.loaded}
             listItems={listItems}
             filteringPassBack={this._handleFilter}
-            filteredOut={filteredOut} />
+            filteredOut={filteredOut}
+            handleClose={this._handleShowInfoContainer} />
 
 
       <div classDefault={this.state.loaded} className="homeMainContainer">
@@ -125,10 +128,8 @@ console.log(this.state, "state")
 <div>
   <Sidecontainer
     {...this.props}
-    isActive={}
-    content={}
-    sizes={}
-    handleClose={}/>
+    isActive={this.state.displaySideContainer}
+    handleClose={this._handleShowInfoContainer}/>
 </div>
       </div>
     )

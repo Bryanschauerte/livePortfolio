@@ -36,7 +36,9 @@ class LargeVersion extends React.Component{
           {this.props.displayInfo.title}
 
         </div>
-        <div onClick= {this.props.handleClose}>
+        <div
+          className="closeBtn"
+          onClick= {this.props.handleClose}>
           CLOSE
         </div>
             {this.props.displayInfo.main.map(
