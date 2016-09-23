@@ -11,7 +11,7 @@ class LargeVersion extends React.Component{
     this._handleStringForUrl = this._handleStringForUrl.bind(this);
   }
   _handleStringForUrl(string, index='all'){
-    console.log(string, "string")
+
     let arr = string.split(', ');
     if(index != 'all'){
       return arr[index];
@@ -20,13 +20,13 @@ class LargeVersion extends React.Component{
   }
 
   _handleClose(){
-    console.log('andle close')
+
     this.props.handleClose()
   }
 
 
   render(){
-    console.log(this.props, "large props")
+
     return(
       <div className='LV_OuterCont'>
         <div className='LV_innerContents'>

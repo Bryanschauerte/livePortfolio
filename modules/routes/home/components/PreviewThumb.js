@@ -96,23 +96,19 @@ class PreviewThumb extends React.Component{
   }
   _handleImages(imageUrl){
 
+    return (<img
+      src={imageUrl}
+      height={this.props.windowHeight/5.6}
+      width='auto'/>);
 
-    let styleObj = {
-      backgroundImage: 'url('+imageUrl+')',
-      backgroundSize:'contain',
-      backgroundPosition:'center',
-      minHeight:this.props.windowHeight/5.6,
-      width:this.props.windowWidth*.3,
-      backgroundRepeat:'no-repeat'
-  };
-    return styleObj;
+
   }
   _handleSummary(){
 
     let list = this.props.displayInfo.main.map((item, index)=>{
       return <li key ={Math.random()}>{item.subheader}</li>
     })
-    console.log('list', list)
+
     return list;
   }
 
@@ -150,8 +146,8 @@ _classNameAddition(addition){
               className="previewThumbContainer" >
 
               <div className= {this._classNameAddition("seperator")}>
-                    {!this.state.isHovering?<div className='previewImage'
-                       style={imageStyle}>
+                    {!this.state.isHovering?<div className='previewImage'>
+                      {imageStyle}
                      </div>: null}
 
                 <div className={this._classNameAddition("previewTextContainer")}>

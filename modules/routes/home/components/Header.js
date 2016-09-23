@@ -19,6 +19,12 @@ const Header= (props)=> {
   let headerListClass = classNames({
     'headerList': true,
   })
+  let switchStyle = classNames({
+    'sliderStageOne': true,
+    'sliderStageTwo': true,
+    'slider-v3': true,
+
+  })
 
 // let handleClick = (e)=>{
 //   e.preventDefault();
@@ -32,13 +38,12 @@ const Header= (props)=> {
         <h1>Bryan Schauerte</h1>
       </div>
       <div className={filterContainerClass}>
+        SHOWING:
         <ul className={headerListClass}>
-          <li >SHOW:</li>
-
           {listItems && classDefault? listItems.map( (item, index) =>
             <li key ={index}
               onClick={filteringPassBack.bind(null, item)}
-              className={ filteredOut.indexOf(item)!= -1? 'filteredOut': 'notFilteredOut'}>
+              className={ filteredOut.indexOf(item.toLowerCase())!= -1? 'filteredOut': 'notFilteredOut'}>
               {item.toUpperCase()}S
             </li>): null}
 

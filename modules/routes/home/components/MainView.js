@@ -29,7 +29,7 @@ class MainView extends React.Component{
 
   }
   _setActiveItem(item){
-    console.log(item, "item in main view to go to large")
+
     if(item != this.state.activeItemTitle){
       this.setState({
         activeItemTitle: item
@@ -56,10 +56,8 @@ _colorHandling(type){
 
   _handleItemRendering(info){
     if(info.length > 0 && this.props.showItems){
-    const filter = (infoBit) => {
-      // if(this.state.activeItemTitle != null){
-      //   infoBit.title == this.state.activeItemTitle? true: false
-      // }
+      const filter = (infoBit) => {
+
       return this.props.filteredOut.indexOf(
         infoBit.contentItems.type.toLowerCase()) == -1? true: false;
     }

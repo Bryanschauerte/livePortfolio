@@ -62,28 +62,27 @@ _handleRendering(){
     arrows: true,
     noShow: images && images.length <=1
   })
-console.log(this.props, "props from image slider")
+
   return this.props.images.length? (
         <div  onMouseEnter={this.mouseEntered}
               onMouseLeave={this.mouseLeft}>
 
         <div className="imageSliderContainer" >
 
-          <div className={arrowClass}>
-            <i onClick={this._handleLeftClick}
-            className="fa fa-arrow-left fa-3x"
-            aria-hidden="true"></i>
-          </div>
 
         <img
           className="sliderImage"
           style={this._handleStyle()}
           onLoad={this._changeLoadState}
           src={images[this.state.currentIndex]} />
-
-        <div className={arrowClass}>
-         <i onClick={this._handleRightClick}
-           className="fa fa-arrow-right fa-3x" aria-hidden="true"></i>
+        <div className="arrowContainer">
+            <div className={arrowClass}>
+              <i onClick={this._handleLeftClick}
+              className="fa fa-arrow-left fa-2x"
+              aria-hidden="true"></i>
+             <i onClick={this._handleRightClick}
+               className="fa fa-arrow-right fa-2x" aria-hidden="true"></i>
+             </div>
          </div>
        </div>
      </div>)

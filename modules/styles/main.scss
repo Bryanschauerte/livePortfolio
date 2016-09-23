@@ -43,7 +43,7 @@ h5 {
 
   z-index: 0;
   float: left;
-  transition: max-height 500ms ease-in-out;
+  transition: max-height 250ms ease-in-out;
 }
 .ICInfoHeaderTitlePost{
     font-size: large;
@@ -51,7 +51,7 @@ h5 {
     background-color: #f0f5f9;
     color:#333030;
     padding-top: 1%;
-    transition: max-height 500ms ease-in-out;
+    transition: max-height 250ms ease-in-out;
 }
 .ICInfoHeaderTitle{
     overflow: hidden;
@@ -59,7 +59,7 @@ h5 {
     font-size: large;
     background-color: #f0f5f9;
     color:#333030;
-    transition: max-height 500ms ease-in-out;
+    transition: max-height 250ms ease-in-out;
 
 }
 
@@ -68,13 +68,13 @@ h5 {
   max-height: 300px;
   background-color: #0B1968;
   color:#ffffff;
-  transition: max-height 500ms ease-in-out;
+  transition: max-height 250ms ease-in-out;
 }
 .ICInfoFooter{
   overflow: hidden;
   max-height:0;
   font-size: large;
-  transition: max-height 500ms ease-in-out;
+  transition: max-height 250ms ease-in-out;
 }
 .ICInfoHeaderBottomTitle{
   font-size: medium;
@@ -101,7 +101,7 @@ z-index: 5;
   height: 100%;
   width: 100%;
   top: 0;
-  transition: all 500ms;
+  transition: all 250ms;
 }
 
 .ICTextContainer {
@@ -123,7 +123,7 @@ z-index: 5;
   margin: 0;
   padding: 0;
   opacity: 0.6;
-  transition: opacity 1s, height 2s;
+  transition: opacity 1s, height 250ms;
 }
 .landingMastHead {
   font-family: esteban;
@@ -137,7 +137,7 @@ z-index: 5;
   width: 100%;
   opacity: 1;
   color: #ffffff;
-  transition: opacity 1s, height 2s;
+  transition: opacity 1s, height 250s;
 }
 .landingInnerMastHead {
   line-height: 1em;
@@ -147,7 +147,7 @@ z-index: 5;
   display: flex;
   justify-content: center;
   font-family: "Open Sans Condensed";
-  font-size: 4em;
+  font-size: 3.5em;
   text-shadow: grey 1px 1px 0.3px, white 1.3px 1.3px 0.4px, black 3px 4px 0.3px;
   transition: opacity 1s, height 2s;
 }
@@ -158,9 +158,9 @@ z-index: 5;
 }
 .landingSubHeader {
   font-family: "Open Sans Condensed";
-  font-size: 2em;
   font-weight: 300;
   display: flex;
+  font-size: 2.5em;
   justify-content: center;
   transition: opacity 1s, height 2s;
 }
@@ -420,23 +420,27 @@ CodePenHandler {
   text-shadow: white 1px 0.3px 1px, black 1px 0px 0.1px;
 }
 .headerList {
-  padding: 0 4% 0 2%;
+  // padding: 0 4% 0 2%;
+  align-items: center;
   color: #333030;
-  position: relative;
+  height:100%;
+  padding: 0;
+  margin: 0;
   width: 100%;
   list-style-type: none;
   transition: opacity 1s;
   display: flex;
   flex-direction: row;
-  margin: 0 2;
-  align-items: center;
+  line-height: 2;
+
 }
 .headerFilterContainer {
   width: 45%;
   height: 100%;
-  color: #ffffff;
+  color: #333030;
   display: flex;
   flex-direction: row;
+  align-items: center;
   justify-content: center;
 }
 .headerFilterContainer h3 {
@@ -447,25 +451,33 @@ CodePenHandler {
 .headerList li {
   transition: all 250ms;
   width: 100%;
-  font-size: 2.5vh;
-  margin: 0 2;
-  display: flex;
-  justify-content: center;
-  border-radius: 3px;
+  margin: 0px 2px 0px 2px;
+  text-align: center;
+
+
 }
 .headerTitle i {
   left:50%;
   position: relative;
 }
 .filteredOut {
-  background-color: grey;
-
+  height:50%;
+  box-shadow: inset 2px 2px 2px black;
+  background-color: #E0E0E0;
+  color:#0B1968;
   transform: skew(-12deg);
+  line-height: 2.5;
+  font-size: 2vh;
 }
 .notFilteredOut {
-  background-color: #FF6E40;
+  height:50%;
+  box-shadow: 4px -3px 7px #000;
+  background-color: #0B1968;
+  color:#ffffff;
   transform: skew(-12deg);
   width: 100%;
+  line-height: 1;
+  font-size: 3vh;
 
 }
 
@@ -538,13 +550,13 @@ justify-content: center;
 }
 .sideBase {
   max-width: 0;
-  transition: max-width 2s;
+  transition: max-width 250ms;
 }
 .SideStartState {
   max-width: 0%;
   max-height: 0%;
   background-color: #E0E0E0;
-  border: 1px solid #333030;
+
   border-radius: 8px 0 0 8px;
   position: absolute;
   top: 2%;
@@ -553,15 +565,15 @@ justify-content: center;
   z-index: 5;
   opacity: 1;
   flex-direction: column;
-  transition: 2s;
+  transition: 500ms;
   overflow: hidden;
 }
 .SideEndState {
 
   max-width: 100%;
   max-height: 92%;
-  transition: all 500ms ease-in-out;
-  position: fixed;
+  transition: height 250ms ease-in-out;
+  position: absolute;
   top:7%;
   right:0;
 }
@@ -841,7 +853,7 @@ textarea.emptyInputDefault {
   top: 0%;
 }
 .landingContainer{
-  font-size: 1.5em;
+
   position: absolute;
   display: flex;
   justify-content: center;
@@ -868,7 +880,7 @@ textarea.emptyInputDefault {
   transition: all 500ms;
   margin-bottom: 2%;
   border-radius: 5px;
-  transition: 500ms
+  opacity: 1;
 }
 .previewImageContainer{
     display: flex;
@@ -1007,9 +1019,17 @@ textarea.emptyInputDefault {
   position: relative;
 }
 .arrowContainer{
-width: 100%;
+
 height: 100%;
 display: flex;
+justify-content: center;
+
+}
+.arrows{
+  display: flex;
+  width: 25%;
+  justify-content: space-around;
+
 }
 .ImageSliderContainer{
   display: flex;
@@ -1030,9 +1050,14 @@ display: flex;
 .previewThumbList{
   list-style: none;
   text-align: left;
+
 }
 .footerDisplay{
+  padding: 2%;
   text-align: end;
+}
+.footerDisplay h4{
+  text-align: left;
 }
 .goGone{
   opacity: 0;

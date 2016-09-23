@@ -66,6 +66,7 @@ class Home extends React.Component{
       }
       _handleFilter(type){
 
+        type = type.toLowerCase()
         let currentFilter = this.state.filteredOut;
         currentFilter.indexOf(type) == -1? currentFilter.push(type):
           currentFilter.splice(currentFilter.indexOf(type), 1);
@@ -105,7 +106,6 @@ console.log(this.state, "state")
 
     return(<div
       onScroll={this._handleScroll}
-      onMouseEnter={this.handleClose}
       className="homeContainer">
           <Header
             classDefault = {this.state.loaded}
@@ -125,12 +125,12 @@ console.log(this.state, "state")
           {...this.props}/>
 
       </div>
-<div>
+
   <Sidecontainer
     {...this.props}
     isActive={this.state.displaySideContainer}
     handleClose={this._handleShowInfoContainer}/>
-</div>
+
       </div>
     )
   }

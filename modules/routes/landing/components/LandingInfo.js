@@ -37,8 +37,7 @@ function LandingInfo (props){
 
     return (
     <div className="landingContainer" >
-      <div className={landingPicture}></div>
-{/* <SvgGenerator dimensions={props.dimensions} showBackgAni = {props.showBackgAni} /> */}
+
       <div className={landingMastHead}>
         <div className={landingInnerMastHead} >
           <h1 className={landingTitle} >Bryan Schauerte</h1>
