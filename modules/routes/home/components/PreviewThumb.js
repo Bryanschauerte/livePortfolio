@@ -24,8 +24,8 @@ class PreviewThumb extends React.Component{
   }
   _setSize(){
     let sizeOb = {
-      maxHeight: this.props.height/2,
-      width: this.props.width/3
+      minHeight: this.props.height/2,
+      minwidth: this.props.width/3
     }
     return sizeOb;
   }
@@ -36,7 +36,6 @@ class PreviewThumb extends React.Component{
       backgroundColor: color,
       border: "1px solid "+ '#ffffff',
       color: '#ffffff',
-
       width: '100%',
       textAlign: "center",
       fontFamily: 'Roboto',
@@ -45,11 +44,13 @@ class PreviewThumb extends React.Component{
       letterSpacing: '.4em',
       textShadow: '1px 1px 3px',
       cursor: 'pointer',
-      transition: "background-color 250ms ease-in-out"
+      transition: "background-color 250ms ease-in-out",
+      alignSelf:'center'
 
     }
 
     let invStyle = {
+      width: '100%',
       backgroundColor:'#ffffff',
       border: "1px solid "+ color,
       textAlign: "center",
@@ -60,7 +61,8 @@ class PreviewThumb extends React.Component{
       letterSpacing: '.4em',
       textShadow: '1px 1px 3px',
       cursor: 'pointer',
-      transition: "background-color 250ms ease-in-out"
+      transition: "background-color 250ms ease-in-out",
+      alignSelf:'center',
 
     }
     return isInverted? invStyle: style;
@@ -75,6 +77,7 @@ class PreviewThumb extends React.Component{
 
   _handleClick(){
     this.props.setActiveItem(this.props.displayInfo.title);
+    this.props.closeSide();
     let current = this.state.isClicked;
     this.setState({
       isClicked: !current,
@@ -106,7 +109,9 @@ class PreviewThumb extends React.Component{
   _handleSummary(){
 
     let list = this.props.displayInfo.main.map((item, index)=>{
-      return <li key ={Math.random()}>{item.subheader}</li>
+      if(item.subheader){
+        return <li key ={Math.random()}>{item.subheader}</li>
+      }
     })
 
     return list;
@@ -135,9 +140,6 @@ _classNameAddition(addition){
 
     })
 
-
-
-
       let imageStyle = this._handleImages(this.state.imageArray[0])
       let listSummary = this._handleSummary();
       return (<div
@@ -154,17 +156,17 @@ _classNameAddition(addition){
                   <h3>
                     {this.props.displayInfo.previewContents.previewTitle}
                   </h3>
-                  {this.props.displayInfo.previewContents.previewHeader}
+                  <h4>{this.props.displayInfo.previewContents.previewHeader}</h4>
 
-                  {this.state.isHovering?<ul className='previewThumbList'>
+                  {this.state.isHovering?<ul  className='previewThumbList'>
                     <h4 style={{paddingBottom:'2%'}}>Summary:</h4>
-                    {this._handleSummary()}
+                    {listSummary}
                   </ul>: null}
 
 
-                <div className="previewFooter">
-                  {this.props.displayInfo.footer}
-                </div>
+                {this.state.isHovering?<div className="previewFooter">
+                  <h3>{this.props.displayInfo.previewContents.previewFooter}</h3>
+                </div>:null}
 
               </div>
 
@@ -173,7 +175,6 @@ _classNameAddition(addition){
               </div>
                   <div className={this._classNameAddition("previewThumbBtn")}
                     onMouseEnter={this._mouseEntered}
-
                     onClick={this._handleClick}
                     style ={
                       this.state.isHovering? this._buttonStyle(true, this.props.displayInfo.type):

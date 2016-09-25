@@ -4,7 +4,7 @@ import classNames from 'classnames';
 
 const Header= (props)=> {
 
-  let {classDefault, listItems, filteringPassBack, filteredOut, fullHeader, handleClose} = props;
+  let {classDefault, listItems, sideActive, filteringPassBack, filteredOut, fullHeader, handleClose} = props;
 
   let headerContainerClass = classNames({
     'headerContainer': true,
@@ -19,8 +19,16 @@ const Header= (props)=> {
   let headerListClass = classNames({
     'headerList': true,
   })
-  let switchStyle = classNames({
-    'sliderStageOne': true,
+  let sideOneBtnStyle = classNames({
+    'headerTitle': true,
+    'sideActive': sideActive,
+    'sliderStageTwo': true,
+    'slider-v3': true,
+
+  })
+  let sideTwoBtnStyle = classNames({
+    'headerTitle': true,
+    'sideActive': sideActive,
     'sliderStageTwo': true,
     'slider-v3': true,
 
@@ -49,10 +57,10 @@ const Header= (props)=> {
 
         </ul>
       </div>
-      <div onClick={handleClose} className={titleClass}>
-        <i
-          className="fa fa-info-circle fa-3x"
-          aria-hidden="true"></i>
+      <div onClick={handleClose} className={sideOneBtnStyle}>
+        {sideActive?<i className="fa fa-times-circle fa-3x" aria-hidden="true"></i>:
+          <i className="fa fa-info-circle fa-3x"
+          aria-hidden="true"></i>}
         </div>
     </div>
   )

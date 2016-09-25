@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-
+import GistAddition from './GistAddition';
 
 
 const SideContainer = (props)=>{
@@ -23,7 +23,7 @@ let sizeOb = {
 
     return (
 
-      <div style = {sizeOb} onMouseLeave={props.handleClose}  className ={baseSideClass}>
+      <div style = {sizeOb}  className ={baseSideClass}>
 
         <div className ='SCcontent' >
           <div className ='SChamburgerFoldTop'>Welcome</div>
@@ -33,12 +33,12 @@ let sizeOb = {
 
               <span className="TitlesTag"> Introduction</span><br/>
             <p className="talking">
-              Hello and welcome to my portfolio/demo thing! Working all day with really old CakePHP gets stale quickly, so I took up learning React. I recently found myself learning more than doing. Flux lead to Redux, Redux led to Relay...React Native... Time to start doing.
-              This is my effort to pull my head out of docs and into doing some side projects using React. I am already more than comfortable with Angular and I'd like to get as proficient with another framework.<i className="fa fa-arrows-v" aria-hidden="true"></i></p>
+              Hello and welcome to my side project catalog thingy! Working all day with really old CakePHP gets stale quickly, so this is one of my side projects.
+              This is my effort to pull my head out of docs and into doing some side projects using React. I don't prefer one over the other, I just happend to be in a <span className="reactName">React</span> mood.</p>
             <br/>
             <div className="talking">
               <span className="TitlesTag">About Me</span><br/>
-              I am a software Engineer 2 ( Yay promotion ) at TCS here in Salt Lake City. I fix/create new features for our clients using CakePHP, JavaScript, jQuery, Less, HTML, PHP and some home-brewed magic.
+              I am a software Engineer 2 ( Yay promotion ) at TCS here in Salt Lake City. I fix/create new features for our clients using CakePHP, Angular, JavaScript, jQuery, Less, HTML, PHP and some home-brewed magic.
                <br/>
                A quick summary of adult me:
                <ul className="meSumList">
@@ -54,21 +54,27 @@ let sizeOb = {
 
             </div>
             <br/>
-            <span className="TitlesTag"> Demos and Projects</span><br/>
-            <p className="talking" >Instead of writing <i>HOW</i> to do things ( plenty of those out there ), Ill be walking through the thought process of
-                 turning comps into <span className="reactName">React</span> components. The links to the each demo can be found at the bottom of its large-verion container.
+            <span className="TitlesTag"> Demos </span><br/>
+            <p className="talking" >Demos are outlines of some of my public sites. They outline <i>pieces</i> of the projects and what they were made to accomplish. Not how-tos, there are plenty of ones out there. Ill be walking through the thought process of
+                 turning ideas into <span className="reactName">React</span> or <span className="angularName">Angular</span> projects. The links to the each demo's repository can be found at the bottom of its large-verion container.
             </p>
-            <br/><p className="talking" >Im also sticking in a few <span className="angularName">Angular</span> applications to get this demo thing started. An empty garden grows no plants.</p>
+            <br/><p className="talking" >Im also sticking in a few older <span className="angularName">Angular</span> applications to get this demo thing started. An empty garden grows no plants.</p>
             <br/>
             <span className="TitlesTag"> Blogs</span><br/>
             <p className="talking">
               Not much of a blog... More of a how to get started on Webpack/SASS/Node (etc) and some tips and tricks that I found useful.
             </p>
+            <span className="TitlesTag"> Other </span><br/>
+            <p className="talking" >This site's content is coming from an database and is rendered using <span className="reactName">React</span>. When I use my admin to create a new post, I have the option to add a type which is then plopped into the filter... If its not a 'blog' or 'demo', Ill try to keep the type straightforward.</p>
+            <p className='talking'>A search filter will be available when the need arises or when I feel that there is enough content to justify one ;)</p>
+
+
+          <br/>
             <p className="talking">
-              Any suggestions on what to build/study next, feel free to fire off a message. Im currently just working on higher order components/reusable UI components, as well as putting more magic into this site's Node server. Need help with a project/Site? Im your guy, anything to get away from CakePHP :)
+              Any suggestions on what to build/study next, feel free to fire off a message.  Need help with a project/Site? Im your guy, anything to get away from CakePHP :)
             </p>
 
-            <br/><p className="talking" >Feel free to leave comments ( comming soon-> Node magic's first addition) on better solutions or even different techniques!</p>
+            <br/><p className="talking" >Feel free to leave comments or send emails on better solutions or different techniques ( sharing === caring ) !</p>
 
                  </div>
 

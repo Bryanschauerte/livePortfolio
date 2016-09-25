@@ -56,7 +56,7 @@ const requestHandling = {
 
   let targetID = req.body._id;
   let content = req.body.contentItems;
-
+console.log(targetID, "content targetID")
     db.collection('contents').update(
       {'_id': targetID},
       {$set: {'contentItems':content}},

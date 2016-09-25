@@ -26,8 +26,7 @@ class MainView extends React.Component{
     this._handleActiveItemReset = this._handleActiveItemReset.bind(this);
     this._setActiveItem = this._setActiveItem.bind(this);
 
-
-  }
+    }
   _setActiveItem(item){
 
     if(item != this.state.activeItemTitle){
@@ -37,6 +36,9 @@ class MainView extends React.Component{
     }
 
   }
+
+
+
 _handleActiveItemReset(){
   this.setState({activeItemTitle: null})
 }
@@ -56,15 +58,9 @@ _colorHandling(type){
 
   _handleItemRendering(info){
     if(info.length > 0 && this.props.showItems){
-      const filter = (infoBit) => {
-
-      return this.props.filteredOut.indexOf(
-        infoBit.contentItems.type.toLowerCase()) == -1? true: false;
-    }
-
 
       let infostuff = info.map((item, index) =>{
-        if( filter(item) ){
+
         return (
             <PreviewThumb
               {...this.props}
@@ -78,14 +74,13 @@ _colorHandling(type){
                   {...this.props}/>
 
               </PreviewThumb>
-
-        )
-          }}
+        )}
         )
           return infostuff;
 
       }
   }
+
 
   render(){
       // let mainContainerClass = classNames({
@@ -100,7 +95,8 @@ _colorHandling(type){
       <div  className="mainViewContainer">
 
 
-        {this.props.loaded?this._handleItemRendering(this.props.dataBaseContents): null}
+        {this.props.loaded?this._handleItemRendering(
+          this.props.dataBaseContents): null}
 
 
       </div>

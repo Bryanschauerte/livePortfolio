@@ -81,6 +81,8 @@ import classNames from 'classnames';
                   {this.props.isTextArea? <textarea
                     className={emptyTextAreaClasses}
                     type="text"
+                    onBlur={this._handleBlur}
+                    onFocus={this._handlefocus}
                     value={this.state.value || this.props.stateValue}
                     onChange={this._handleChange}
                     />:

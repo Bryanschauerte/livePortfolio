@@ -1,6 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import CodePenHandler from './CodePenHandler';
+import GistAddition from './GistAddition';
 import ImageSlider from './ImageSlider';
 
 class LargeVersion extends React.Component{
@@ -26,7 +27,7 @@ class LargeVersion extends React.Component{
 
 
   render(){
-
+console.log('large versions', this.props)
     return(
       <div className='LV_OuterCont'>
         <div className='LV_innerContents'>
@@ -81,8 +82,12 @@ class LargeVersion extends React.Component{
                       }/>
                     <h4>{contentItem.mediaTitle}</h4></div>: null}
 
+                      {contentItem.gistLink != false? <div className="addSideMargin">
+                        <GistAddition gistId={contentItem.gistId}/>
+                        <h4>{contentItem.mediaTitle}</h4></div>: null}
+
                   {contentItem.containsMedia == 'video'?
-                    <div className="videoContainer">
+                    <div className="addSideMargin">
                       <div className="paragraph">
                         <h1>{contentItem.mediaTitle}</h1>
                       </div>

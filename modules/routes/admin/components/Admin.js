@@ -34,9 +34,9 @@ class Admin extends React.Component{
       beenSaved:false,
       main: [
         {
-          subHeader:'',
+          subheader:'',
           links:'',
-          content:'',
+          contents:'',
           style:'',
           containsCodePen:false,
           containsMedia: '',

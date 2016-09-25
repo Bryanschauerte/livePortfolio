@@ -36,7 +36,7 @@ console.log(sendingData, "sendingData");
             axios[typeOfReq]('/maincontents', sendingData)
               .then( (res)=> {
                     console.log(res, "res client")
-  
+
 
                     self.setState({
                       makingRequest:false,

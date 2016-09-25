@@ -146,16 +146,17 @@ this._handleBlur = this._handleBlur.bind(this);
 
     let index = this.state.feilds.contentItems.main.length
     const plainMainContent= {
-                subHeader:'',
+                subheader:'',
                 links:'',
-                content:'',
+                contents:'',
                 style:'',
-                containsCodePen:false,
+                containsCodePen: false,
                 containsMedia: '',
                 mediaTitle:'',
                 problem:'',
                 solution:'',
-                conclusion:''
+                conclusion:'',
+                gistId: false
               };
 
     let currentStateFeilds = this.state.feilds;
@@ -275,6 +276,15 @@ this._handleBlur = this._handleBlur.bind(this);
               stateValue={this.state.feilds.contentItems.main[index]['containsCodePen']}
               name="containsCodePen"
               label="Contains CodePen; false or iframeUrl then CodePenUrl"/>
+
+              <EmptyInput
+                _handleInputDataChangePass={this.grabData}
+                indexNum={index}
+                isTextArea ={false}
+                smallable={false}
+                stateValue={this.state.feilds.contentItems.main[index]['gistId']}
+                name="gistId"
+                label="If it contains a gist, put the id here otherwise false"/>
 
 
             <EmptyInput
