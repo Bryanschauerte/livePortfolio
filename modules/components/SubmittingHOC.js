@@ -32,7 +32,7 @@ console.log(typeOfReq, "typeOfReq");
             currentState.makingRequest = true;
             currentState.result = false;
             this.setState({currentState})
-console.log(sendingData, "sendingData");
+            console.log(sendingData, "sendingData");
             axios[typeOfReq]('/maincontents', sendingData)
               .then( (res)=> {
                     console.log(res, "res client")
@@ -70,8 +70,9 @@ console.log(sendingData, "sendingData");
               btnState: this.state
 
 
+
             })
-console.log(this.state, "state")
+
             return(
               <div>
                 <WrappedComponent {...props} />

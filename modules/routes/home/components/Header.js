@@ -34,11 +34,6 @@ const Header= (props)=> {
 
   })
 
-// let handleClick = (e)=>{
-//   e.preventDefault();
-//   console.log('header hit')
-//   props.handleClose(e)
-// }
 
   return (
     <div className ={headerContainerClass}>

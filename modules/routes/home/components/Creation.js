@@ -32,6 +32,7 @@ class Creation extends React.Component{
     }
     this._addRemoveMainGroup = this._addRemoveMainGroup.bind(this)
     this._handleSubmit= this._handleSubmit.bind(this);
+    this.handleStatus = this.handleStatus.bind(this);
     this.grabData= this.grabData.bind(this);
     this._renderMainInput = this._renderMainInput.bind(this);
     this._handleInputDataChange = this._handleInputDataChange.bind(this);
@@ -41,6 +42,9 @@ class Creation extends React.Component{
     this._handleKeydown = this._handleKeydown.bind(this);
   }
 
+  handleStatus(submittingState){
+    console.log(submittingState, "submittingState");
+  }
   _handleKeydown(event) {
     if (event.keyCode === 13) {
       event.preventDefault();
@@ -136,14 +140,10 @@ class Creation extends React.Component{
 
   }
   _renderMainInput(){
- let SubBTN = SubmittingHOC(SubmitBTN)
-
-
-
-
+    let SubBTN = SubmittingHOC(SubmitBTN);
     let Showing = this.state.mainShowing;
     let totalSections = this.state.feilds.main.length;
-    console.log(Showing, "shwoing")
+
     return this.state.feilds.main.map( (item,index)=>{
        if(Showing === index){
          return(<div className="creationContainer" key={index}>
@@ -166,7 +166,8 @@ class Creation extends React.Component{
                callBackProp= {index+1}
                label="Look at next section"/>
 
-             <SubBTN label="Submit" sendData={this.state.feilds}/>
+             <SubBTN label="Submit"
+               sendData={this.state.feilds}/>
 
            </div>
 

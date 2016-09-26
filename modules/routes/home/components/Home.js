@@ -41,7 +41,7 @@ class Home extends React.Component{
     }
 
       _handleScroll(e){
-        console.log(window.scrollY, "window.scrollY " );
+
 
         if(!this.state.initialScroll){
           this.setState({
@@ -143,7 +143,7 @@ class Home extends React.Component{
     let filteredOut = this.state.filteredOut;
 
     let listItems = this.state.typesAvaliable;
-console.log(this.state, "state")
+
 
     return(<div className="homeContainer">
           <Header

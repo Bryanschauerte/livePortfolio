@@ -11,6 +11,7 @@ import React from 'react';
     }
     this._handleClick = this._handleClick.bind(this);
     this._calculateStyle = this._calculateStyle.bind(this);
+
   }
   _calculateStyle(){
     let style;
@@ -25,12 +26,13 @@ import React from 'react';
     }
     return style;
   }
-  _handleClick(e){
-    e.preventDefault();
-
+  _handleClick(){
+    // e.preventDefault();
     this.props.submit()
   }
+
   componentWillReceiveProps(nextProps) {
+
     this.setState({
       btnDisabled: nextProps.btnState.makingRequest,
       sendingData: nextProps.btnState.makingRequest,

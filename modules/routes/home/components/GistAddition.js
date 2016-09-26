@@ -5,14 +5,22 @@ class GistAddition extends React.Component{
     super(props);
     this.state={};
     this._updateIframeContent = this._updateIframeContent.bind(this);
+    this._handleString = this._handleString.bind(this);
   }
   componentDidMount(){
     this._updateIframeContent();
   }
+  _handleString(){
+
+    let gistURL = this.props.gistId;
+    let srcFromGist = "https://gist.github.com/Bryanschauerte/"+ gistURL + ".js";
+    return srcFromGist;
+  }
   _updateIframeContent() {
+    let gistUrl = this._handleString()
     let target = this.refs[this.props.gistId];
     let iframeWinDoc =  target.contentDocument || target.contentWindow.document;
-    var gistScript = '<script type="text/javascript" src="https://gist.github.com/Bryanschauerte/' + this.props.gistId + '.js"></script>';
+    var gistScript = "<script type='text/javascript' src="+gistUrl+"></script>";
     var iframeHtml = "<html><body>"+gistScript+'</body></html>';
     iframeWinDoc.open();
     iframeWinDoc.writeln(iframeHtml);

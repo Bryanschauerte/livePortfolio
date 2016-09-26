@@ -44,8 +44,8 @@ const requestHandling = {
 
     let date = new Date();
     req.body.dateCreated = date;
-
-
+    let _id = mongodb.ObjectId()
+    req.body._id = _id;
     db.collection('contents').save(req.body, (err, result) => {
       if (err) return res.send(err);
       res.send(result);
@@ -56,9 +56,9 @@ const requestHandling = {
 
   let targetID = req.body._id;
   let content = req.body.contentItems;
-console.log(targetID, "content targetID")
+
     db.collection('contents').update(
-      {'_id': targetID},
+      {'_id': mongodb.ObjectId(targetID)},
       {$set: {'contentItems':content}},
       { upsert: true }, (err, result)=>{
       if(err){

@@ -127,7 +127,7 @@ class Admin extends React.Component{
 
                 <div className="adminCreationContainer">
                   <div className= "adminCreationInnerContainer">
-                    {this.state.isLoaded? <Creation feilds = {itemToEdit}/>: null}
+                    {this.state.isLoaded? <Creation reload={this._requestAllContents} feilds = {itemToEdit}/>: null}
                   </div>
                 </div>
 

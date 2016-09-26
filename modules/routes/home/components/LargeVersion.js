@@ -27,7 +27,7 @@ class LargeVersion extends React.Component{
 
 
   render(){
-console.log('large versions', this.props)
+console.log(this.props, "large")
     return(
       <div className='LV_OuterCont'>
         <div className='LV_innerContents'>
@@ -70,7 +70,7 @@ console.log('large versions', this.props)
                   <p>{contentItem.contents}</p>
                 </div>: null}
 
-                  {contentItem.containsCodePen != false?<div>
+                  {contentItem.containsCodePen?<div>
                     <CodePenHandler
                       style={{height:265, width:"100%"}}
                       iframeSrc={
@@ -82,7 +82,7 @@ console.log('large versions', this.props)
                       }/>
                     <h4>{contentItem.mediaTitle}</h4></div>: null}
 
-                      {contentItem.gistLink != false? <div className="addSideMargin">
+                      {contentItem.gistId? <div className="addSideMargin">
                         <GistAddition gistId={contentItem.gistId}/>
                         <h4>{contentItem.mediaTitle}</h4></div>: null}
 
