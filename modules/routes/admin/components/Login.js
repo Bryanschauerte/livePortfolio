@@ -43,8 +43,9 @@ class Login extends React.Component{
     let jwt = localStorage.getItem('token');
     jwt = JSON.parse(jwt);
     let tempState = this.state;
-    let adminStatus = jwt.admin? 'Admin': 'Guest'
+
     if(jwt){
+      let adminStatus = jwt.admin? 'Admin': 'Guest'
       tempState.jwt = jwt;
       tempState.loginStatus = adminStatus;
       this.setState({tempState})
@@ -117,7 +118,7 @@ class Login extends React.Component{
         'incorrectInput': this.state.loginStatus=='wrong'
       })
 
-console.log(this.state, "state");
+
       return (<div className="LoginContainer">
           {this.state.jwt?<h3>Welcome {this.state.loginStatus}!</h3>:
           <h3>Login to submit to database</h3>}

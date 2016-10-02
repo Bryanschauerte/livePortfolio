@@ -59,7 +59,7 @@ const requestHandling = {
 
   },
   newContent: (req, res) => {
-    console.log(req, "req")
+
     let date = new Date();
     req.body.dateCreated = date;
     let _id = mongodb.ObjectId()
