@@ -6,6 +6,7 @@ import EmptyDisplay from '../../../components/EmptyDisplay';
 import BtnHandler from '../../../components/BtnHandler';
 import SubmitBTN from '../../../components/SubmitBTN';
 
+
 class Creation extends React.Component{
   constructor(props){
     super(props);
@@ -26,10 +27,10 @@ class Creation extends React.Component{
     this._handleButton= this._handleButton.bind(this);
     this._handleKeydown = this._handleKeydown.bind(this);
     this._handlePreviewInputDataChange = this._handlePreviewInputDataChange.bind(this);
-this._handleMouseEnter= this._handleMouseEnter.bind(this);
-this._handleMouseLeave = this._handleMouseLeave.bind(this);
-this._handlefocus = this._handlefocus.bind(this);
-this._handleBlur = this._handleBlur.bind(this);
+    this._handleMouseEnter= this._handleMouseEnter.bind(this);
+    this._handleMouseLeave = this._handleMouseLeave.bind(this);
+    this._handlefocus = this._handlefocus.bind(this);
+    this._handleBlur = this._handleBlur.bind(this);
 
   }
 
@@ -106,10 +107,8 @@ this._handleBlur = this._handleBlur.bind(this);
 
 
     let currentStateFeilds = this.state.feilds;
-
     dataObj.indexNum === 'NA'? currentStateFeilds.contentItems[dataObj.name] = dataObj.value:
       currentStateFeilds.contentItems.main[dataObj.indexNum][dataObj.name] = dataObj.value;
-
     this.setState({feilds: currentStateFeilds});
 
   }
@@ -117,10 +116,7 @@ this._handleBlur = this._handleBlur.bind(this);
 
 
     let currentStateFeilds = this.state.feilds;
-
     currentStateFeilds.contentItems.previewContents[dataObj.name] = dataObj.value;
-
-
     this.setState({feilds: currentStateFeilds});
 
   }

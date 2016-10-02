@@ -3,7 +3,7 @@ import React from 'react'
 import { renderToString } from 'react-dom/server'
 import { match, RouterContext } from 'react-router';
 import axios from "axios";
-var path = require('path');
+let path = require('path');
 import fs from 'fs'
 import {
   createPage,
@@ -11,20 +11,36 @@ import {
   writeError,
   writeNotFound,
   redirect } from './utilities/serverUtils';
-// import requestHandling from './utlities/requestHandling'
+
 import routes from './routes/RootRoute';
 import express from 'express';
 import bodyParser from 'body-parser'
 import cors from 'cors';
 import mongodb from 'mongodb';
-import mongoLABSURLINFO from '../keys/hidden'
-// import requestHandling from './utilities/requestHandling'
+import mongoLABSURLINFO from '../keys/hidden';
+const session = require('cookie-session');
+const cookieParser = require('cookie-Parser')
+const helmet = require('helmet');
+const expressJWT = require('express-jwt');
+//Only requirement of express-jwt is to pass the token in the header as: Authorization: Bearer <token>
+var uuid = require('node-uuid');
+var jwt = require('jsonwebtoken');
+import bcrypt from 'bcrypt-nodejs';
+import users from '../keys/users';
+import secret from '../keys/secret';
+const request = require('./utilities/requestHandling');
+//
 
+console.log(users, "users")
+const expiryDate = new Date( Date.now() + 60 * 60 * 1000 );
+
+// app.use(bodyParser.json()); from https://github.com/joshgeller/react-redux-jwt-auth-example/blob/master/server.js
 
 let app = express();
-
+// app.use(helmet());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json({ type: 'application/json' }))
+
 app.use(express.static(__dirname + '/__build__/'));
 
 const PORT = process.env.PORT || 8080;
@@ -39,9 +55,11 @@ MongoClient.connect(mongoLABSURLINFO, (err, database) => {
 
 
 const requestHandling = {
+  getToken: (req,res, next) =>{
 
+  },
   newContent: (req, res) => {
-
+    console.log(req, "req")
     let date = new Date();
     req.body.dateCreated = date;
     let _id = mongodb.ObjectId()
@@ -53,7 +71,7 @@ const requestHandling = {
   },
 
   updateContent: (req, res) => {
-
+console.log(req, "req")
   let targetID = req.body._id;
   let content = req.body.contentItems;
 
@@ -71,11 +89,11 @@ const requestHandling = {
   },
 
   deleteContent: (req,res)=>{
-    let targetTitle = req.body.title;
 
-      console.log('deleting '+ targetTitle)
+      let targetID = req.body._id;
+      console.log('deleting '+ targetID)
       db.collection('contents', (err, collection)=>{
-        collection.remove({'title': targetTitle}, {safe:true}, (err, result)=>{
+        collection.remove({'_id': mongodb.ObjectId(targetID)}, {safe:true}, (err, result)=>{
           if(err) {
             res.send(err)
         }else{
@@ -88,17 +106,56 @@ const requestHandling = {
 };
 
 
+//handling contenttargetID
+app.post('/maincontents', expressJWT({secret}), requestHandling.newContent);
+app.put('/maincontents',  expressJWT({secret}), requestHandling.updateContent);
+app.delete('/maincontents',  expressJWT({secret}), requestHandling.deleteContent);
+
+//users
+app.post('/guestPass', function(req, res) {
+  let token = jwt.sign(users['guest'], secret)
+      return res.status(200).json(token);
+        }
+)
+
+app.post('/logintwo',expressJWT({secret}),
+
+  function(req, res) {
+        // var token = req.headers['Authentication'] || req.body.token || req.params.token;
+        console.log(req.body, 'body');
+        res.status(200).json({hey: "working"})
 
 
-//handling content
-app.post('/maincontents', requestHandling.newContent);
-app.put('/maincontents', requestHandling.updateContent);
-app.delete('/maincontents', requestHandling.deleteContent);
+        }
+)
+app.post('/login', function(req,res){
+  if(!req.body.username || !req.body.password){
+    res.status(400).send('Missing info!')
+  }
+  console.log(req, "request")
+    if(users[req.body.username]){
+      if(users[req.body.username].password == users[req.body.username].password){
+        let token = jwt.sign(users[req.body.username], secret)
+        return res.status(200).json({token:token, admin:users[req.body.username].admin});
+      }
+    }else{
+      return res.status(400).send('incorrect info!');
+    }
 
+})
+app.post('/secure', expressJWT({secret}), checkAdminStatus);
 
+function checkAdminStatus(req, res){
+  console.log(req, "request in check")
+  if(req.body.admin){
+    console.log("admin");
+    return res.status(200).json({hello:'admin'})
+  }else{
+    console.log('not admin');
+    return res.status(200).json({hello:'NOT admin'});
+  }
+}
 
-
-//route handling
 app.get('*', (req, res) => {
     if(req.url){
 
@@ -145,3 +202,34 @@ function renderApp(props, res) {
   res.send(html)
 
 }
+
+
+
+//
+// app.post('/auth/getToken/', (req, res) => {
+//     if (req.body.email == 'hello@test.com' && req.body.password == 'test') {
+//         res.status(200)
+//             .json({token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6IlRlc3QgVXNlciJ9.J6n4-v0I85zk9MkxBHroZ9ZPZEES-IKeul9ozxYnoZ8'});
+//     } else {
+//         res.sendStatus(403);
+//     }
+// });
+//
+// app.get('/getData/', (req, res) => {
+//     let token = req.headers['authorization'];
+//     if (!token) {
+//         res.sendStatus(401);
+//     } else {
+//         try {
+//             let decoded = jwt.verify(token.replace('Bearer ', ''), 'secret-key');
+//             res.status(200)
+//                 .json({data: 'Valid JWT found! This protected data was fetched from the server.'});
+//         } catch (e) {
+//             res.sendStatus(401);
+//         }
+//     }
+// })
+//
+// app.get('/', (req, res) => {
+//     res.sendFile(__dirname + '/dist/index.html');
+// });

@@ -10,7 +10,7 @@ const location = `${pathname}${search}${hash}`
 
 
 match({ routes, location }, () => {
-console.log(routes, "routes")
+
   render(
     <Router routes={routes} history={browserHistory} />,
     document.getElementById('app')

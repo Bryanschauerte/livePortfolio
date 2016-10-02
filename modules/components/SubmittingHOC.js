@@ -15,12 +15,19 @@ return class SubmittingContainer extends React.Component{
           }
 
           submit(){
+            let bearer = localStorage.getItem('token')
+            bearer = JSON.parse(bearer).token;
+            headers = {
+            'Accept': 'application/json',
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Authorization': 'Bearer ' + this.bearer,
+            };
 
             let sendingData= this.props.sendData;
             let typeOfReq = sendingData.contentItems.beenSaved? 'put': 'post';
             let currentState = this.state;
             let self = this;
-console.log(typeOfReq, "typeOfReq");
+
             if( sendingData.contentItems.beenSaved == false ){
               sendingData.contentItems.beenSaved = true;
             }
@@ -33,7 +40,7 @@ console.log(typeOfReq, "typeOfReq");
             currentState.result = false;
             this.setState({currentState})
             console.log(sendingData, "sendingData");
-            axios[typeOfReq]('/maincontents', sendingData)
+            axios[typeOfReq]('/maincontents', sendingData, headers)
               .then( (res)=> {
                     console.log(res, "res client")
 

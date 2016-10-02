@@ -714,28 +714,32 @@ CodePenHandler {
   height:90%;
   overflow: scroll;
 }
-.adminControl ul{
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  display: flex;
-  flex-direction: row;
-  width: 50%;
-  justify-content: space-around;
-}
-.adminNavBtns{
+
+.LoginContainer{
   align-self: center;
   padding: .7em;
   background-color: black;
   color: white;
-  cursor: pointer;
   text-align: center;
   border: 1px solid white;
   border-radius: 3px;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
 }
-
-
+.loginBit{
+  padding:2%;
+}
+div.loginBit label{
+  margin-right: 2%;
+}
+div.loginBit input{
+  width: 50%;
+}
+.incorrectInput{
+  background-color: red;
+}
+.loginHide{
+  display: none;
+}
 .adminContainer{
   font-size: 1.5em;
   position: absolute;
@@ -934,7 +938,7 @@ textarea.emptyInputDefault {
   align-items: center;
 }
 .LV_innerContents{
-  width: 100%;
+  width: 95%;
   padding: 0 2% 2% 2%;
   background-color: #f0f5f9;
 }

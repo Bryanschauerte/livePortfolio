@@ -3,7 +3,7 @@ import Creation from './Creation';
 import axios from 'axios';
 import Preview from './Preview'
 import classNames from 'classnames';
-
+import Login from './Login';
 
 class Admin extends React.Component{
   constructor(props){
@@ -13,13 +13,15 @@ class Admin extends React.Component{
     mode: "adding",
     dataBaseContents: [],
     selected: null,
-    isLoaded:false
+    isLoaded:false,
+    token:null
     }
 
     this._changeMode = this._changeMode.bind(this);
     this._requestAllContents = this._requestAllContents.bind(this);
     this._handleSelectItem = this._handleSelectItem.bind(this);
     this._handleFeildRendering = this._handleFeildRendering.bind(this);
+    this.checkTokenStatus = this.checkTokenStatus.bind(this);
 
   }
 
@@ -78,6 +80,18 @@ class Admin extends React.Component{
             })
     }
 
+  checkTokenStatus(){
+    let tempState = this.state;
+    let token = sessionStorage.getItem('jwtToken');
+    if(token){
+      tempState.token = token;
+    }
+    this.setState(tempState);
+
+    }
+
+
+
 
   _changeMode(){
    let currentState = this.state;
@@ -94,6 +108,7 @@ class Admin extends React.Component{
   }
 
   componentDidMount(){
+    this.checkTokenStatus()
     this._requestAllContents()
     // ask to log in and if not right, send back to home
   }
@@ -110,19 +125,14 @@ class Admin extends React.Component{
     })
 
     return(<div className="adminContainer">
-              <div className = "adminControl">
+              {/* <div className = "adminControl">
                 <ul>
-                  <li
-                    className='adminNavBtns'>
-                    Make a content Inactive</li>
-                  <li href="/home"
-                    className='adminNavBtns'>Home</li>
-                  <li href="/"
-                    className='adminNavBtns'>Start</li>
+
+                  <li className='adminNavBtns'><Login/></li>
 
                 </ul>
 
-              </div>
+              </div> */}
               <div className="adminSections">
 
                 <div className="adminCreationContainer">
@@ -132,10 +142,14 @@ class Admin extends React.Component{
                 </div>
 
                 <div className="adminPreviewContainer">
+                  <div><Login/></div>
                   {this.state.isLoaded? <Preview
                     getItemTarget={this._handleSelectItem}
                     showItems="true"
                     infoArray={contents}/>: null}
+                </div>
+                <div>
+
                 </div>
               </div>
       </div>
