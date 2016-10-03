@@ -1,10 +1,7 @@
 
 import React from 'react';
-
-
-
 import SvgGenerator from './SvgGenerator';
-// container for the / route
+
 class App extends React.Component{
   constructor(props){
     super(props);

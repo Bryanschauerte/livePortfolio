@@ -1,10 +1,8 @@
 import React from 'react';
-
-import SubmittingHOC from '../../../components/SubmittingHOC';
-import EmptyInput from '../../../components/EmptyInput';
-import EmptyDisplay from '../../../components/EmptyDisplay';
-import BtnHandler from '../../../components/BtnHandler';
-import SubmitBTN from '../../../components/SubmitBTN';
+import SubmittingHOC from './SubmittingHOC';
+import EmptyInput from './EmptyInput';
+import BtnHandler from './BtnHandler';
+import SubmitBTN from './SubmitBTN';
 
 
 class Creation extends React.Component{
@@ -145,7 +143,7 @@ class Creation extends React.Component{
                 subheader:'',
                 links:'',
                 contents:'',
-                style:'',
+                linksPresent:'',
                 containsCodePen: false,
                 containsMedia: '',
                 mediaTitle:'',
@@ -186,7 +184,7 @@ class Creation extends React.Component{
          return(<div className="creationContainer" key={index}>
            <div className="creationTitle">
               <h2>Main Contents</h2>
-               <p>Current Index: {index}</p>
+               <p>Current Index: {index+1} of {totalSections}</p>
             </div>
            <div className='inputControlContainer'>
              <BtnHandler
@@ -237,8 +235,18 @@ class Creation extends React.Component{
              _handleInputDataChangePass={this.grabData}
              stateValue={this.state.feilds.contentItems.main[index]['contents']}
              indexNum={index}
+             smallable={false}
              name="contents"
              label="Contents"/>
+
+         <EmptyInput
+             _handleInputDataChangePass={this.grabData}
+             stateValue={this.state.feilds.contentItems.main[index]['linksPresent']}
+             name="linksPresent"
+             indexNum={index}
+             smallable={false}
+             isTextArea ={false}
+             label="Link in contents, wrap contents with '##' on both sides to use. FULL http://www. required"/>
 
            <EmptyInput
              _handleInputDataChangePass={this.grabData}
@@ -257,12 +265,12 @@ class Creation extends React.Component{
              label="Conclusion"/>
 
 
-            <EmptyInput
+            {/* <EmptyInput
               _handleInputDataChangePass={this.grabData}
               indexNum={index}
               stateValue={this.state.feilds.contentItems.main[index]['style']}
               name="style"
-              label="Style"/>
+              label="Style"/> */}
 
             <EmptyInput
               _handleInputDataChangePass={this.grabData}
@@ -323,10 +331,10 @@ class Creation extends React.Component{
 
     return (  <div className="creationContainer">
           <h1>Creation</h1>
-<SubBTN label="Submit" sendData={this.state.feilds}/>
-<div className = "topCreationContainer">
-        <div className="mainInfoInputContainer">
-          <h3>Main</h3>
+          <SubBTN label="Submit" sendData={this.state.feilds}/>
+          <div className = "topCreationContainer">
+            <div className="mainInfoInputContainer">
+              <h3>Main</h3>
               <EmptyInput
                 _handleInputDataChangePass={this.grabData}
                 stateValue={feildValues.title}
@@ -334,22 +342,6 @@ class Creation extends React.Component{
                 smallable={false}
                 isTextArea ={false}
                 label="Title"/>
-
-               <EmptyInput
-                 _handleInputDataChangePass={this.grabData}
-                 stateValue={feildValues.header}
-                 name="header"
-                 smallable={false}
-                 isTextArea ={false}
-                 label="Header"/>
-
-               <EmptyInput
-                 _handleInputDataChangePass={this.grabData}
-                 stateValue={feildValues.link}
-                 name="link"
-                 smallable={false}
-                 isTextArea ={false}
-                 label="Link to follow"/>
 
                <EmptyInput
                  _handleInputDataChangePass={this.grabData}

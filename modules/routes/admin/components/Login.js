@@ -41,11 +41,11 @@ class Login extends React.Component{
   }
   checkLocalStorage(){
     let jwt = localStorage.getItem('token');
-    jwt = JSON.parse(jwt);
+    let admin = localStorage.getItem('admin');
     let tempState = this.state;
 
     if(jwt){
-      let adminStatus = jwt.admin? 'Admin': 'Guest'
+      let adminStatus = admin? 'Admin': 'Guest'
       tempState.jwt = jwt;
       tempState.loginStatus = adminStatus;
       this.setState({tempState})
@@ -77,6 +77,8 @@ class Login extends React.Component{
 
     loginUser(e) {
       e.preventDefault();
+      localStorage.removeItem('token');
+      localStorage.removeItem('admin');
       const self = this;
       axios({
         method: 'post',
@@ -86,12 +88,13 @@ class Login extends React.Component{
           password: this.state.password
         }
       }).then( (res, err)=> {
-                console.log(res, "res client")
-                let token = JSON.stringify(res.data.token);
+                let token = res.data.token;
+                let admin = res.data.admin;
                 localStorage.setItem('token', token);
+                localStorage.setItem('admin', token);
                 let adminStatus = res.data.admin? 'Admin': 'Guest'
                 self.setState({
-                  jwt:res.data,
+                  jwt:res.data.token,
                   loginStatus: adminStatus
                 })
             })

@@ -28,7 +28,6 @@ class Admin extends React.Component{
   _handleFeildRendering(hasSelected){
     const emptyData = {
       title: '',
-      header:'',
       footer:'',
       techStack:'',
       link:'',
@@ -39,7 +38,7 @@ class Admin extends React.Component{
           subheader:'',
           links:'',
           contents:'',
-          style:'',
+          linksPresent:'',
           containsCodePen:false,
           containsMedia: '',
           mediaTitle:'',
@@ -71,12 +70,13 @@ class Admin extends React.Component{
 
       axios.get('/maincontents')
           .then( (response)=> {
-              console.log(response, "db response");
+
               let dbReturn = response.data
               this.setState({
                 dataBaseContents:dbReturn,
                 isLoaded: true
               })
+              
             })
     }
 
@@ -125,14 +125,7 @@ class Admin extends React.Component{
     })
 
     return(<div className="adminContainer">
-              {/* <div className = "adminControl">
-                <ul>
 
-                  <li className='adminNavBtns'><Login/></li>
-
-                </ul>
-
-              </div> */}
               <div className="adminSections">
 
                 <div className="adminCreationContainer">

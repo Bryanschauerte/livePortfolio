@@ -701,6 +701,7 @@ CodePenHandler {
 .previewTitle{
   text-align: left;
   padding: 1% 0%;
+  color: #ffffff;
 }
 .adminControl{
   width: 100%;
@@ -891,7 +892,13 @@ textarea.emptyInputDefault {
     background-color: #f0f5f9;
     padding: 2% 0%;
 }
-
+.previewImage{
+  display: inline-flex;
+  justify-content: center;
+}
+.previewImage img{
+max-height: 80px;
+}
 .mainViewContainer{
   justify-content: space-around;
   max-height: 45%;
@@ -918,9 +925,7 @@ textarea.emptyInputDefault {
   color:#f0f5f9;
   margin-bottom: 1%;
 }
-.previewTitle{
-  text-align: left;
-}
+
 .LV_OuterCont {
   height:100%;
   background-color: #E0E0E0;

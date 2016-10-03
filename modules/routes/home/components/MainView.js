@@ -1,16 +1,9 @@
 import React from 'react';
 import classNames from 'classnames';
-// import InfoBit from './InfoContainer';
 import TokenGenerator from 'uuid-token-generator';
 let tokgen = new TokenGenerator();
 import PreviewThumb from './PreviewThumb';
-import HoverHOC from './HoverHOC';
 import LargeVersion from './LargeVersion';
-
-// import LargeSingle from './LargeSingle'
-// import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-
-// import {testinfo} from '../../PsuedoData'
 
 class MainView extends React.Component{
   constructor(props){

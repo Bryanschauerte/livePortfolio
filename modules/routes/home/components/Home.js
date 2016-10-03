@@ -1,9 +1,10 @@
 import React from 'react'
-import Creation from './Creation';
-import Header from '../components/Header'
+
+import Header from './Header'
 import axios from 'axios';
 import MainView from './MainView';
 import Sidecontainer from './Sidecontainer';
+
 class Home extends React.Component{
   constructor(props){
     super(props);
@@ -42,8 +43,8 @@ class Home extends React.Component{
 
       _handleScroll(e){
 
+        if( !this.state.initialScroll ){
 
-        if(!this.state.initialScroll){
           this.setState({
             initialScroll: true,
           displaySideContainer: false})
@@ -61,7 +62,9 @@ class Home extends React.Component{
             tempTypes.indexOf(item.contentItems.type)== -1){
 
              tempTypes.push(item.contentItems.type)
+
           }
+
         })
 
         this.setState({
@@ -85,7 +88,6 @@ class Home extends React.Component{
       _requestAllContents(){
         axios.get('/maincontents')
             .then( (response)=> {
-                console.log(response, "db response");
                 let contents = response.data;
                 this._constructTypeList(contents)
                 this.setState({
@@ -132,16 +134,16 @@ class Home extends React.Component{
             loaded={this.state.loaded}
             typesAvaliable={this.state.typesAvaliable}
             showItems={this.state.showItems}
-            {...this.props}/>
-        )
+            {...this.props}/>)
       })
+
       return rows;
+      
     }
 
   render(){
     let contents = this.state.dataBaseContents;
     let filteredOut = this.state.filteredOut;
-
     let listItems = this.state.typesAvaliable;
 
 
@@ -156,14 +158,14 @@ class Home extends React.Component{
 
 
       <div classDefault={this.state.loaded} className="homeMainContainer">
-  {this.state.loaded? this.renderRows(): null}
+        {this.state.loaded? this.renderRows(): null}
 
       </div>
 
-  <Sidecontainer
-    {...this.props}
-    isActive={this.state.displaySideContainer}
-    handleClose={this._handleShowInfoContainer}/>
+      <Sidecontainer
+        {...this.props}
+        isActive={this.state.displaySideContainer}
+        handleClose={this._handleShowInfoContainer}/>
 
       </div>
     )

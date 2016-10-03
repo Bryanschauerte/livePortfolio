@@ -22,22 +22,16 @@ const session = require('cookie-session');
 const cookieParser = require('cookie-Parser')
 const helmet = require('helmet');
 const expressJWT = require('express-jwt');
-//Only requirement of express-jwt is to pass the token in the header as: Authorization: Bearer <token>
 var uuid = require('node-uuid');
 var jwt = require('jsonwebtoken');
 import bcrypt from 'bcrypt-nodejs';
 import users from '../keys/users';
 import secret from '../keys/secret';
 const request = require('./utilities/requestHandling');
-//
-
-console.log(users, "users")
 const expiryDate = new Date( Date.now() + 60 * 60 * 1000 );
 
-// app.use(bodyParser.json()); from https://github.com/joshgeller/react-redux-jwt-auth-example/blob/master/server.js
-
 let app = express();
-// app.use(helmet());
+app.use(helmet());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json({ type: 'application/json' }))
 
@@ -71,7 +65,7 @@ const requestHandling = {
   },
 
   updateContent: (req, res) => {
-console.log(req, "req")
+
   let targetID = req.body._id;
   let content = req.body.contentItems;
 
@@ -112,27 +106,12 @@ app.put('/maincontents',  expressJWT({secret}), requestHandling.updateContent);
 app.delete('/maincontents',  expressJWT({secret}), requestHandling.deleteContent);
 
 //users
-app.post('/guestPass', function(req, res) {
-  let token = jwt.sign(users['guest'], secret)
-      return res.status(200).json(token);
-        }
-)
 
-app.post('/logintwo',expressJWT({secret}),
-
-  function(req, res) {
-        // var token = req.headers['Authentication'] || req.body.token || req.params.token;
-        console.log(req.body, 'body');
-        res.status(200).json({hey: "working"})
-
-
-        }
-)
 app.post('/login', function(req,res){
   if(!req.body.username || !req.body.password){
     res.status(400).send('Missing info!')
   }
-  console.log(req, "request")
+
     if(users[req.body.username]){
       if(users[req.body.username].password == users[req.body.username].password){
         let token = jwt.sign(users[req.body.username], secret)
@@ -143,18 +122,7 @@ app.post('/login', function(req,res){
     }
 
 })
-app.post('/secure', expressJWT({secret}), checkAdminStatus);
 
-function checkAdminStatus(req, res){
-  console.log(req, "request in check")
-  if(req.body.admin){
-    console.log("admin");
-    return res.status(200).json({hello:'admin'})
-  }else{
-    console.log('not admin');
-    return res.status(200).json({hello:'NOT admin'});
-  }
-}
 
 app.get('*', (req, res) => {
     if(req.url){

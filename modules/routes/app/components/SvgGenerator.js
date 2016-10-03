@@ -1,7 +1,7 @@
 
 import React from 'react';
 import TokenGenerator from 'uuid-token-generator';
-let tokgen = new TokenGenerator(); //for generating keys, tokgen.generate()
+let tokgen = new TokenGenerator();
 import classNames from 'classnames';
 
 
@@ -54,91 +54,89 @@ import classNames from 'classnames';
     }
     return backgroundG;
     }
-_generateCircles(){
+  _generateCircles(){
 
-let inputColorObj = {
-  center:"#01b826",
-  topCenter:"#0B1968",
-  topLeft:"#0193b8",
-  topRight: "#813772",
-  bottomRight:"#b82601",
-  bottomLeft:"#062f4f"
-}
-	let center = inputColorObj.center;
-	let topCenter = inputColorObj.topCenter;
-	let topLeft = inputColorObj.topLeft;
-	let topRight = inputColorObj.topRight;
-	let bottomRight = inputColorObj.bottomRight;
-	let bottomLeft = inputColorObj.bottomLeft;
-  let {showBackgAni} = this.props;
+    let inputColorObj = {
+      center:"#01b826",
+      topCenter:"#0B1968",
+      topLeft:"#0193b8",
+      topRight: "#813772",
+      bottomRight:"#b82601",
+      bottomLeft:"#062f4f"
+    }
+    
+  	let center = inputColorObj.center;
+  	let topCenter = inputColorObj.topCenter;
+  	let topLeft = inputColorObj.topLeft;
+  	let topRight = inputColorObj.topRight;
+  	let bottomRight = inputColorObj.bottomRight;
+  	let bottomLeft = inputColorObj.bottomLeft;
+    let {showBackgAni} = this.props;
 
-let internals=[];
+    let internals=[];
 
-	for(var l=1; l<=10; l++){
-    let temp = l*5
-    temp += "%"
-		internals.push(<circle key ={tokgen.generate()} cx='50%' cy='50%' r={temp} fillOpacity='.3' fill={center} className={showBackgAni? "SVGCcenter": null} />)
-	}
+  	for(var l=1; l<=10; l++){
+      let temp = l*5
+      temp += "%"
+  		internals.push(<circle key ={tokgen.generate()} cx='50%' cy='50%' r={temp} fillOpacity='.3' fill={center} className={showBackgAni? "SVGCcenter": null} />)
+  	}
 
-	//Top-Center
-	for(var n=1; n<=9; n++){
-    let temp = 10*(n+1);
-    temp += "%"
-		internals.push(	<circle key ={tokgen.generate()} cx='50%' cy='-10%' r={temp} fillOpacity='.2' fill={topCenter} className={showBackgAni? "SVGCtopCenter": null} />)
-	}
+  	//Top-Center
+  	for(var n=1; n<=9; n++){
+      let temp = 10*(n+1);
+      temp += "%"
+  		internals.push(	<circle key ={tokgen.generate()} cx='50%' cy='-10%' r={temp} fillOpacity='.2' fill={topCenter} className={showBackgAni? "SVGCtopCenter": null} />)
+  	}
 
-	// Top-Left
-	for(var i=1; i<=7; i++){
-    let temp = i*10;
-    temp += "%"
-		internals.push( <circle key ={tokgen.generate()} cx='0' cy='0' r={temp} fillOpacity='.2' fill={topLeft} className={showBackgAni? "SVGtopLeft": null} />)
-	}
+  	// Top-Left
+  	for(var i=1; i<=7; i++){
+      let temp = i*10;
+      temp += "%"
+  		internals.push( <circle key ={tokgen.generate()} cx='0' cy='0' r={temp} fillOpacity='.2' fill={topLeft} className={showBackgAni? "SVGtopLeft": null} />)
+  	}
 
-	// Top-Right
-	for(var j=1; j<=7; j++){
-    let temp = j*10;
-    temp += "%"
-		internals.push( <circle key ={tokgen.generate()} cx='100%' cy='0' r={temp} fillOpacity='.1' fill={topRight} className={showBackgAni? "SVGtopRight": null}  />)
-	}
+  	// Top-Right
+  	for(var j=1; j<=7; j++){
+      let temp = j*10;
+      temp += "%"
+  		internals.push( <circle key ={tokgen.generate()} cx='100%' cy='0' r={temp} fillOpacity='.1' fill={topRight} className={showBackgAni? "SVGtopRight": null}  />)
+  	}
 
-	// Bottom-Right
-	for(var k=1; k<=7; k++){
-    let temp = k*10;
-    temp += "%";
-	internals.push( <circle key ={tokgen.generate()} cx='100%' cy='100%' r={temp} fillOpacity='.1' fill={bottomRight} className={showBackgAni? "SVGbottomRight": null} />)
-	}
+  	// Bottom-Right
+  	for(var k=1; k<=7; k++){
+      let temp = k*10;
+      temp += "%";
+  	internals.push( <circle key ={tokgen.generate()} cx='100%' cy='100%' r={temp} fillOpacity='.1' fill={bottomRight} className={showBackgAni? "SVGbottomRight": null} />)
+  	}
 
-	// Bottom-Left
-	for(var m=1; m<=7; m++){
-    let temp = m*10;
-    temp += "%";
-		internals.push(	<circle key ={tokgen.generate()} cx='0%' cy='100%' r={temp} fillOpacity='.1' fill={bottomLeft} className={showBackgAni? "SVGbottomLeft": null} />)
-	}
-  let returnCircles=[];
-  returnCircles.push(
-    <svg key ={tokgen.generate()} id="TopSVGCirles" height="100%" width="100%">{internals}</svg>
-    );
+  	// Bottom-Left
+  	for(var m=1; m<=7; m++){
+      let temp = m*10;
+      temp += "%";
+  		internals.push(	<circle key ={tokgen.generate()} cx='0%' cy='100%' r={temp} fillOpacity='.1' fill={bottomLeft} className={showBackgAni? "SVGbottomLeft": null} />)
+  	}
+    let returnCircles=[];
+    returnCircles.push(
+      <svg key ={tokgen.generate()} id="TopSVGCirles" height="100%" width="100%">{internals}</svg>
+      );
 
-	return returnCircles;
+    	return returnCircles;
 
-}
+    }
    render(){
      let dimensions = this.props.dimensions;
-
-
      let backgroundStyle= { stroke: 'blue', strokeWidth: 3}
-     console.log(this.props, "props")
 
-return(
-
-
-  <div key ={tokgen.generate()} className='svgContainer' style={{height:this.props.windowHeight,width:this.props.windowWidth}} >
-
-    {this._generateCircles()}
-  </div>
+      return(
 
 
-)
+        <div key ={tokgen.generate()} className='svgContainer' style={{height:this.props.windowHeight,width:this.props.windowWidth}} >
+
+          {this._generateCircles()}
+        </div>
+
+
+      )
    }
 
  }

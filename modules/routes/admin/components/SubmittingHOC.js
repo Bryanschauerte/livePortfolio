@@ -16,11 +16,12 @@ return class SubmittingContainer extends React.Component{
 
           submit(){
             let bearer = localStorage.getItem('token');
-            bearer = JSON.parse(bearer).token;
+
             const headers = {
 
             'Authorization': 'Bearer ' + bearer
             };
+            console.log(headers, "headers")
             let sendingData= this.props.sendData;
             let typeOfReq = sendingData.contentItems.beenSaved? 'put': 'post';
             let currentState = this.state;

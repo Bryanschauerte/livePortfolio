@@ -1,15 +1,9 @@
 import React from 'react';
 import TokenGenerator from 'uuid-token-generator';
-let tokgen = new TokenGenerator(); //for generating keys, tokgen.generate()
-// import MainView from './MainView'
+let tokgen = new TokenGenerator(); 
 import classNames from 'classnames';
-// import InfoBit from './InfoContainer';
-// import LargeSingle from './LargeSingle'
 import HoverHOC from './HoverHOC';
-// import PreviewThumb from './PreviewThumb'
-// const Preview = (props)=>{
-//
-// }
+
 class Preview extends React.Component{
   constructor(props){
     super(props);
@@ -75,7 +69,7 @@ class Preview extends React.Component{
 
                   >
                   {this.state.hoveringItem != item.contentItems.title? <p className="previewLIHighlight">
-                    {item.contentItems.title}: {item.contentItems.header} type: {item.contentItems.type}</p>:
+                    {item.contentItems.title} of type: {item.contentItems.type}</p>:
                 <p className="previewLI">{item.contentItems.title}: EDIT THIS</p>}
 
                 </li>
@@ -96,8 +90,6 @@ componentDidMount(){
   render(){
 
     let contents = this.props.infoArray;
-
-
     let items = this._handleItemRendering(this.props.infoArray);
 
     return(<div className='previewListContainer'>
