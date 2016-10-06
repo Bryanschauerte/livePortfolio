@@ -3,7 +3,7 @@ import React from 'react'
 import Header from './Header'
 import axios from 'axios';
 import MainView from './MainView';
-import Sidecontainer from './Sidecontainer';
+import SideContainer from './SideContainer';
 
 class Home extends React.Component{
   constructor(props){
@@ -162,7 +162,7 @@ class Home extends React.Component{
 
       </div>
 
-      <Sidecontainer
+      <SideContainer
         {...this.props}
         isActive={this.state.displaySideContainer}
         handleClose={this._handleShowInfoContainer}/>

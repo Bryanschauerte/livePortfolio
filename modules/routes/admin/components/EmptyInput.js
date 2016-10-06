@@ -21,7 +21,7 @@ import classNames from 'classnames';
               this._handleBlur = this._handleBlur.bind(this);
             }
             _handleBlur(event){
-              console.log(this.state, "state")
+
               event.preventDefault();
               if(this.props.isPreview){
                 this.props._handleInputDataChangePass(this.state, true);
@@ -30,7 +30,7 @@ import classNames from 'classnames';
               this.setState({focused: false});
             }
             _handlefocus(event){
-              console.log(this.state, "state")
+
               event.preventDefault();
               this.setState({focused: true});
             }

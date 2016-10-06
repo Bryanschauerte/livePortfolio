@@ -14,6 +14,7 @@ var _RootRoute2 = _interopRequireDefault(_RootRoute);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+require('babel-polyfill');
 var _window$location = window.location;
 var pathname = _window$location.pathname;
 var search = _window$location.search;

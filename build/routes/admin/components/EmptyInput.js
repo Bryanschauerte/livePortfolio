@@ -51,7 +51,7 @@ var EmptyInput = function (_React$Component) {
   _createClass(EmptyInput, [{
     key: '_handleBlur',
     value: function _handleBlur(event) {
-      console.log(this.state, "state");
+
       event.preventDefault();
       if (this.props.isPreview) {
         this.props._handleInputDataChangePass(this.state, true);
@@ -62,7 +62,7 @@ var EmptyInput = function (_React$Component) {
   }, {
     key: '_handlefocus',
     value: function _handlefocus(event) {
-      console.log(this.state, "state");
+
       event.preventDefault();
       this.setState({ focused: true });
     }

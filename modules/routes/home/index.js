@@ -11,9 +11,6 @@ export default {
         './components/Home'
       ], (require) => {
         let Home = require('./components/Home.js').default;
-        console.log(Home, "admin")
-        // let Creation = require('./components/Creation.js').default;
-        // const props = Object.assign({}, this.props, {ref: this.proc.bind(this)})
 
         cb(null,  Home)
       })

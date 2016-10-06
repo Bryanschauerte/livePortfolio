@@ -63,7 +63,7 @@ var MainView = function (_React$Component) {
   _createClass(MainView, [{
     key: '_setActiveItem',
     value: function _setActiveItem(item) {
-      console.log(item, "item");
+
       if (item != this.state.activeItemTitle) {
         this.setState({
           activeItemTitle: item
@@ -116,7 +116,6 @@ var MainView = function (_React$Component) {
     key: 'render',
     value: function render() {
 
-      console.log('show', this.props.showItems);
       return _react2.default.createElement(
         'div',
         { className: 'mainViewContainer' },

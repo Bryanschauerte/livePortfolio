@@ -174,15 +174,12 @@ var PreviewThumb = function (_React$Component) {
     key: 'render',
     value: function render() {
 
-      console.log(this.state.isAc, "this.props.isActive");
-
       var itemActiveClasses = (0, _classnames2.default)({
         previewThumbContainer: true,
         hereHere: true,
         goGone: this.props.isActive != this.props.displayInfo.title || null
 
       });
-      console.log(this.props, "props pre");
 
       var imageStyle = this._handleImages(this.handleStringForUrlArray(this.props.displayInfo.previewContents.imageArrayPreview));
       var listSummary = this._handleSummary();

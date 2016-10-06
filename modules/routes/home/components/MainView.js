@@ -21,7 +21,7 @@ class MainView extends React.Component{
 
     }
   _setActiveItem(item){
-console.log(item, "item")
+
     if(item != this.state.activeItemTitle){
       this.setState({
         activeItemTitle: item
@@ -78,7 +78,7 @@ _colorHandling(type){
   render(){
 
 
-console.log('show', this.props.showItems)
+
   return (
       <div className='mainViewContainer'>
 

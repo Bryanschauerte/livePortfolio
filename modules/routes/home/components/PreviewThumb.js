@@ -134,17 +134,12 @@ _classNameAddition(addition){
 
   render(){
 
-
-console.log(this.state.isAc, "this.props.isActive")
-
-
     let itemActiveClasses = classNames({
       previewThumbContainer: true,
       hereHere:true,
       goGone:  this.props.isActive != this.props.displayInfo.title||null
 
     })
-console.log(this.props,"props pre")
 
       let imageStyle = this._handleImages(
         this.handleStringForUrlArray(this.props.displayInfo.previewContents.imageArrayPreview));

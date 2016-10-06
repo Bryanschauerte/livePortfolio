@@ -23,9 +23,6 @@ exports.default = {
   getComponents: function getComponents(location, cb) {
     require.ensure(['./components/Home'], function (require) {
       var Home = require('./components/Home.js').default;
-      console.log(Home, "admin");
-      // let Creation = require('./components/Creation.js').default;
-      // const props = Object.assign({}, this.props, {ref: this.proc.bind(this)})
 
       cb(null, Home);
     });

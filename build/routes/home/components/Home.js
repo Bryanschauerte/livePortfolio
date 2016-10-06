@@ -24,9 +24,9 @@ var _MainView = require('./MainView');
 
 var _MainView2 = _interopRequireDefault(_MainView);
 
-var _Sidecontainer = require('./Sidecontainer');
+var _SideContainer = require('./SideContainer');
 
-var _Sidecontainer2 = _interopRequireDefault(_Sidecontainer);
+var _SideContainer2 = _interopRequireDefault(_SideContainer);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -201,7 +201,7 @@ var Home = function (_React$Component) {
           { classDefault: this.state.loaded, className: 'homeMainContainer' },
           this.state.loaded ? this.renderRows() : null
         ),
-        _react2.default.createElement(_Sidecontainer2.default, _extends({}, this.props, {
+        _react2.default.createElement(_SideContainer2.default, _extends({}, this.props, {
           isActive: this.state.displaySideContainer,
           handleClose: this._handleShowInfoContainer }))
       );
