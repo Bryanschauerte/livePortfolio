@@ -21,7 +21,7 @@ class MainView extends React.Component{
 
     }
   _setActiveItem(item){
-
+console.log(item, "item")
     if(item != this.state.activeItemTitle){
       this.setState({
         activeItemTitle: item
@@ -76,16 +76,11 @@ _colorHandling(type){
 
 
   render(){
-      // let mainContainerClass = classNames({
-      //   'mainViewHide': true,
-      //   'mainViewShow': this.props.showItems
-      // })
-      let itemContainerClass = classNames({
-        'mainViewItemContainer': this.props.showItems
-      })
 
+
+console.log('show', this.props.showItems)
   return (
-      <div  className="mainViewContainer">
+      <div className='mainViewContainer'>
 
 
         {this.props.loaded?this._handleItemRendering(

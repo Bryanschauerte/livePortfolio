@@ -67,9 +67,9 @@ class LargeVersion extends React.Component{
 
         </div>
         <div
-          className="closeBtn"
+          className="closeBtn fa fa-compress fa-2x"
           onClick= {this.props.handleClose}>
-          CLOSE
+
         </div>
             {this.props.displayInfo.main.map(
               (contentItem, index)=>(

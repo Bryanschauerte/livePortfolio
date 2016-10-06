@@ -113,11 +113,11 @@ class Home extends React.Component{
         }
       let filtered = arr.filter(filteringOut);
 
-      let numRows = Math.ceil(filtered.length/3);
+      let numRows = Math.ceil(filtered.length/2);
       let rows = [];
       for(let x = 0; x < numRows; x++){
-        let start = x*3;
-        let end = start + 3;
+        let start = x*2;
+        let end = start + 2;
         rows.push(filtered.slice(start, end));
       }
 
@@ -138,7 +138,7 @@ class Home extends React.Component{
       })
 
       return rows;
-      
+
     }
 
   render(){

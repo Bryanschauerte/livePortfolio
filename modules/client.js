@@ -1,4 +1,4 @@
-require("babel-polyfill");
+
 import React from 'react'
 import { match, Router, browserHistory } from 'react-router'
 import { render } from 'react-dom'

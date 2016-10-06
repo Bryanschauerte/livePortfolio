@@ -1,5 +1,6 @@
 import http from 'http'
 import React from 'react'
+import AsyncProps, { loadPropsOnServer } from 'async-props';
 import { renderToString } from 'react-dom/server'
 import { match, RouterContext } from 'react-router';
 import axios from "axios";
@@ -10,7 +11,7 @@ import {
   write,
   writeError,
   writeNotFound,
-  redirect } from './utilities/serverUtils';
+  redirect } from './serverUtils';
 
 import routes from './routes/RootRoute';
 import express from 'express';
@@ -27,14 +28,16 @@ var jwt = require('jsonwebtoken');
 import bcrypt from 'bcrypt-nodejs';
 import users from '../keys/users';
 import secret from '../keys/secret';
+const request = require('./utilities/requestHandling');
 const expiryDate = new Date( Date.now() + 60 * 60 * 1000 );
 
 let app = express();
+
 app.use(helmet());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json({ type: 'application/json' }))
 
-app.use(express.static(__dirname + '/__build__/'));
+app.use(express.static(__dirname + '/__build__'));
 
 const PORT = process.env.PORT || 8080;
 const MongoClient = require('mongodb').MongoClient
@@ -147,15 +150,26 @@ app.get('*', (req, res) => {
             { routes, location: req.url },
              (error, redirectLocation, renderProps) => {
 
-            if (error)
-              writeError('ERROR!', res)
-            else if (redirectLocation)
-              redirect(redirectLocation, res)
-            else if (renderProps)
+            if (error){
 
-              renderApp(renderProps, res)
-            else
-              writeNotFound(res)
+                writeError('ERROR!', res)
+            }
+
+            else if (redirectLocation){
+
+                redirect(redirectLocation, res)
+            }
+
+            else if (renderProps){
+
+                            renderApp(renderProps, res)
+            }
+
+            else{
+
+                writeNotFound(res)
+            }
+
           })
         }
       }
@@ -169,34 +183,3 @@ function renderApp(props, res) {
   res.send(html)
 
 }
-
-
-
-//
-// app.post('/auth/getToken/', (req, res) => {
-//     if (req.body.email == 'hello@test.com' && req.body.password == 'test') {
-//         res.status(200)
-//             .json({token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6IlRlc3QgVXNlciJ9.J6n4-v0I85zk9MkxBHroZ9ZPZEES-IKeul9ozxYnoZ8'});
-//     } else {
-//         res.sendStatus(403);
-//     }
-// });
-//
-// app.get('/getData/', (req, res) => {
-//     let token = req.headers['authorization'];
-//     if (!token) {
-//         res.sendStatus(401);
-//     } else {
-//         try {
-//             let decoded = jwt.verify(token.replace('Bearer ', ''), 'secret-key');
-//             res.status(200)
-//                 .json({data: 'Valid JWT found! This protected data was fetched from the server.'});
-//         } catch (e) {
-//             res.sendStatus(401);
-//         }
-//     }
-// })
-//
-// app.get('/', (req, res) => {
-//     res.sendFile(__dirname + '/dist/index.html');
-// });

@@ -83,9 +83,9 @@ let sizeOb = {
 
               Feel free to reach out!
             <ul>
-              <li><a href="mailto:bryan.schauerte@gmail.com?Subject=Hey%20Bryan%20nice%20site" target="_top">Send email <i className="fa fa-envelope fa-1x" aria-hidden="true"></i></a></li>
-              <li><a href="https://github.com/Bryanschauerte" target="_blank">Jump to my gitHub <i className="fa fa-github-square fa-1x" aria-hidden="true"></i></a></li>
-              <li><a href="https://www.linkedin.com/in/bryanschauerte" target="_blank">Connect with me on LinkedIn <i className="fa fa-linkedin-square fa-1x" aria-hidden="true"></i></a></li>
+              <li><a href="mailto:bryan.schauerte@gmail.com?Subject=Hey%20Bryan%20nice%20site" target="_top"><i className="fa fa-envelope fa-1x" aria-hidden="true"></i></a></li>
+              <li><a href="https://github.com/Bryanschauerte" target="_blank"> <i className="fa fa-github-square fa-1x" aria-hidden="true"></i></a></li>
+              <li><a href="https://www.linkedin.com/in/bryanschauerte" target="_blank"><i className="fa fa-linkedin fa-1x" aria-hidden="true"></i></a></li>
 
 
               </ul>

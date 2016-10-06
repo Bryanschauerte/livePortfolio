@@ -15,7 +15,7 @@ class PreviewThumb extends React.Component{
     this._mouseLeft = this._mouseLeft.bind(this);
     this._handleClick = this._handleClick.bind(this);
     this._handleImages = this._handleImages.bind(this);
-    this._handleStringForUrlArray = this._handleStringForUrlArray.bind(this);
+    this.handleStringForUrlArray = this.handleStringForUrlArray.bind(this);
     this._buttonStyle = this._buttonStyle.bind(this);
     this._handleSummary = this._handleSummary.bind(this);
     this._setSize = this._setSize.bind(this);
@@ -34,6 +34,7 @@ class PreviewThumb extends React.Component{
 
     let style = {
       backgroundColor: color,
+      minHeight: '8%',
       border: "1px solid "+ '#ffffff',
       color: '#ffffff',
       width: '100%',
@@ -45,12 +46,15 @@ class PreviewThumb extends React.Component{
       textShadow: '1px 1px 3px',
       cursor: 'pointer',
       transition: "background-color 250ms ease-in-out",
-      alignSelf:'center'
+      alignSelf:'center',
+      width: '80%',
+      marginTop: "8%"
 
     }
 
     let invStyle = {
-      width: '100%',
+      width: '80%',
+      minHeight: '8%',
       backgroundColor:'#ffffff',
       border: "1px solid "+ color,
       textAlign: "center",
@@ -63,20 +67,22 @@ class PreviewThumb extends React.Component{
       cursor: 'pointer',
       transition: "background-color 250ms ease-in-out",
       alignSelf:'center',
+      marginTop: "8%"
 
     }
     return isInverted? invStyle: style;
   }
 
-  _handleStringForUrlArray(string){
-    let arr = string.split(', ');
-    this.setState({
-      imageArray: arr
-    })
+  handleStringForUrlArray(string){
+    return Array.isArray(string)? string: string.split(', ')
+
+
   }
 
-  _handleClick(){
-    this.props.setActiveItem(this.props.displayInfo.title);
+  _handleClick(x){
+let title =this.props.displayInfo.title;
+
+    this.props.setActiveItem(title);
     this.props.closeSide();
     let current = this.state.isClicked;
     this.setState({
@@ -101,7 +107,7 @@ class PreviewThumb extends React.Component{
 
     return (<img
       src={imageUrl}
-      height={this.props.windowHeight/5.6}
+      height={this.props.windowHeight*.25}
       width='auto'/>);
 
 
@@ -117,16 +123,10 @@ class PreviewThumb extends React.Component{
     return list;
   }
 
-  componentWillMount(){
-    this._handleStringForUrlArray(
-      this.props.displayInfo.previewContents.imageArrayPreview);
-
-  }
-
 _classNameAddition(addition){
   let classesSmash = classNames(addition, {
-    hereHere: this.props.isActive == null,
-    goGone: this.props.isActive != this.props.displayInfo.title || null
+    hereHere: true,
+    goGone: this.props.isActive != (this.props.displayInfo.title || null)
 
   })
   return classesSmash;
@@ -135,17 +135,25 @@ _classNameAddition(addition){
   render(){
 
 
+console.log(this.state.isAc, "this.props.isActive")
+
+
     let itemActiveClasses = classNames({
-      isActive: this.props.isActive
+      previewThumbContainer: true,
+      hereHere:true,
+      goGone:  this.props.isActive != this.props.displayInfo.title||null
 
     })
+console.log(this.props,"props pre")
 
-      let imageStyle = this._handleImages(this.state.imageArray[0])
+      let imageStyle = this._handleImages(
+        this.handleStringForUrlArray(this.props.displayInfo.previewContents.imageArrayPreview));
       let listSummary = this._handleSummary();
       return (<div
               onMouseEnter={this._mouseEntered}
               onMouseLeave ={this._mouseLeft}
-              className="previewThumbContainer" >
+              className='previewThumbContainer'
+              style={{minHeight:this.props.windowHeight*.6}} >
 
               <div className= {this._classNameAddition("seperator")}>
                     {!this.state.isHovering?<div className='previewImage'>
