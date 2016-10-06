@@ -80,8 +80,7 @@ class PreviewThumb extends React.Component{
   }
 
   _handleClick(x){
-let title =this.props.displayInfo.title;
-
+    let title =this.props.displayInfo.title;
     this.props.setActiveItem(title);
     this.props.closeSide();
     let current = this.state.isClicked;

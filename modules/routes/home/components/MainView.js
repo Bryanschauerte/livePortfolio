@@ -21,7 +21,7 @@ class MainView extends React.Component{
 
     }
   _setActiveItem(item){
-
+    this.props.scrollMe();
     if(item != this.state.activeItemTitle){
       this.setState({
         activeItemTitle: item

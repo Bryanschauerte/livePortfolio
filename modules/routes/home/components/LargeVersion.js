@@ -27,7 +27,7 @@ class LargeVersion extends React.Component{
   _handleClose(){
     this.props.handleClose()
   }
-
+  
 
   wrapLinks(string, linkArray){
 

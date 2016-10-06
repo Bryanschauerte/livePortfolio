@@ -41,15 +41,10 @@ class Home extends React.Component{
       })
     }
 
-      _handleScroll(e){
 
-        if( !this.state.initialScroll ){
-
-          this.setState({
-            initialScroll: true,
-          displaySideContainer: false})
-        }
-
+      _handleScroll(){
+        var target = document.getElementById("homeMain");
+        target.scrollTop = 0;
       }
 
       _constructTypeList(contents){
@@ -129,6 +124,7 @@ class Home extends React.Component{
       let rows = data.map((item, index)=>{
         return(
           <MainView
+            scrollMe={this._handleScroll}
             closeSide={this._handleCloseSide}
             dataBaseContents= {item}
             loaded={this.state.loaded}
@@ -157,7 +153,7 @@ class Home extends React.Component{
             handleClose={this._handleShowInfoContainer} />
 
 
-      <div classDefault={this.state.loaded} className="homeMainContainer">
+          <div id = "homeMain" classDefault={this.state.loaded} className="homeMainContainer">
         {this.state.loaded? this.renderRows(): null}
 
       </div>

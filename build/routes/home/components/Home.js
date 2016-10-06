@@ -83,14 +83,9 @@ var Home = function (_React$Component) {
     }
   }, {
     key: '_handleScroll',
-    value: function _handleScroll(e) {
-
-      if (!this.state.initialScroll) {
-
-        this.setState({
-          initialScroll: true,
-          displaySideContainer: false });
-      }
+    value: function _handleScroll() {
+      var target = document.getElementById("homeMain");
+      target.scrollTop = 0;
     }
   }, {
     key: '_constructTypeList',
@@ -169,6 +164,7 @@ var Home = function (_React$Component) {
       var data = this._handleRowSectionsData(this.state.dataBaseContents);
       var rows = data.map(function (item, index) {
         return _react2.default.createElement(_MainView2.default, _extends({
+          scrollMe: _this4._handleScroll,
           closeSide: _this4._handleCloseSide,
           dataBaseContents: item,
           loaded: _this4.state.loaded,
@@ -198,7 +194,7 @@ var Home = function (_React$Component) {
           handleClose: this._handleShowInfoContainer }),
         _react2.default.createElement(
           'div',
-          { classDefault: this.state.loaded, className: 'homeMainContainer' },
+          { id: 'homeMain', classDefault: this.state.loaded, className: 'homeMainContainer' },
           this.state.loaded ? this.renderRows() : null
         ),
         _react2.default.createElement(_SideContainer2.default, _extends({}, this.props, {

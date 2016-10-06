@@ -112,7 +112,6 @@ var PreviewThumb = function (_React$Component) {
     key: '_handleClick',
     value: function _handleClick(x) {
       var title = this.props.displayInfo.title;
-
       this.props.setActiveItem(title);
       this.props.closeSide();
       var current = this.state.isClicked;

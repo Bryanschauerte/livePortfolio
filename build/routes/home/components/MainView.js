@@ -63,7 +63,7 @@ var MainView = function (_React$Component) {
   _createClass(MainView, [{
     key: '_setActiveItem',
     value: function _setActiveItem(item) {
-
+      this.props.scrollMe();
       if (item != this.state.activeItemTitle) {
         this.setState({
           activeItemTitle: item
