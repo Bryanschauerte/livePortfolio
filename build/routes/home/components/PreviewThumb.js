@@ -68,7 +68,6 @@ var PreviewThumb = function (_React$Component) {
 
       var style = (_style = {
         backgroundColor: color,
-        minHeight: '8%',
         border: "1px solid " + '#ffffff',
         color: '#ffffff',
         width: '100%',
@@ -85,7 +84,6 @@ var PreviewThumb = function (_React$Component) {
 
       var invStyle = {
         width: '80%',
-        minHeight: '8%',
         backgroundColor: '#ffffff',
         border: "1px solid " + color,
         textAlign: "center",
@@ -140,7 +138,7 @@ var PreviewThumb = function (_React$Component) {
 
       return _react2.default.createElement('img', {
         src: imageUrl,
-        height: this.props.windowHeight * .25,
+        height: this.props.windowHeight * .2,
         width: 'auto' });
     }
   }, {

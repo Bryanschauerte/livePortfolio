@@ -2,6 +2,7 @@ var webpack = require('webpack')
 var path = require('path');
 var fs = require('fs');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var autoprefixer = require('autoprefixer');
 
 module.exports = {
   entry: {
@@ -14,7 +15,7 @@ module.exports = {
     path: __dirname + '/modules/__build__/',
     filename: '[name].js',
     chunkFilename: '[name].js'
-    // , this led to a webjson not found 404 error on request to server... 
+    // , this led to a webjson not found 404 error on request to server...
     // publicPath: '/__build__/'
   },
   extensions: [
@@ -25,13 +26,13 @@ module.exports = {
     loaders: [
       { test: /\.js$/, exclude: /node_modules/, loader: 'babel' },
       {
-    test: /\.css$/,
-    loader: ExtractTextPlugin.extract("style-loader", "css-loader","sass-loader")
+        test: /\.scss$/,
+        loader: ExtractTextPlugin.extract("style-loader", "css-loader!postcss-loader!sass-loader")
       },
       {
-        test: /\.scss$/,
-        loader: ExtractTextPlugin.extract("style-loader", "css-loader","sass-loader")
-       },
+        test: /\.css$/,
+        loader: ExtractTextPlugin.extract("style-loader", "css-loader!postcss-loader")
+      },
 
       {
         test: /\.js$/,
@@ -44,6 +45,8 @@ module.exports = {
               },
             ]
           },
+
+
           plugins: [
             // new webpack.optimize.CommonsChunkPlugin('client', null, false),
             new webpack.optimize.OccurenceOrderPlugin(),
@@ -56,5 +59,10 @@ module.exports = {
             }),
             new webpack.optimize.CommonsChunkPlugin("app", "app.js"),
             new ExtractTextPlugin("[name].css")
-          ]
+          ],
+          postcss: function() {
+            return [autoprefixer({
+              browsers: ['last 3 versions']
+            })];
+          }
         }

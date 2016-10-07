@@ -34,7 +34,6 @@ class PreviewThumb extends React.Component{
 
     let style = {
       backgroundColor: color,
-      minHeight: '8%',
       border: "1px solid "+ '#ffffff',
       color: '#ffffff',
       width: '100%',
@@ -54,7 +53,6 @@ class PreviewThumb extends React.Component{
 
     let invStyle = {
       width: '80%',
-      minHeight: '8%',
       backgroundColor:'#ffffff',
       border: "1px solid "+ color,
       textAlign: "center",
@@ -106,7 +104,7 @@ class PreviewThumb extends React.Component{
 
     return (<img
       src={imageUrl}
-      height={this.props.windowHeight*.25}
+      height={this.props.windowHeight*.2}
       width='auto'/>);
 
 
