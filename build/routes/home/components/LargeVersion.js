@@ -105,11 +105,6 @@ var LargeVersion = function (_React$Component) {
           { className: 'LV_innerContents' },
           _react2.default.createElement(
             'div',
-            null,
-            this.props.displayInfo.type
-          ),
-          _react2.default.createElement(
-            'div',
             { className: 'LS_titleOuter' },
             this.props.displayInfo.title
           ),

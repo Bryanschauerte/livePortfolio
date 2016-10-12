@@ -27,7 +27,7 @@ class LargeVersion extends React.Component{
   _handleClose(){
     this.props.handleClose()
   }
-  
+
 
   wrapLinks(string, linkArray){
 
@@ -60,7 +60,7 @@ class LargeVersion extends React.Component{
     return(
       <div className='LV_OuterCont'>
         <div className='LV_innerContents'>
-        <div>{this.props.displayInfo.type}</div>
+
 
         <div className="LS_titleOuter">
           {this.props.displayInfo.title}

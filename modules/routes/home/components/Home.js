@@ -13,9 +13,9 @@ class Home extends React.Component{
             dataBaseContents: null,
             filteredOut:[],
             typesAvaliable:[],
-            showItems:true,
-            displaySideContainer: true,
-            initialScroll:false
+            displaySideContainer: false,
+            initialScroll:false,
+            activeItem:null
     }
 
     this._requestAllContents = this._requestAllContents.bind(this);
@@ -23,9 +23,12 @@ class Home extends React.Component{
     this._handleFilter = this._handleFilter.bind(this);
     this._handleScroll = this._handleScroll.bind(this);
     this._handleShowInfoContainer = this._handleShowInfoContainer.bind(this);
-    this._handleRowSectionsData = this._handleRowSectionsData.bind(this);
-    this.renderRows = this.renderRows.bind(this);
+    this.showThisItem = this.showThisItem.bind(this);
+    this.renderContents = this.renderContents.bind(this);
     this._handleCloseSide = this._handleCloseSide.bind(this);
+    this._handleUpdateActiveItem = this._handleUpdateActiveItem.bind(this);
+    this.filterByActiveId = this.filterByActiveId.bind(this);
+
   }
 
     _handleShowInfoContainer(){
@@ -35,6 +38,13 @@ class Home extends React.Component{
         displaySideContainer: !containerState
       })
     }
+
+    _handleUpdateActiveItem(id){
+
+      this.state.activeItem? this.setState({activeItem: null}):
+        this.setState({activeItem: id})
+    }
+
     _handleCloseSide(){
       this.setState({
         displaySideContainer:false
@@ -42,106 +52,100 @@ class Home extends React.Component{
     }
 
 
-      _handleScroll(){
-        var target = document.getElementById("homeMain");
-        target.scrollTop = 0;
-      }
-
-      _constructTypeList(contents){
-
-        let tempTypes = this.state.typesAvaliable;
-
-        contents.map((item)=>{
-
-          if(item.contentItems.type &&
-            tempTypes.indexOf(item.contentItems.type)== -1){
-
-             tempTypes.push(item.contentItems.type)
-
-          }
-
-        })
-
-        this.setState({
-          typesAvaliable:tempTypes
-        })
+    _handleScroll(){
+      var target = document.getElementById("homeMain");
+      target.scrollTop = 0;
+    }
 
 
-      }
-      _handleFilter(type){
+    _constructTypeList(contents){
 
-        type = type.toLowerCase()
-        let currentFilter = this.state.filteredOut;
-        currentFilter.indexOf(type) == -1? currentFilter.push(type):
-          currentFilter.splice(currentFilter.indexOf(type), 1);
-        this.setState({
-          filteredOut: currentFilter
-        })
+      let tempTypes = this.state.typesAvaliable;
+      contents.map((item)=>{
 
-      }
+        if(item.contentItems.type &&
+          tempTypes.indexOf(item.contentItems.type)== -1){
+           tempTypes.push(item.contentItems.type)
+        }
 
-      _requestAllContents(){
-        axios.get('/maincontents')
-            .then( (response)=> {
-                let contents = response.data;
-                this._constructTypeList(contents)
-                this.setState({
-                  dataBaseContents: contents,
-                  loaded: true
-                })
+      })
 
+      this.setState({
+        typesAvaliable:tempTypes
+      })
+
+
+    }
+    _handleFilter(type){
+
+      type = type.toLowerCase()
+      let currentFilter = this.state.filteredOut;
+      currentFilter.indexOf(type) == -1? currentFilter.push(type):
+        currentFilter.splice(currentFilter.indexOf(type), 1);
+      this.setState({
+        filteredOut: currentFilter
+      })
+
+    }
+
+    _requestAllContents(){
+      axios.get('/maincontents')
+          .then( (response)=> {
+              let contents = response.data;
+              this._constructTypeList(contents)
+              this.setState({
+                dataBaseContents: contents,
+                loaded: true
               })
 
-            }
+            })
+
+      }
 
     componentWillMount(){
       this._requestAllContents();
 
     }
-    _handleRowSectionsData(arr){
 
-
-      const filteringOut = (infoBit) => {
-
-        return this.state.filteredOut.indexOf(
-          infoBit.contentItems.type.toLowerCase()) == -1? true: false;
-        }
-      let filtered = arr.filter(filteringOut);
-
-      let numRows = Math.ceil(filtered.length/2);
-      let rows = [];
-      for(let x = 0; x < numRows; x++){
-        let start = x*2;
-        let end = start + 2;
-        rows.push(filtered.slice(start, end));
-      }
-
-      return rows;
+    shouldComponentUpdate(nextProps, nextState){
+        return true;
     }
 
-    renderRows(){
-      let data = this._handleRowSectionsData(this.state.dataBaseContents);
-      let rows = data.map((item, index)=>{
-        return(
-          <MainView
-            scrollMe={this._handleScroll}
-            closeSide={this._handleCloseSide}
-            dataBaseContents= {item}
-            loaded={this.state.loaded}
-            typesAvaliable={this.state.typesAvaliable}
-            showItems={this.state.showItems}
-            {...this.props}/>)
-      })
+    filterByActiveId(item){
+      return item._id === this.state.activeItem
+    }
 
-      return rows;
+    showThisItem(item){
+        return this.state.filteredOut.indexOf(
+          item.contentItems.type.toLowerCase()) == -1? true: false;
+    }
 
+    renderContents(){
+          let contents = this.state.dataBaseContents.filter(this.showThisItem);
+          if(this.state.activeItem !=null){
+            contents = contents.filter(this.filterByActiveId);
+          }
+          let toShow = contents.map(item =>{
+
+            const boundActiveItemUpdate = () => this._handleUpdateActiveItem(item._id);
+            return (
+              <MainView
+                handleScroll = {this._handleScroll}
+                closeSide={this._handleCloseSide}
+                itemToDisplay= {item}
+                loaded={this.state.loaded}
+                typesAvaliable={this.state.typesAvaliable}
+                updateActiveItem ={boundActiveItemUpdate}
+                isBig={this.state.activeItem !=null }
+                {...this.props}/>)
+          })
+          return toShow;
     }
 
   render(){
-    let contents = this.state.dataBaseContents;
+
     let filteredOut = this.state.filteredOut;
     let listItems = this.state.typesAvaliable;
-
 
     return(<div className="homeContainer">
           <Header
@@ -153,8 +157,8 @@ class Home extends React.Component{
             handleClose={this._handleShowInfoContainer} />
 
 
-          <div id = "homeMain" classDefault={this.state.loaded} className="homeMainContainer">
-        {this.state.loaded? this.renderRows(): null}
+          <div id ="homeMain" classDefault={this.state.loaded} className="homeMainContainer">
+        {this.state.loaded? this.renderContents(): null}
 
       </div>
 

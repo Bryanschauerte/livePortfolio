@@ -8,8 +8,9 @@ class PreviewThumb extends React.Component{
     super(props);
     this.state={
       isHovering: false,
-      isClicked: false,
-      imageArray:null
+      isClicked: this.props.isBig,
+      imageArray:null,
+      isLoaded:false
     }
     this._mouseEntered = this._mouseEntered.bind(this);
     this._mouseLeft = this._mouseLeft.bind(this);
@@ -20,6 +21,7 @@ class PreviewThumb extends React.Component{
     this._handleSummary = this._handleSummary.bind(this);
     this._setSize = this._setSize.bind(this);
     this._classNameAddition = this._classNameAddition.bind(this);
+    this.renderPreview = this.renderPreview.bind(this);
 
   }
   _setSize(){
@@ -36,7 +38,6 @@ class PreviewThumb extends React.Component{
       backgroundColor: color,
       border: "1px solid "+ '#ffffff',
       color: '#ffffff',
-      width: '100%',
       textAlign: "center",
       fontFamily: 'Roboto',
       boxShadow: "0 0 0 2px "+ color,
@@ -46,13 +47,13 @@ class PreviewThumb extends React.Component{
       cursor: 'pointer',
       transition: "background-color 250ms ease-in-out",
       alignSelf:'center',
-      width: '80%',
-      marginTop: "8%"
+      width: '60%',
+      marginTop: "2%"
 
     }
 
     let invStyle = {
-      width: '80%',
+      width: '60%',
       backgroundColor:'#ffffff',
       border: "1px solid "+ color,
       textAlign: "center",
@@ -65,7 +66,7 @@ class PreviewThumb extends React.Component{
       cursor: 'pointer',
       transition: "background-color 250ms ease-in-out",
       alignSelf:'center',
-      marginTop: "8%"
+      marginTop: "2%"
 
     }
     return isInverted? invStyle: style;
@@ -78,6 +79,7 @@ class PreviewThumb extends React.Component{
   }
 
   _handleClick(x){
+    this.props.handleScroll();
     let title =this.props.displayInfo.title;
     this.props.setActiveItem(title);
     this.props.closeSide();
@@ -120,68 +122,89 @@ class PreviewThumb extends React.Component{
     return list;
   }
 
-_classNameAddition(addition){
-  let classesSmash = classNames(addition, {
-    hereHere: true,
-    goGone: this.props.isActive != (this.props.displayInfo.title || null)
-
-  })
-  return classesSmash;
-}
-
-  render(){
-
-    let itemActiveClasses = classNames({
-      previewThumbContainer: true,
-      hereHere:true,
-      goGone:  this.props.isActive != this.props.displayInfo.title||null
+  _classNameAddition(addition){
+    let classesSmash = classNames(addition, {
+      hereHere: true,
+      goGone: this.props.isActive != (this.props.displayInfo.title || null)
 
     })
+    return classesSmash;
+  }
+  componentDidMount(){
+    this.setState({isLoaded:true})
+  }
 
-      let imageStyle = this._handleImages(
-        this.handleStringForUrlArray(this.props.displayInfo.previewContents.imageArrayPreview));
-      let listSummary = this._handleSummary();
-      return (<div
-              onMouseEnter={this._mouseEntered}
-              onMouseLeave ={this._mouseLeft}
-              className='previewThumbContainer'
-              style={{minHeight:this.props.windowHeight*.6}} >
-
-              <div className= {this._classNameAddition("seperator")}>
-                    {!this.state.isHovering?<div className='previewImage'>
-                      {imageStyle}
-                     </div>: null}
-
-                <div className={this._classNameAddition("previewTextContainer")}>
-                  <h3>
-                    {this.props.displayInfo.previewContents.previewTitle}
-                  </h3>
-                  <h4>{this.props.displayInfo.previewContents.previewHeader}</h4>
-
-                  {this.state.isHovering?<ul  className='previewThumbList'>
-                    <h4 style={{paddingBottom:'2%'}}>Summary:</h4>
-                    {listSummary}
-                  </ul>: null}
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      isClicked: nextProps.isBig
+    });
+  }
 
 
-                {this.state.isHovering?<div className="previewFooter">
-                  <h3>{this.props.displayInfo.previewContents.previewFooter}</h3>
-                </div>:null}
+  renderPreview(){
 
-              </div>
+        let mainContainerStyle = classNames({
+          previewThumbContainer: true,
+          fadeOut:  !this.state.isLoaded,
+          fadeIn:  this.state.isLoaded,
 
-                  {this.props.isActive == this.props.displayInfo.title? this.props.children: null}
+        })
 
-              </div>
-                  <div className={this._classNameAddition("previewThumbBtn")}
-                    onMouseEnter={this._mouseEntered}
-                    onClick={this._handleClick}
-                    style ={
-                      this.state.isHovering? this._buttonStyle(true, this.props.displayInfo.type):
-                    this._buttonStyle(false, this.props.displayInfo.type)}>
-                    View This {this.props.displayInfo.type}
+
+          let imageStyle = this._handleImages(
+            this.handleStringForUrlArray(this.props.displayInfo.previewContents.imageArrayPreview));
+          let listSummary = this._handleSummary();
+
+          return (<div
+                  onMouseEnter={this._mouseEntered}
+                  onMouseLeave ={this._mouseLeft}
+                  className={mainContainerStyle}
+                  style={{minHeight:this.props.windowHeight*.48}} >
+
+                  <div className= {this._classNameAddition("seperator")}>
+                        {!this.state.isHovering?<div className='previewImage'>
+                          {imageStyle}
+                         </div>: null}
+
+                    <div className={this._classNameAddition("previewTextContainer")}>
+                      <h2>
+                        {this.props.displayInfo.previewContents.previewTitle}
+                      </h2>
+                      <h4><em>{this.props.displayInfo.previewContents.previewHeader}</em></h4>
+
+                      {this.state.isHovering?<ul  className='previewThumbList'>
+                        <h4>Contents:</h4>
+                        {listSummary}
+                      </ul>: null}
+
+
+                    {this.state.isHovering?<div className="previewFooter">
+                      <h3>{this.props.displayInfo.previewContents.previewFooter}</h3>
+                    </div>:null}
+
                   </div>
-                </div>)
+
+
+
+                  </div>
+                      <div className={this._classNameAddition("previewThumbBtn")}
+                        onMouseEnter={this._mouseEntered}
+                        onClick={this._handleClick}
+                        style ={
+                          this.state.isHovering? this._buttonStyle(true, this.props.displayInfo.type):
+                        this._buttonStyle(false, this.props.displayInfo.type)}>
+                        VIEW THIS {this.props.displayInfo.type.toUpperCase()}
+                      </div>
+                    </div>)
+  }
+
+
+  render(){
+    return(
+      <div>
+        {this.state.isClicked? this.props.children: this.renderPreview()}
+      </div>
+    )
   }
 }
 

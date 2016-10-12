@@ -67,7 +67,6 @@ var Header = function Header(props) {
     _react2.default.createElement(
       'div',
       { className: filterContainerClass },
-      'SHOWING:',
       _react2.default.createElement(
         'ul',
         { className: headerListClass },

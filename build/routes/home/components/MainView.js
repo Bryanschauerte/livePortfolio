@@ -48,7 +48,8 @@ var MainView = function (_React$Component) {
 
     _this.state = {
       activeItemTitle: null,
-      loaded: _this.props.loaded
+      loaded: _this.props.loaded,
+      isBig: false
 
     };
 
@@ -56,6 +57,7 @@ var MainView = function (_React$Component) {
     _this._colorHandling = _this._colorHandling.bind(_this);
     _this._handleActiveItemReset = _this._handleActiveItemReset.bind(_this);
     _this._setActiveItem = _this._setActiveItem.bind(_this);
+    _this.handleStyle = _this.handleStyle.bind(_this);
 
     return _this;
   }
@@ -63,16 +65,17 @@ var MainView = function (_React$Component) {
   _createClass(MainView, [{
     key: '_setActiveItem',
     value: function _setActiveItem(item) {
-      this.props.scrollMe();
+      var tState = this.state;
       if (item != this.state.activeItemTitle) {
-        this.setState({
-          activeItemTitle: item
-        });
+        tState.activeItemTitle = item;
       }
+      this.props.updateActiveItem();
+      this.setState({ tState: tState });
     }
   }, {
     key: '_handleActiveItemReset',
     value: function _handleActiveItemReset() {
+      this.props.updateActiveItem();
       this.setState({ activeItemTitle: null });
     }
   }, {
@@ -90,27 +93,48 @@ var MainView = function (_React$Component) {
   }, {
     key: '_handleItemRendering',
     value: function _handleItemRendering(info) {
-      var _this2 = this;
 
-      if (info.length > 0 && this.props.showItems) {
+      return _react2.default.createElement(
+        'div',
+        { className: 'mainViewItem' },
+        _react2.default.createElement(
+          _PreviewThumb2.default,
+          _extends({}, this.props, {
+            setActive: this.props.setActive,
+            isActive: this.state.activeItemTitle,
+            setActiveItem: this._setActiveItem,
+            displayInfo: info.contentItems,
+            _colorHandling: this._colorHandling }),
+          _react2.default.createElement(_LargeVersion2.default, _extends({
+            displayInfo: info.contentItems,
+            handleClose: this._handleActiveItemReset
+          }, this.props))
+        )
+      );
+    }
+  }, {
+    key: 'shouldComponentUpdate',
+    value: function shouldComponentUpdate(nextProps, nextState) {
+      return true;
+    }
+  }, {
+    key: 'handleStyle',
+    value: function handleStyle() {
+      var isBig = this.props.isBig;
 
-        var infostuff = info.map(function (item, index) {
-
-          return _react2.default.createElement(
-            _PreviewThumb2.default,
-            _extends({}, _this2.props, {
-              isActive: _this2.state.activeItemTitle,
-              setActiveItem: _this2._setActiveItem,
-              displayInfo: item.contentItems,
-              _colorHandling: _this2._colorHandling }),
-            _react2.default.createElement(_LargeVersion2.default, _extends({
-              displayInfo: item.contentItems,
-              handleClose: _this2._handleActiveItemReset
-            }, _this2.props))
-          );
-        });
-        return infostuff;
-      }
+      var smallSize = {
+        float: 'right',
+        padding: "2%",
+        height: this.props.windowHeight / 2.2,
+        width: this.props.windowWidth * .46
+      };
+      var bigSize = {
+        float: 'none',
+        padding: "0%",
+        height: '100%',
+        width: '100%'
+      };
+      return isBig ? bigSize : smallSize;
     }
   }, {
     key: 'render',
@@ -118,8 +142,9 @@ var MainView = function (_React$Component) {
 
       return _react2.default.createElement(
         'div',
-        { className: 'mainViewContainer' },
-        this.props.loaded ? this._handleItemRendering(this.props.dataBaseContents) : null
+        {
+          style: this.handleStyle() },
+        this._handleItemRendering(this.props.itemToDisplay)
       );
     }
   }]);

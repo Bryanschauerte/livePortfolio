@@ -49,9 +49,9 @@ var Home = function (_React$Component) {
       dataBaseContents: null,
       filteredOut: [],
       typesAvaliable: [],
-      showItems: true,
-      displaySideContainer: true,
-      initialScroll: false
+      displaySideContainer: false,
+      initialScroll: false,
+      activeItem: null
     };
 
     _this._requestAllContents = _this._requestAllContents.bind(_this);
@@ -59,9 +59,12 @@ var Home = function (_React$Component) {
     _this._handleFilter = _this._handleFilter.bind(_this);
     _this._handleScroll = _this._handleScroll.bind(_this);
     _this._handleShowInfoContainer = _this._handleShowInfoContainer.bind(_this);
-    _this._handleRowSectionsData = _this._handleRowSectionsData.bind(_this);
-    _this.renderRows = _this.renderRows.bind(_this);
+    _this.showThisItem = _this.showThisItem.bind(_this);
+    _this.renderContents = _this.renderContents.bind(_this);
     _this._handleCloseSide = _this._handleCloseSide.bind(_this);
+    _this._handleUpdateActiveItem = _this._handleUpdateActiveItem.bind(_this);
+    _this.filterByActiveId = _this.filterByActiveId.bind(_this);
+
     return _this;
   }
 
@@ -73,6 +76,12 @@ var Home = function (_React$Component) {
       this.setState({
         displaySideContainer: !containerState
       });
+    }
+  }, {
+    key: '_handleUpdateActiveItem',
+    value: function _handleUpdateActiveItem(id) {
+
+      this.state.activeItem ? this.setState({ activeItem: null }) : this.setState({ activeItem: id });
     }
   }, {
     key: '_handleCloseSide',
@@ -92,11 +101,9 @@ var Home = function (_React$Component) {
     value: function _constructTypeList(contents) {
 
       var tempTypes = this.state.typesAvaliable;
-
       contents.map(function (item) {
 
         if (item.contentItems.type && tempTypes.indexOf(item.contentItems.type) == -1) {
-
           tempTypes.push(item.contentItems.type);
         }
       });
@@ -136,49 +143,50 @@ var Home = function (_React$Component) {
       this._requestAllContents();
     }
   }, {
-    key: '_handleRowSectionsData',
-    value: function _handleRowSectionsData(arr) {
-      var _this3 = this;
-
-      var filteringOut = function filteringOut(infoBit) {
-
-        return _this3.state.filteredOut.indexOf(infoBit.contentItems.type.toLowerCase()) == -1 ? true : false;
-      };
-      var filtered = arr.filter(filteringOut);
-
-      var numRows = Math.ceil(filtered.length / 2);
-      var rows = [];
-      for (var x = 0; x < numRows; x++) {
-        var start = x * 2;
-        var end = start + 2;
-        rows.push(filtered.slice(start, end));
-      }
-
-      return rows;
+    key: 'shouldComponentUpdate',
+    value: function shouldComponentUpdate(nextProps, nextState) {
+      return true;
     }
   }, {
-    key: 'renderRows',
-    value: function renderRows() {
-      var _this4 = this;
+    key: 'filterByActiveId',
+    value: function filterByActiveId(item) {
+      return item._id === this.state.activeItem;
+    }
+  }, {
+    key: 'showThisItem',
+    value: function showThisItem(item) {
+      return this.state.filteredOut.indexOf(item.contentItems.type.toLowerCase()) == -1 ? true : false;
+    }
+  }, {
+    key: 'renderContents',
+    value: function renderContents() {
+      var _this3 = this;
 
-      var data = this._handleRowSectionsData(this.state.dataBaseContents);
-      var rows = data.map(function (item, index) {
+      var contents = this.state.dataBaseContents.filter(this.showThisItem);
+      if (this.state.activeItem != null) {
+        contents = contents.filter(this.filterByActiveId);
+      }
+      var toShow = contents.map(function (item) {
+
+        var boundActiveItemUpdate = function boundActiveItemUpdate() {
+          return _this3._handleUpdateActiveItem(item._id);
+        };
         return _react2.default.createElement(_MainView2.default, _extends({
-          scrollMe: _this4._handleScroll,
-          closeSide: _this4._handleCloseSide,
-          dataBaseContents: item,
-          loaded: _this4.state.loaded,
-          typesAvaliable: _this4.state.typesAvaliable,
-          showItems: _this4.state.showItems
-        }, _this4.props));
+          handleScroll: _this3._handleScroll,
+          closeSide: _this3._handleCloseSide,
+          itemToDisplay: item,
+          loaded: _this3.state.loaded,
+          typesAvaliable: _this3.state.typesAvaliable,
+          updateActiveItem: boundActiveItemUpdate,
+          isBig: _this3.state.activeItem != null
+        }, _this3.props));
       });
-
-      return rows;
+      return toShow;
     }
   }, {
     key: 'render',
     value: function render() {
-      var contents = this.state.dataBaseContents;
+
       var filteredOut = this.state.filteredOut;
       var listItems = this.state.typesAvaliable;
 
@@ -195,7 +203,7 @@ var Home = function (_React$Component) {
         _react2.default.createElement(
           'div',
           { id: 'homeMain', classDefault: this.state.loaded, className: 'homeMainContainer' },
-          this.state.loaded ? this.renderRows() : null
+          this.state.loaded ? this.renderContents() : null
         ),
         _react2.default.createElement(_SideContainer2.default, _extends({}, this.props, {
           isActive: this.state.displaySideContainer,

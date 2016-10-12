@@ -16,8 +16,6 @@ var _react2 = _interopRequireDefault(_react);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -34,8 +32,9 @@ var PreviewThumb = function (_React$Component) {
 
     _this.state = {
       isHovering: false,
-      isClicked: false,
-      imageArray: null
+      isClicked: _this.props.isBig,
+      imageArray: null,
+      isLoaded: false
     };
     _this._mouseEntered = _this._mouseEntered.bind(_this);
     _this._mouseLeft = _this._mouseLeft.bind(_this);
@@ -46,6 +45,7 @@ var PreviewThumb = function (_React$Component) {
     _this._handleSummary = _this._handleSummary.bind(_this);
     _this._setSize = _this._setSize.bind(_this);
     _this._classNameAddition = _this._classNameAddition.bind(_this);
+    _this.renderPreview = _this.renderPreview.bind(_this);
 
     return _this;
   }
@@ -62,15 +62,12 @@ var PreviewThumb = function (_React$Component) {
   }, {
     key: '_buttonStyle',
     value: function _buttonStyle(isInverted, type) {
-      var _style;
-
       var color = this.props._colorHandling(type);
 
-      var style = (_style = {
+      var style = {
         backgroundColor: color,
         border: "1px solid " + '#ffffff',
         color: '#ffffff',
-        width: '100%',
         textAlign: "center",
         fontFamily: 'Roboto',
         boxShadow: "0 0 0 2px " + color,
@@ -79,11 +76,14 @@ var PreviewThumb = function (_React$Component) {
         textShadow: '1px 1px 3px',
         cursor: 'pointer',
         transition: "background-color 250ms ease-in-out",
-        alignSelf: 'center'
-      }, _defineProperty(_style, 'width', '80%'), _defineProperty(_style, 'marginTop', "8%"), _style);
+        alignSelf: 'center',
+        width: '60%',
+        marginTop: "2%"
+
+      };
 
       var invStyle = {
-        width: '80%',
+        width: '60%',
         backgroundColor: '#ffffff',
         border: "1px solid " + color,
         textAlign: "center",
@@ -96,7 +96,7 @@ var PreviewThumb = function (_React$Component) {
         cursor: 'pointer',
         transition: "background-color 250ms ease-in-out",
         alignSelf: 'center',
-        marginTop: "8%"
+        marginTop: "2%"
 
       };
       return isInverted ? invStyle : style;
@@ -109,6 +109,7 @@ var PreviewThumb = function (_React$Component) {
   }, {
     key: '_handleClick',
     value: function _handleClick(x) {
+      this.props.handleScroll();
       var title = this.props.displayInfo.title;
       this.props.setActiveItem(title);
       this.props.closeSide();
@@ -168,25 +169,38 @@ var PreviewThumb = function (_React$Component) {
       return classesSmash;
     }
   }, {
-    key: 'render',
-    value: function render() {
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      this.setState({ isLoaded: true });
+    }
+  }, {
+    key: 'componentWillReceiveProps',
+    value: function componentWillReceiveProps(nextProps) {
+      this.setState({
+        isClicked: nextProps.isBig
+      });
+    }
+  }, {
+    key: 'renderPreview',
+    value: function renderPreview() {
 
-      var itemActiveClasses = (0, _classnames2.default)({
+      var mainContainerStyle = (0, _classnames2.default)({
         previewThumbContainer: true,
-        hereHere: true,
-        goGone: this.props.isActive != this.props.displayInfo.title || null
+        fadeOut: !this.state.isLoaded,
+        fadeIn: this.state.isLoaded
 
       });
 
       var imageStyle = this._handleImages(this.handleStringForUrlArray(this.props.displayInfo.previewContents.imageArrayPreview));
       var listSummary = this._handleSummary();
+
       return _react2.default.createElement(
         'div',
         {
           onMouseEnter: this._mouseEntered,
           onMouseLeave: this._mouseLeft,
-          className: 'previewThumbContainer',
-          style: { minHeight: this.props.windowHeight * .6 } },
+          className: mainContainerStyle,
+          style: { minHeight: this.props.windowHeight * .48 } },
         _react2.default.createElement(
           'div',
           { className: this._classNameAddition("seperator") },
@@ -199,22 +213,26 @@ var PreviewThumb = function (_React$Component) {
             'div',
             { className: this._classNameAddition("previewTextContainer") },
             _react2.default.createElement(
-              'h3',
+              'h2',
               null,
               this.props.displayInfo.previewContents.previewTitle
             ),
             _react2.default.createElement(
               'h4',
               null,
-              this.props.displayInfo.previewContents.previewHeader
+              _react2.default.createElement(
+                'em',
+                null,
+                this.props.displayInfo.previewContents.previewHeader
+              )
             ),
             this.state.isHovering ? _react2.default.createElement(
               'ul',
               { className: 'previewThumbList' },
               _react2.default.createElement(
                 'h4',
-                { style: { paddingBottom: '2%' } },
-                'Summary:'
+                null,
+                'Contents:'
               ),
               listSummary
             ) : null,
@@ -227,8 +245,7 @@ var PreviewThumb = function (_React$Component) {
                 this.props.displayInfo.previewContents.previewFooter
               )
             ) : null
-          ),
-          this.props.isActive == this.props.displayInfo.title ? this.props.children : null
+          )
         ),
         _react2.default.createElement(
           'div',
@@ -236,9 +253,18 @@ var PreviewThumb = function (_React$Component) {
             onMouseEnter: this._mouseEntered,
             onClick: this._handleClick,
             style: this.state.isHovering ? this._buttonStyle(true, this.props.displayInfo.type) : this._buttonStyle(false, this.props.displayInfo.type) },
-          'View This ',
-          this.props.displayInfo.type
+          'VIEW THIS ',
+          this.props.displayInfo.type.toUpperCase()
         )
+      );
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        null,
+        this.state.isClicked ? this.props.children : this.renderPreview()
       );
     }
   }]);

@@ -218,22 +218,17 @@ z-index: 5;
 }
 .LS_titleOuter {
 
-  justify-content: center;
-
-  width: 100%;
-  background-color: #E0E0E0;
-  -webkit-box-shadow: 0 4px 3px 0 #333030;
-  -moz-box-shadow: 0 4px 3px 0 #333030;
-  box-shadow: 0 4px 3px 0 #333030;
-  border: 1px solid #51516B;
-  border-radius: 4px;
-  color: #333030;
-  font-size: x-large;
-  width: 100%;
-  text-align: center;
-  font-weight: bold;
-  align-items: center;
-  z-index: 7;
+  background-color: #062f4f;
+    -ms-flex-align: center;
+    align-items: center;
+    color: #f0f5f9;
+    border-radius: 4px;
+    text-align: center;
+    font-size: 2em;
+    -ms-flex-pack: center;
+    justify-content: center;
+    width: 100%;
+    box-shadow: 0 0 2px #ff6e40;
 }
 
 
@@ -394,13 +389,14 @@ CodePenHandler {
   z-index: 3;
   height: 7%;
   max-height: 345px;
+  min-height: 30px;
   opacity: 1;
   display: flex;
   flex-direction: row;
 }
 .headerTitle {
   cursor: pointer;
-  width: 35%;
+  width: 30%;
   color: #333030;
   display: flex;
   justify-content: space-between;
@@ -412,7 +408,7 @@ CodePenHandler {
 }
 .headerTitle h1 {
   margin: 0;
-  font-size: 4.5vh;
+
   text-shadow: white 1px 0.3px 1px, black 1px 0px 0.1px;
 }
 .headerList {
@@ -430,8 +426,11 @@ CodePenHandler {
   line-height: 2;
 
 }
+.slider-v3{
+width:30%;  
+}
 .headerFilterContainer {
-  width: 45%;
+  width: 40%;
   height: 100%;
   color: #333030;
   display: flex;
@@ -447,7 +446,7 @@ CodePenHandler {
 .headerList li {
   transition: all 250ms;
   width: 100%;
-  margin: 0px 2px 0px 2px;
+  margin: 0px 2% 0px 2%;
   text-align: center;
   cursor: pointer;
 
@@ -462,6 +461,7 @@ CodePenHandler {
   transform: skew(-12deg);
   line-height: 2.5;
   font-size: 2vh;
+
 }
 .notFilteredOut {
   height:50%;
@@ -471,7 +471,7 @@ CodePenHandler {
   transform: skew(-12deg);
   width: 100%;
   line-height: 1;
-  font-size: 3vh;
+
 
 }
 
@@ -544,8 +544,6 @@ CodePenHandler {
   max-width: 0%;
   max-height: 0%;
   background-color: #E0E0E0;
-
-  border-radius: 8px 0 0 8px;
   position: absolute;
   top: 2%;
   right: 12%;
@@ -864,13 +862,7 @@ textarea.emptyInputDefault {
   height:100%;
   top:0;
 }
-.homeMainContainer{
-  position: absolute;
-  width: 100%;
-  height: 93%;
-  top:7%;
-  overflow: scroll;
-}
+
 .previewThumbContainer {
   width:100%;
 
@@ -907,17 +899,26 @@ textarea.emptyInputDefault {
 .previewImage img{
 max-height: 300px;
 }
-.mainViewContainer{
-  // justify-content: space-between;
-  max-height: 100%;
-  min-height: 100%;
-  width: 45%;
-  // display: flex;
-  // flex-wrap:nowrap;
-  // flex-direction: column;
-  float:left;
-  padding: 2%;
+
+.mainViewItem{
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
 }
+.fadeOut{
+  opacity: 0;
+}
+.fadeIn{
+  opacity: 1;
+}
+.homeMainContainer{
+  position: absolute;
+  width: 100%;
+  height: 95%;
+  top:5%;
+  overflow: scroll;
+}
+
 .previewTextContainer{
   height: 100%;
   // color: #333030;
@@ -938,24 +939,14 @@ max-height: 300px;
 }
 
 .LV_OuterCont {
-  height:100%;
-  background-color: #E0E0E0;
+
   width: 95%;
-  padding: 1%;
-  opacity: 1;
-  z-index: 10;
-  position: absolute;
-  top: 4%;
-  right:1.5%;
-  overflow: scroll;
-  border-radius: 3px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  height: 95%;
+  padding: 2.5%;
 }
 .LV_innerContents{
-  width: 95%;
-  padding: 0 2% 2% 2%;
+
+  padding: 2%;
   background-color: #f0f5f9;
 }
 .footer {
@@ -983,6 +974,7 @@ max-height: 300px;
   display: flex;
   justify-content: space-around;
   width: 25%;
+  cursor: pointer;
 }
 .footer li {
   float: left;
@@ -1068,19 +1060,14 @@ justify-content: center;
   display: none;
 }
 .previewThumbList{
-list-style-type: circle;
-  text-align: left;
-
-  // margin-bottom: 2%;
-  width: 100%;
+list-style-type: none;
 
 }
 
-.previewThumbList li{
-  width:45%;
-  float:left;
+.previewThumbList h4{
+  padding-bottom: 2%;
   text-align: left;
-  margin-right:2%;
+  padding-left:15%;
 }
 
 .footerDisplay{
@@ -1117,8 +1104,8 @@ width: 100%;
 .closeBtn{
   width: 1em;
   position: fixed;
-  top: 11%;
-  left: 1.6%;
+  top: 10%;
+  left: 2.6%;
   cursor: pointer;
   background-color:#ff6e40;
   text-align: center;

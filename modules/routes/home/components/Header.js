@@ -41,8 +41,8 @@ const Header= (props)=> {
         <h1>Bryan Schauerte</h1>
       </div>
       <div className={filterContainerClass}>
-        SHOWING:
         <ul className={headerListClass}>
+
           {listItems && classDefault? listItems.map( (item, index) =>
             <li key ={index}
               onClick={filteringPassBack.bind(null, item)}

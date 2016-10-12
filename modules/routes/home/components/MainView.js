@@ -11,6 +11,7 @@ class MainView extends React.Component{
     this.state = {
       activeItemTitle: null,
       loaded: this.props.loaded,
+      isBig: false
 
      };
 
@@ -18,22 +19,23 @@ class MainView extends React.Component{
     this._colorHandling = this._colorHandling.bind(this);
     this._handleActiveItemReset = this._handleActiveItemReset.bind(this);
     this._setActiveItem = this._setActiveItem.bind(this);
+    this.handleStyle = this.handleStyle.bind(this);
 
     }
   _setActiveItem(item){
-    this.props.scrollMe();
+    let tState = this.state;
     if(item != this.state.activeItemTitle){
-      this.setState({
-        activeItemTitle: item
-      })
+      tState.activeItemTitle = item;
     }
-
+    this.props.updateActiveItem();
+    this.setState({tState})
   }
 
 
 
 _handleActiveItemReset(){
-  this.setState({activeItemTitle: null})
+  this.props.updateActiveItem();
+  this.setState({activeItemTitle: null});
 }
 
 
@@ -50,46 +52,63 @@ _colorHandling(type){
 
 
   _handleItemRendering(info){
-    if(info.length > 0 && this.props.showItems){
-
-      let infostuff = info.map((item, index) =>{
 
         return (
+          <div className='mainViewItem'>
             <PreviewThumb
               {...this.props}
+              setActive = {this.props.setActive}
               isActive= {this.state.activeItemTitle}
               setActiveItem ={this._setActiveItem}
-              displayInfo={item.contentItems}
+              displayInfo={info.contentItems}
               _colorHandling={this._colorHandling}>
                 <LargeVersion
-                  displayInfo={item.contentItems}
+                  displayInfo={info.contentItems}
                   handleClose={this._handleActiveItemReset}
                   {...this.props}/>
 
               </PreviewThumb>
-        )}
+              </div>
         )
-          return infostuff;
 
-      }
+  }
+
+  shouldComponentUpdate(nextProps, nextState){
+      return true;
+  }
+
+
+  handleStyle(){
+    let isBig = this.props.isBig;
+
+        let smallSize = {
+          float: 'right',
+          padding: "2%",
+          height: this.props.windowHeight/2.2,
+          width: this.props.windowWidth*.46
+          }
+          let bigSize = {
+            float: 'none',
+            padding: "0%",
+            height: '100%',
+            width: '100%'
+          }
+          return isBig? bigSize: smallSize;
+
+
   }
 
 
   render(){
 
+    return (
+        <div
+          style={this.handleStyle()}>
+          {this._handleItemRendering(
+            this.props.itemToDisplay)}
+        </div>
 
-
-  return (
-      <div className='mainViewContainer'>
-
-
-        {this.props.loaded?this._handleItemRendering(
-          this.props.dataBaseContents): null}
-
-
-      </div>
-
-    )
-  }
+      )
+    }
 }
 export default MainView;
