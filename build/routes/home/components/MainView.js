@@ -123,7 +123,6 @@ var MainView = function (_React$Component) {
       var isBig = this.props.isBig;
 
       var smallSize = {
-        float: 'right',
         padding: "2%",
         height: this.props.windowHeight / 2.2,
         width: this.props.windowWidth * .46
@@ -143,6 +142,7 @@ var MainView = function (_React$Component) {
       return _react2.default.createElement(
         'div',
         {
+          className: 'mainViewContainer',
           style: this.handleStyle() },
         this._handleItemRendering(this.props.itemToDisplay)
       );

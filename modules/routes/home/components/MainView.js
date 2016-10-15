@@ -82,7 +82,6 @@ _colorHandling(type){
     let isBig = this.props.isBig;
 
         let smallSize = {
-          float: 'right',
           padding: "2%",
           height: this.props.windowHeight/2.2,
           width: this.props.windowWidth*.46
@@ -103,6 +102,7 @@ _colorHandling(type){
 
     return (
         <div
+          className="mainViewContainer"
           style={this.handleStyle()}>
           {this._handleItemRendering(
             this.props.itemToDisplay)}
